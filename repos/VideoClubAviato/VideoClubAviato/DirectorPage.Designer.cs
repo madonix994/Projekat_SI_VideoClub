@@ -48,6 +48,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.TextBoxHiddenIDDirector = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -105,6 +106,7 @@
             this.listBoxDirectors.Name = "listBoxDirectors";
             this.listBoxDirectors.Size = new System.Drawing.Size(460, 485);
             this.listBoxDirectors.TabIndex = 51;
+            this.listBoxDirectors.SelectedIndexChanged += new System.EventHandler(this.listBoxDirectors_SelectedIndexChanged);
             // 
             // buttonDeleteDirector
             // 
@@ -262,6 +264,14 @@
             this.label1.TabIndex = 92;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // TextBoxHiddenIDDirector
+            // 
+            this.TextBoxHiddenIDDirector.Location = new System.Drawing.Point(748, 25);
+            this.TextBoxHiddenIDDirector.Name = "TextBoxHiddenIDDirector";
+            this.TextBoxHiddenIDDirector.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDDirector.TabIndex = 93;
+            this.TextBoxHiddenIDDirector.Visible = false;
+            // 
             // DirectorPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +280,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.TextBoxHiddenIDDirector);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox4);
@@ -329,5 +340,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDDirector;
     }
 }

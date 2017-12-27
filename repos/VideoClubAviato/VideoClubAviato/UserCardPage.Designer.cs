@@ -48,6 +48,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.TextBoxHiddenIDUserCard = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -106,6 +107,7 @@
             this.listBoxUserCards.Name = "listBoxUserCards";
             this.listBoxUserCards.Size = new System.Drawing.Size(460, 485);
             this.listBoxUserCards.TabIndex = 5;
+            this.listBoxUserCards.SelectedIndexChanged += new System.EventHandler(this.listBoxUserCards_SelectedIndexChanged);
             // 
             // textBoxUserCardPhoneNumber
             // 
@@ -260,6 +262,14 @@
             this.pictureBox8.TabIndex = 111;
             this.pictureBox8.TabStop = false;
             // 
+            // TextBoxHiddenIDUserCard
+            // 
+            this.TextBoxHiddenIDUserCard.Location = new System.Drawing.Point(708, 35);
+            this.TextBoxHiddenIDUserCard.Name = "TextBoxHiddenIDUserCard";
+            this.TextBoxHiddenIDUserCard.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDUserCard.TabIndex = 112;
+            this.TextBoxHiddenIDUserCard.Visible = false;
+            // 
             // UserCardPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +278,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.TextBoxHiddenIDUserCard);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox4);
@@ -328,5 +339,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDUserCard;
     }
 }

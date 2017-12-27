@@ -48,6 +48,9 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.TextBoxHiddenIDMovieRole = new System.Windows.Forms.TextBox();
+            this.TextBoxHiddenIDMovie = new System.Windows.Forms.TextBox();
+            this.TextBoxHiddenIDActor = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -96,6 +99,7 @@
             this.listBoxMovieRoles.Name = "listBoxMovieRoles";
             this.listBoxMovieRoles.Size = new System.Drawing.Size(460, 485);
             this.listBoxMovieRoles.TabIndex = 68;
+            this.listBoxMovieRoles.SelectedIndexChanged += new System.EventHandler(this.listBoxMovieRoles_SelectedIndexChanged);
             // 
             // buttonDeleteMovieRole
             // 
@@ -146,20 +150,18 @@
             this.comboBoxActor.Name = "comboBoxActor";
             this.comboBoxActor.Size = new System.Drawing.Size(175, 33);
             this.comboBoxActor.TabIndex = 82;
+            this.comboBoxActor.SelectedIndexChanged += new System.EventHandler(this.comboBoxActor_SelectedIndexChanged);
             this.comboBoxActor.Leave += new System.EventHandler(this.comboBoxActor_Leave);
             // 
             // comboBoxMovie
             // 
             this.comboBoxMovie.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMovie.FormattingEnabled = true;
-            this.comboBoxMovie.Items.AddRange(new object[] {
-            "Horor",
-            "Avantura",
-            "Misterija"});
             this.comboBoxMovie.Location = new System.Drawing.Point(651, 291);
             this.comboBoxMovie.Name = "comboBoxMovie";
             this.comboBoxMovie.Size = new System.Drawing.Size(175, 33);
             this.comboBoxMovie.TabIndex = 80;
+            this.comboBoxMovie.SelectedIndexChanged += new System.EventHandler(this.comboBoxMovie_SelectedIndexChanged);
             this.comboBoxMovie.Leave += new System.EventHandler(this.comboBoxMovie_Leave);
             // 
             // progressBar1
@@ -263,6 +265,30 @@
             this.pictureBox8.TabIndex = 94;
             this.pictureBox8.TabStop = false;
             // 
+            // TextBoxHiddenIDMovieRole
+            // 
+            this.TextBoxHiddenIDMovieRole.Location = new System.Drawing.Point(709, 33);
+            this.TextBoxHiddenIDMovieRole.Name = "TextBoxHiddenIDMovieRole";
+            this.TextBoxHiddenIDMovieRole.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDMovieRole.TabIndex = 95;
+            this.TextBoxHiddenIDMovieRole.Visible = false;
+            // 
+            // TextBoxHiddenIDMovie
+            // 
+            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(709, 58);
+            this.TextBoxHiddenIDMovie.Name = "TextBoxHiddenIDMovie";
+            this.TextBoxHiddenIDMovie.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDMovie.TabIndex = 96;
+            this.TextBoxHiddenIDMovie.Visible = false;
+            // 
+            // TextBoxHiddenIDActor
+            // 
+            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(709, 7);
+            this.TextBoxHiddenIDActor.Name = "TextBoxHiddenIDActor";
+            this.TextBoxHiddenIDActor.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDActor.TabIndex = 97;
+            this.TextBoxHiddenIDActor.Visible = false;
+            // 
             // MovieRolePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +297,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.TextBoxHiddenIDActor);
+            this.Controls.Add(this.TextBoxHiddenIDMovie);
+            this.Controls.Add(this.TextBoxHiddenIDMovieRole);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);
@@ -330,5 +359,8 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDMovieRole;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDMovie;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDActor;
     }
 }

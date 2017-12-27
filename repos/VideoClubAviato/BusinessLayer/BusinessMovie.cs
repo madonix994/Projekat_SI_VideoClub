@@ -26,18 +26,23 @@ namespace BusinessLayer
             }
         }
 
+
+        public List<Movie> SelectAllMoviesIdAndName()
+        {
+            List<Movie> lista = movieRepository.SelectAllMoviesIdAndName();
+            return lista;
+        }
+
         //LOGICKA PROVERA ZA ISPIS FILMA POTREBNA PRI UNOSU!!!
         public List<Movie_Genre_Director> SelectAllMovies()
         {
             return movieRepository.SelectAllMovies();
-
         }
 
         //LOGICKA PROVERA ZA ISPIS FILMA
         public List<Movie_Genre_Director_MovieRole_Actor> SelectAllMoviesAllClasses()
         {
             return movieRepository.SearchByAll();
-
         }
 
         //LOGICKA PROVERA ZA PRETRAGU FILMA Po NAZIVU FILMA,GODINI IZDANJA FILMA, GLUMCU, REZISERU
@@ -122,6 +127,21 @@ namespace BusinessLayer
         public bool UpdateGenreOnMovie(Movie m)
         {
             if (movieRepository.UpdateGenreOnMovie(m) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        /* LOGICKA PROVERA ZA SETOVANJE ID-a REZISERA U TABELI Movies
+           NAKON STO SE REZISER IZBRISE IZ TABELE Directors */
+        public bool UpdateDirectorOnMovie(Movie m)
+        {
+            if (movieRepository.UpdateDirectorOnMovie(m) > 0)
             {
                 return true;
             }

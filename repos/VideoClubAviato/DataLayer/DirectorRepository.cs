@@ -11,6 +11,23 @@ namespace DataLayer
     public class DirectorRepository
     {
 
+        //KREIRANJE UPITA ZA UNOS REZISERA U BAZU!
+        public int InsertDirector(Director d)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "INSERT INTO Directors VALUES('" + d.GetSetDirector_Name1 + "', '" + d.GetSetDirector_Surname1 + "', '" + d.GetSetDirector_Date_Of_Birth1 + "', '" + d.GetSetDirector_Oscar1 + "')"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+            return command.ExecuteNonQuery();
+        }
+
+
+        //KREIRANJE UPITA ZA ISPIS REZISERA!!!
         public List<Director> SelectAllDirectors()
         {
             List<Director> lista = new List<Director>();
@@ -43,5 +60,40 @@ namespace DataLayer
             return lista;
         }
 
+
+        //UPDATE METODA ZA AZURIRANJE REZISERA
+        public int UpdateDirector(Director d)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "UPDATE Directors SET Director_Name = '" + d.GetSetDirector_Name1 + "', Director_Surname = '" + d.GetSetDirector_Surname1 + "', Director_Date_Of_Birth = '" + d.GetSetDirector_Date_Of_Birth1 + "', Director_Oscar = '" + d.GetSetDirector_Oscar1 + "' WHERE Id_Director = '" + d.GetSetId_Director1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+
+            return command.ExecuteNonQuery();
+
+        }
+
+
+        // KREIRANJE METODE ZA BRISANJE REZISERA
+        public int DeleteDirector(Director d)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "DELETE FROM Directors WHERE Directors.Id_Director = '" + d.GetSetId_Director1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+
+            return command.ExecuteNonQuery();
+        }
+        
     }
 }

@@ -142,17 +142,41 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE UNOS GLUMCA U BAZU !
         private void buttonInsertActor_Click(object sender, EventArgs e)
         {
+
             if (textBoxActorName.Text != "" && textBoxActorSurname.Text != "" && textBoxActorDateOfBirth.Text != "")
-            {              
-                Actor a = new Actor();
-                a.GetSetActor_Name1 = textBoxActorName.Text;
-                a.GetSetActor_Surname1 = textBoxActorSurname.Text;
-                a.GetSetActor_Date_Of_Birth1 = Convert.ToDateTime(textBoxActorDateOfBirth.Text); //.GetDateTimeFormats("");
-                a.GetSetActor_Oscar1 = checkBoxActorOscar.Checked;
+            {
+                /*PRVO PROVERAVA DA LI VEC POSTOJI GLUMAC SA TIM IMENOM, PREZIMENOM i DATUMOM RODJENJA,
+                UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
+                DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
+                List<Actor> lista = businessActor.SelectAllActors();
+                foreach (Actor pom in lista)
+                {
+                    if ((pom.GetSetActor_Name1 == textBoxActorName.Text || pom.GetSetActor_Name1.ToLower() == textBoxActorName.Text || pom.GetSetActor_Name1.ToUpper() == textBoxActorName.Text)
+                        && (pom.GetSetActor_Surname1 == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToLower() == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToUpper() == textBoxActorSurname.Text)
+                        && pom.GetSetActor_Date_Of_Birth1 == Convert.ToDateTime(textBoxActorDateOfBirth.Text))
+                    {
+                        ClearData();
+                        MessageBox.Show("Uneti glumac vec postoji u bazi!", "Obavestenje");
+                    }
+                }
+                if (textBoxActorName.Text != "" && textBoxActorSurname.Text != "" && textBoxActorDateOfBirth.Text != "")
+                {
+                    Actor a = new Actor();
+                    a.GetSetActor_Name1 = textBoxActorName.Text;
+                    a.GetSetActor_Surname1 = textBoxActorSurname.Text;
+                    a.GetSetActor_Date_Of_Birth1 = Convert.ToDateTime(textBoxActorDateOfBirth.Text); //.GetDateTimeFormats("");
+                    a.GetSetActor_Oscar1 = checkBoxActorOscar.Checked;
 
-                businessActor.InsertActor(a);
+                    businessActor.InsertActor(a);
 
-                FillActors();
+                    FillActors();
+                }
+                else
+                {
+
+                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+
+                }
             }
             else
             {
@@ -160,6 +184,7 @@ namespace VideoClubAviato
                 MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
 
             }
+
         }
 
         //PRILIKOM KLIKA NA DUGME VRSI SE AZURIRANJE GLUMCA U BAZI

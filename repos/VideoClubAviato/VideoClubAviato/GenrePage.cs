@@ -122,13 +122,32 @@ namespace VideoClubAviato
         private void buttonInsertGenre_Click(object sender, EventArgs e)
         {
             if (textBoxGenreName.Text != "")
-            {              
-                Genre g = new Genre();
-                g.GetSetGenre_Name1 = textBoxGenreName.Text;
+            {
+                /*PRVO PROVERAVA DA LI VEC POSTOJI ZANR SA TIM NAZIVOM,
+               UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
+               DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
 
-                businessGenre.InsertGenre(g);
-                ClearData();
-                FillGenres();
+                if (textBoxGenreName.Text == textBoxGenreName.Text || textBoxGenreName.Text.ToLower() == textBoxGenreName.Text || textBoxGenreName.Text.ToUpper() == textBoxGenreName.Text)
+                {
+                    ClearData();
+                    MessageBox.Show("Uneti zanr vec postoji u bazi!", "Obavestenje");
+                }
+                if (textBoxGenreName.Text != "")
+                {
+                    Genre g = new Genre();
+                    g.GetSetGenre_Name1 = textBoxGenreName.Text;
+
+                    businessGenre.InsertGenre(g);
+                    ClearData();
+                    FillGenres();
+                }
+                else
+                {
+
+                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+
+                }
+
             }
             else
             {
@@ -136,6 +155,7 @@ namespace VideoClubAviato
                 MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
 
             }
+
         }
 
         //PRILIKOM KLIKA NA DUGME VRSI SE AZURIRANJE ZANRA U BAZI

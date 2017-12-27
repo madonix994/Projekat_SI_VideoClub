@@ -378,43 +378,63 @@ namespace VideoClubAviato
             if (textBoxMovieName.Text != "" && comboBoxGenre.Text != "" && comboBoxDirectors.Text != "" && textBoxMovieYear.Text != "" && textBoxMovieDuration.Text != "" && textBoxMovieIMDBRating.Text != "" && textBoxMovieStatus.Text != "" && textBoxMovieAmount.Text != "" && textBoxMovieRentalPrice.Text != "")
             {
 
-                Movie m = new Movie();
-
-                m.GetSetMovie_Name1 = textBoxMovieName.Text;
-                m.GetSetMovie_Year1 = Convert.ToInt32(textBoxMovieYear.Text);
-                m.GetSetMovie_Duration1 = Convert.ToDouble(textBoxMovieDuration.Text);
-                m.GetSetMovie_Oskar1 = checkBoxMovieOscar.Checked;
-                m.GetSetMovie_IMDB_Rating1 = Convert.ToDouble(textBoxMovieIMDBRating.Text);
-                m.GetSetMovie_Status1 = textBoxMovieStatus.Text;
-                m.GetSetMovie_Amount1 = Convert.ToInt32(textBoxMovieAmount.Text);
-                m.GetSetMovie_Rental_Price1 = Convert.ToDouble(textBoxMovieRentalPrice.Text);
-
-                m.GetSetId_Genre_Genres1 = Convert.ToInt32(TextBoxHiddenIDGenre.Text); //ID zanra iz textBox-a!!!
-                m.GetSetId_Director_Directors1 = Convert.ToInt32(TextBoxHiddenIDDirector.Text);//ID rezisera iz textBox-a!!!
-
-                businessMovie.InsertMovie(m);
-
                 List<Movie_Genre_Director> lista = businessMovie.SelectAllMovies();
-                Movie_Genre_Director movie = lista.Last();
 
-                MovieRole mr = new MovieRole();
-                mr.GetSetRole_Name1 = "Nije Uneto";
-                mr.GetSetRole_Description1 = "Nije Uneto";
-                mr.GetSetId_Actor_Actors1 = Convert.ToInt32("2003");
-                mr.GetSetId_Movie_Movies1 = movie.GetSetId_Movie1;
-                businessMovieRole.InsertMovieRole(mr);
+                /*PRVO PROVERAVA DA LI VEC POSTOJI FILM SA TIM NAZIVOM OD TOG REZISERA IZ TE GODINE,
+                UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
+                DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
 
-                ClearData();
+                foreach (Movie_Genre_Director pom in lista)
+                {
+                    if ((pom.GetSetMovie_Name1 == textBoxMovieName.Text || pom.GetSetMovie_Name1.ToLower() == textBoxMovieName.Text || pom.GetSetMovie_Name1.ToUpper() == textBoxMovieName.Text)
+                     && pom.GetSetId_Director1 == Convert.ToInt32(TextBoxHiddenIDDirector.Text) && pom.GetSetMovie_Year1 == Convert.ToInt32(textBoxMovieYear.Text))
+                    {
+                        ClearData();
+                        MessageBox.Show("Uneti film vec postoji u bazi!", "Obavestenje");
+                    }
+                }
 
-                FillMovies();
+                if (textBoxMovieName.Text != "" && comboBoxGenre.Text != "" && comboBoxDirectors.Text != "" && textBoxMovieYear.Text != "" && textBoxMovieDuration.Text != "" && textBoxMovieIMDBRating.Text != "" && textBoxMovieStatus.Text != "" && textBoxMovieAmount.Text != "" && textBoxMovieRentalPrice.Text != "")
+                {
+                    Movie m = new Movie();
 
+                    m.GetSetMovie_Name1 = textBoxMovieName.Text;
+                    m.GetSetMovie_Year1 = Convert.ToInt32(textBoxMovieYear.Text);
+                    m.GetSetMovie_Duration1 = Convert.ToDouble(textBoxMovieDuration.Text);
+                    m.GetSetMovie_Oskar1 = checkBoxMovieOscar.Checked;
+                    m.GetSetMovie_IMDB_Rating1 = Convert.ToDouble(textBoxMovieIMDBRating.Text);
+                    m.GetSetMovie_Status1 = textBoxMovieStatus.Text;
+                    m.GetSetMovie_Amount1 = Convert.ToInt32(textBoxMovieAmount.Text);
+                    m.GetSetMovie_Rental_Price1 = Convert.ToDouble(textBoxMovieRentalPrice.Text);
+
+                    m.GetSetId_Genre_Genres1 = Convert.ToInt32(TextBoxHiddenIDGenre.Text); //ID zanra iz textBox-a!!!
+                    m.GetSetId_Director_Directors1 = Convert.ToInt32(TextBoxHiddenIDDirector.Text);//ID rezisera iz textBox-a!!!          
+
+                    businessMovie.InsertMovie(m);
+
+                    List<Movie_Genre_Director> lista1 = businessMovie.SelectAllMovies();
+                    Movie_Genre_Director movie = lista1.Last();
+
+                    MovieRole mr = new MovieRole();
+                    mr.GetSetRole_Name1 = "Nije Uneto";
+                    mr.GetSetRole_Description1 = "Nije Uneto";
+                    mr.GetSetId_Actor_Actors1 = Convert.ToInt32("2003");
+                    mr.GetSetId_Movie_Movies1 = movie.GetSetId_Movie1;
+                    businessMovieRole.InsertMovieRole(mr);
+                    ClearData();
+
+                    FillMovies();
+                }
+                else
+                {
+                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                }
             }
             else
             {
-
                 MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
-
             }
+
         }
 
         //PRILIKOM ODABIRA JEDNOG REDA U LISTI SVI PODACI SE POKAZUJU U TextBox POLJA ZA EVENTUALNO DALJE AZURIRANJE
