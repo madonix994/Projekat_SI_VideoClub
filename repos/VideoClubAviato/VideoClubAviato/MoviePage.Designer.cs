@@ -60,6 +60,9 @@
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.TextBoxHiddenIDGenre = new System.Windows.Forms.TextBox();
+            this.TextBoxHiddenIDDirector = new System.Windows.Forms.TextBox();
+            this.TextBoxHiddenIDMovie = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -82,6 +85,7 @@
             this.listBoxMovies.Name = "listBoxMovies";
             this.listBoxMovies.Size = new System.Drawing.Size(460, 524);
             this.listBoxMovies.TabIndex = 0;
+            this.listBoxMovies.SelectedIndexChanged += new System.EventHandler(this.listBoxMovies_SelectedIndexChanged);
             // 
             // buttonInsertMovie
             // 
@@ -206,6 +210,7 @@
             this.comboBoxGenre.Name = "comboBoxGenre";
             this.comboBoxGenre.Size = new System.Drawing.Size(175, 33);
             this.comboBoxGenre.TabIndex = 20;
+            this.comboBoxGenre.SelectedIndexChanged += new System.EventHandler(this.comboBoxGenre_SelectedIndexChanged);
             this.comboBoxGenre.Leave += new System.EventHandler(this.comboBoxGenre_Leave);
             // 
             // comboBoxDirectors
@@ -220,6 +225,7 @@
             this.comboBoxDirectors.Name = "comboBoxDirectors";
             this.comboBoxDirectors.Size = new System.Drawing.Size(175, 33);
             this.comboBoxDirectors.TabIndex = 22;
+            this.comboBoxDirectors.SelectedIndexChanged += new System.EventHandler(this.comboBoxDirectors_SelectedIndexChanged);
             this.comboBoxDirectors.Leave += new System.EventHandler(this.comboBoxDirectors_Leave);
             // 
             // pictureBox1
@@ -410,6 +416,30 @@
             this.label3.TabIndex = 100;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // TextBoxHiddenIDGenre
+            // 
+            this.TextBoxHiddenIDGenre.Location = new System.Drawing.Point(684, 13);
+            this.TextBoxHiddenIDGenre.Name = "TextBoxHiddenIDGenre";
+            this.TextBoxHiddenIDGenre.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDGenre.TabIndex = 101;
+            this.TextBoxHiddenIDGenre.Visible = false;
+            // 
+            // TextBoxHiddenIDDirector
+            // 
+            this.TextBoxHiddenIDDirector.Location = new System.Drawing.Point(684, 40);
+            this.TextBoxHiddenIDDirector.Name = "TextBoxHiddenIDDirector";
+            this.TextBoxHiddenIDDirector.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDDirector.TabIndex = 102;
+            this.TextBoxHiddenIDDirector.Visible = false;
+            // 
+            // TextBoxHiddenIDMovie
+            // 
+            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(684, 67);
+            this.TextBoxHiddenIDMovie.Name = "TextBoxHiddenIDMovie";
+            this.TextBoxHiddenIDMovie.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDMovie.TabIndex = 103;
+            this.TextBoxHiddenIDMovie.Visible = false;
+            // 
             // MoviePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,6 +448,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 687);
+            this.Controls.Add(this.TextBoxHiddenIDMovie);
+            this.Controls.Add(this.TextBoxHiddenIDDirector);
+            this.Controls.Add(this.TextBoxHiddenIDGenre);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox13);
             this.Controls.Add(this.pictureBox12);
@@ -508,5 +541,8 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDGenre;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDDirector;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDMovie;
     }
 }

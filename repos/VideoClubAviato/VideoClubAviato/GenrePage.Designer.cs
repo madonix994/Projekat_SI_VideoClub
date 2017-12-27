@@ -42,6 +42,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.TextBoxHiddenIDGenre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -77,6 +78,7 @@
             this.listBoxGenres.Name = "listBoxGenres";
             this.listBoxGenres.Size = new System.Drawing.Size(460, 485);
             this.listBoxGenres.TabIndex = 68;
+            this.listBoxGenres.SelectedIndexChanged += new System.EventHandler(this.listBoxGenres_SelectedIndexChanged);
             // 
             // buttonDeleteGenre
             // 
@@ -191,6 +193,14 @@
             this.pictureBox3.TabIndex = 90;
             this.pictureBox3.TabStop = false;
             // 
+            // TextBoxHiddenIDGenre
+            // 
+            this.TextBoxHiddenIDGenre.Location = new System.Drawing.Point(675, 24);
+            this.TextBoxHiddenIDGenre.Name = "TextBoxHiddenIDGenre";
+            this.TextBoxHiddenIDGenre.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDGenre.TabIndex = 91;
+            this.TextBoxHiddenIDGenre.Visible = false;
+            // 
             // GenrePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +209,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.TextBoxHiddenIDGenre);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox5);
@@ -244,5 +255,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDGenre;
     }
 }

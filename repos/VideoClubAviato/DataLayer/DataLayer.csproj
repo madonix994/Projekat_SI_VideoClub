@@ -51,7 +51,10 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieRole.cs" />
+    <Compile Include="Models\MovieRole_Actor_Movie.cs" />
+    <Compile Include="Models\Movie_Genre.cs" />
     <Compile Include="Models\Movie_Genre_Director.cs" />
+    <Compile Include="Models\Movie_Genre_Director_MovieRole_Actor.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\UserCard.cs" />
     <Compile Include="MovieRepository.cs" />

@@ -39,7 +39,7 @@
             this.buttonDeleteActor = new System.Windows.Forms.Button();
             this.buttonUpdateActor = new System.Windows.Forms.Button();
             this.buttonInsertActor = new System.Windows.Forms.Button();
-            this.textBoxArctorSearch = new System.Windows.Forms.TextBox();
+            this.textBoxActorSearch = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.TextBoxHiddenIDActor = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -130,6 +131,7 @@
             this.listBoxActors.Name = "listBoxActors";
             this.listBoxActors.Size = new System.Drawing.Size(460, 485);
             this.listBoxActors.TabIndex = 68;
+            this.listBoxActors.SelectedIndexChanged += new System.EventHandler(this.listBoxActors_SelectedIndexChanged);
             // 
             // buttonDeleteActor
             // 
@@ -173,14 +175,14 @@
             this.buttonInsertActor.Click += new System.EventHandler(this.buttonInsertActor_Click);
             this.buttonInsertActor.MouseHover += new System.EventHandler(this.MouseHoverInsertActor);
             // 
-            // textBoxArctorSearch
+            // textBoxActorSearch
             // 
-            this.textBoxArctorSearch.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxArctorSearch.Location = new System.Drawing.Point(529, 497);
-            this.textBoxArctorSearch.Name = "textBoxArctorSearch";
-            this.textBoxArctorSearch.Size = new System.Drawing.Size(311, 32);
-            this.textBoxArctorSearch.TabIndex = 80;
-            this.textBoxArctorSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxActorSearch.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxActorSearch.Location = new System.Drawing.Point(529, 497);
+            this.textBoxActorSearch.Name = "textBoxActorSearch";
+            this.textBoxActorSearch.Size = new System.Drawing.Size(311, 32);
+            this.textBoxActorSearch.TabIndex = 80;
+            this.textBoxActorSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // progressBar1
             // 
@@ -263,6 +265,14 @@
             this.pictureBox7.TabIndex = 88;
             this.pictureBox7.TabStop = false;
             // 
+            // TextBoxHiddenIDActor
+            // 
+            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(683, 29);
+            this.TextBoxHiddenIDActor.Name = "TextBoxHiddenIDActor";
+            this.TextBoxHiddenIDActor.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDActor.TabIndex = 89;
+            this.TextBoxHiddenIDActor.Visible = false;
+            // 
             // ActorPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +281,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.TextBoxHiddenIDActor);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
@@ -279,7 +290,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.textBoxArctorSearch);
+            this.Controls.Add(this.textBoxActorSearch);
             this.Controls.Add(this.checkBoxActorOscar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonActorSearch);
@@ -321,7 +332,7 @@
         private System.Windows.Forms.Button buttonDeleteActor;
         private System.Windows.Forms.Button buttonUpdateActor;
         private System.Windows.Forms.Button buttonInsertActor;
-        private System.Windows.Forms.TextBox textBoxArctorSearch;
+        private System.Windows.Forms.TextBox textBoxActorSearch;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label3;
@@ -330,5 +341,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDActor;
     }
 }
