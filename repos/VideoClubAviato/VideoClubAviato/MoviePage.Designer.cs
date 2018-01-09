@@ -63,6 +63,7 @@
             this.TextBoxHiddenIDGenre = new System.Windows.Forms.TextBox();
             this.TextBoxHiddenIDDirector = new System.Windows.Forms.TextBox();
             this.TextBoxHiddenIDMovie = new System.Windows.Forms.TextBox();
+            this.pictureBoxHelp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -76,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxMovies
@@ -83,7 +85,7 @@
             this.listBoxMovies.FormattingEnabled = true;
             this.listBoxMovies.Location = new System.Drawing.Point(12, 160);
             this.listBoxMovies.Name = "listBoxMovies";
-            this.listBoxMovies.Size = new System.Drawing.Size(460, 524);
+            this.listBoxMovies.Size = new System.Drawing.Size(688, 524);
             this.listBoxMovies.TabIndex = 0;
             this.listBoxMovies.SelectedIndexChanged += new System.EventHandler(this.listBoxMovies_SelectedIndexChanged);
             // 
@@ -132,7 +134,7 @@
             // 
             this.textBoxMovieName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieName.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieName.Location = new System.Drawing.Point(660, 160);
+            this.textBoxMovieName.Location = new System.Drawing.Point(884, 153);
             this.textBoxMovieName.Name = "textBoxMovieName";
             this.textBoxMovieName.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieName.TabIndex = 6;
@@ -142,7 +144,7 @@
             // 
             this.textBoxMovieYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieYear.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieYear.Location = new System.Drawing.Point(660, 274);
+            this.textBoxMovieYear.Location = new System.Drawing.Point(884, 267);
             this.textBoxMovieYear.Name = "textBoxMovieYear";
             this.textBoxMovieYear.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieYear.TabIndex = 8;
@@ -152,7 +154,7 @@
             // 
             this.textBoxMovieDuration.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieDuration.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieDuration.Location = new System.Drawing.Point(660, 312);
+            this.textBoxMovieDuration.Location = new System.Drawing.Point(884, 305);
             this.textBoxMovieDuration.Name = "textBoxMovieDuration";
             this.textBoxMovieDuration.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieDuration.TabIndex = 10;
@@ -162,7 +164,7 @@
             // 
             this.textBoxMovieIMDBRating.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieIMDBRating.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieIMDBRating.Location = new System.Drawing.Point(660, 350);
+            this.textBoxMovieIMDBRating.Location = new System.Drawing.Point(884, 343);
             this.textBoxMovieIMDBRating.Name = "textBoxMovieIMDBRating";
             this.textBoxMovieIMDBRating.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieIMDBRating.TabIndex = 12;
@@ -172,7 +174,7 @@
             // 
             this.textBoxMovieStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieStatus.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieStatus.Location = new System.Drawing.Point(660, 388);
+            this.textBoxMovieStatus.Location = new System.Drawing.Point(884, 381);
             this.textBoxMovieStatus.Name = "textBoxMovieStatus";
             this.textBoxMovieStatus.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieStatus.TabIndex = 14;
@@ -182,7 +184,7 @@
             // 
             this.textBoxMovieAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieAmount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieAmount.Location = new System.Drawing.Point(660, 426);
+            this.textBoxMovieAmount.Location = new System.Drawing.Point(884, 419);
             this.textBoxMovieAmount.Name = "textBoxMovieAmount";
             this.textBoxMovieAmount.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieAmount.TabIndex = 16;
@@ -192,7 +194,7 @@
             // 
             this.textBoxMovieRentalPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieRentalPrice.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieRentalPrice.Location = new System.Drawing.Point(660, 464);
+            this.textBoxMovieRentalPrice.Location = new System.Drawing.Point(884, 457);
             this.textBoxMovieRentalPrice.Name = "textBoxMovieRentalPrice";
             this.textBoxMovieRentalPrice.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieRentalPrice.TabIndex = 18;
@@ -206,7 +208,7 @@
             "Horor",
             "Avantura",
             "Misterija"});
-            this.comboBoxGenre.Location = new System.Drawing.Point(660, 196);
+            this.comboBoxGenre.Location = new System.Drawing.Point(884, 189);
             this.comboBoxGenre.Name = "comboBoxGenre";
             this.comboBoxGenre.Size = new System.Drawing.Size(175, 33);
             this.comboBoxGenre.TabIndex = 20;
@@ -221,7 +223,7 @@
             "Steven Spielberg",
             "James Cameron",
             "Quentin Tarantino"});
-            this.comboBoxDirectors.Location = new System.Drawing.Point(660, 235);
+            this.comboBoxDirectors.Location = new System.Drawing.Point(884, 228);
             this.comboBoxDirectors.Name = "comboBoxDirectors";
             this.comboBoxDirectors.Size = new System.Drawing.Size(175, 33);
             this.comboBoxDirectors.TabIndex = 22;
@@ -244,7 +246,7 @@
             this.checkBoxMovieOscar.AutoSize = true;
             this.checkBoxMovieOscar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxMovieOscar.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.checkBoxMovieOscar.Location = new System.Drawing.Point(552, 502);
+            this.checkBoxMovieOscar.Location = new System.Drawing.Point(776, 495);
             this.checkBoxMovieOscar.Name = "checkBoxMovieOscar";
             this.checkBoxMovieOscar.Size = new System.Drawing.Size(223, 28);
             this.checkBoxMovieOscar.TabIndex = 26;
@@ -253,7 +255,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(488, 661);
+            this.progressBar1.Location = new System.Drawing.Point(712, 654);
             this.progressBar1.MarqueeAnimationSpeed = 108;
             this.progressBar1.Maximum = 108;
             this.progressBar1.Name = "progressBar1";
@@ -264,7 +266,7 @@
             // textBoxMovieSearch
             // 
             this.textBoxMovieSearch.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieSearch.Location = new System.Drawing.Point(520, 560);
+            this.textBoxMovieSearch.Location = new System.Drawing.Point(744, 553);
             this.textBoxMovieSearch.Name = "textBoxMovieSearch";
             this.textBoxMovieSearch.Size = new System.Drawing.Size(320, 32);
             this.textBoxMovieSearch.TabIndex = 85;
@@ -274,7 +276,7 @@
             // 
             this.buttonMovieSearch.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonMovieSearch.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMovieSearch.Location = new System.Drawing.Point(488, 599);
+            this.buttonMovieSearch.Location = new System.Drawing.Point(712, 592);
             this.buttonMovieSearch.Name = "buttonMovieSearch";
             this.buttonMovieSearch.Size = new System.Drawing.Size(352, 56);
             this.buttonMovieSearch.TabIndex = 84;
@@ -288,7 +290,7 @@
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(489, 560);
+            this.pictureBox2.Location = new System.Drawing.Point(713, 553);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(35, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -298,7 +300,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(254, 7);
+            this.pictureBox5.Location = new System.Drawing.Point(310, 7);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(400, 66);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -308,7 +310,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(502, 90);
+            this.pictureBox3.Location = new System.Drawing.Point(726, 83);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(329, 56);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -318,7 +320,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(489, 158);
+            this.pictureBox4.Location = new System.Drawing.Point(713, 151);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(168, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -328,7 +330,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(489, 194);
+            this.pictureBox6.Location = new System.Drawing.Point(713, 187);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(168, 32);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -338,7 +340,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(489, 233);
+            this.pictureBox7.Location = new System.Drawing.Point(713, 226);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(168, 32);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -348,7 +350,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(489, 272);
+            this.pictureBox8.Location = new System.Drawing.Point(713, 265);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(168, 32);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -358,7 +360,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(489, 310);
+            this.pictureBox9.Location = new System.Drawing.Point(713, 303);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(168, 32);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -368,7 +370,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(489, 349);
+            this.pictureBox10.Location = new System.Drawing.Point(713, 342);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(168, 31);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -378,7 +380,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(489, 385);
+            this.pictureBox11.Location = new System.Drawing.Point(713, 378);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(168, 32);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -388,7 +390,7 @@
             // pictureBox12
             // 
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(488, 424);
+            this.pictureBox12.Location = new System.Drawing.Point(712, 417);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(169, 31);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -398,7 +400,7 @@
             // pictureBox13
             // 
             this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(488, 464);
+            this.pictureBox13.Location = new System.Drawing.Point(712, 457);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(169, 31);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -410,7 +412,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(549, 525);
+            this.label3.Location = new System.Drawing.Point(773, 517);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 15);
             this.label3.TabIndex = 100;
@@ -418,7 +420,7 @@
             // 
             // TextBoxHiddenIDGenre
             // 
-            this.TextBoxHiddenIDGenre.Location = new System.Drawing.Point(684, 13);
+            this.TextBoxHiddenIDGenre.Location = new System.Drawing.Point(972, 7);
             this.TextBoxHiddenIDGenre.Name = "TextBoxHiddenIDGenre";
             this.TextBoxHiddenIDGenre.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDGenre.TabIndex = 101;
@@ -426,7 +428,7 @@
             // 
             // TextBoxHiddenIDDirector
             // 
-            this.TextBoxHiddenIDDirector.Location = new System.Drawing.Point(684, 40);
+            this.TextBoxHiddenIDDirector.Location = new System.Drawing.Point(972, 34);
             this.TextBoxHiddenIDDirector.Name = "TextBoxHiddenIDDirector";
             this.TextBoxHiddenIDDirector.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDDirector.TabIndex = 102;
@@ -434,11 +436,23 @@
             // 
             // TextBoxHiddenIDMovie
             // 
-            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(684, 67);
+            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(972, 61);
             this.TextBoxHiddenIDMovie.Name = "TextBoxHiddenIDMovie";
             this.TextBoxHiddenIDMovie.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDMovie.TabIndex = 103;
             this.TextBoxHiddenIDMovie.Visible = false;
+            // 
+            // pictureBoxHelp
+            // 
+            this.pictureBoxHelp.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHelp.Image")));
+            this.pictureBoxHelp.Location = new System.Drawing.Point(972, 12);
+            this.pictureBoxHelp.Name = "pictureBoxHelp";
+            this.pictureBoxHelp.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHelp.TabIndex = 104;
+            this.pictureBoxHelp.TabStop = false;
+            this.pictureBoxHelp.Click += new System.EventHandler(this.pictureBoxHelp_Click);
+            this.pictureBoxHelp.MouseHover += new System.EventHandler(this.pictureBoxHelp_MouseHover);
             // 
             // MoviePage
             // 
@@ -447,7 +461,8 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(854, 687);
+            this.ClientSize = new System.Drawing.Size(1084, 687);
+            this.Controls.Add(this.pictureBoxHelp);
             this.Controls.Add(this.TextBoxHiddenIDMovie);
             this.Controls.Add(this.TextBoxHiddenIDDirector);
             this.Controls.Add(this.TextBoxHiddenIDGenre);
@@ -484,8 +499,8 @@
             this.Controls.Add(this.listBoxMovies);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(870, 730);
-            this.MinimumSize = new System.Drawing.Size(870, 726);
+            this.MaximumSize = new System.Drawing.Size(1100, 730);
+            this.MinimumSize = new System.Drawing.Size(1100, 726);
             this.Name = "MoviePage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movie";
@@ -503,6 +518,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,5 +560,6 @@
         private System.Windows.Forms.TextBox TextBoxHiddenIDGenre;
         private System.Windows.Forms.TextBox TextBoxHiddenIDDirector;
         private System.Windows.Forms.TextBox TextBoxHiddenIDMovie;
+        private System.Windows.Forms.PictureBox pictureBoxHelp;
     }
 }

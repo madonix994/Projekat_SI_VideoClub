@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace VideoClubAviato
 {
@@ -37,6 +38,7 @@ namespace VideoClubAviato
             pictureBox5.BackColor = Color.Transparent;
             pictureBox6.BackColor = Color.Transparent;
             pictureBox7.BackColor = Color.Transparent;
+            pictureBoxHelp.BackColor = Color.Transparent;
             pictureBox8.BackColor = Color.Transparent;
             
 
@@ -78,7 +80,7 @@ namespace VideoClubAviato
 
             foreach (MovieRole_Actor_Movie pom in listapom)
             {
-                listBoxMovieRoles.Items.Add(pom.GetSetId_Role1 + ". " + pom.GetSetRole_Name1 + " -- " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + " -- " + pom.GetSetMovie_Name1 + " -- " + " -- " + pom.GetSetRole_Description1);
+                listBoxMovieRoles.Items.Add("Uloga: " + pom.GetSetRole_Name1 + "  -- Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Film: " + pom.GetSetMovie_Name1 + "  -- Opis Uloge: " + pom.GetSetRole_Description1);
             }
         }
 
@@ -196,7 +198,7 @@ namespace VideoClubAviato
         /*METODA ZA UNOS ULOGE */
         private void buttonInsertMovieRole_Click(object sender, EventArgs e)
         {
-            if (textBoxMovieRoleName.Text != "" && textBoxMovieRoleDescription.Text != "" && comboBoxMovie.Text != "" && comboBoxActor.Text != "")
+            if (Regex.IsMatch(textBoxMovieRoleName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxMovieRoleDescription.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxMovie.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxActor.Text, @"[a-zA-Z]"))
             {
                 List<MovieRole_Actor_Movie> listapom = businessMovieRole.SelectAllMovieRoles();
 
@@ -231,19 +233,19 @@ namespace VideoClubAviato
                 }
                 else
                 {
-                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                    MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
                 }
             }
             else
             {
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
             }
         }
 
         //DUGME ZA IZMENU ULOGE
         private void buttonUpdateMovieRole_Click(object sender, EventArgs e)
         {
-            if (textBoxMovieRoleName.Text != "" && textBoxMovieRoleDescription.Text != "" && comboBoxMovie.Text != "" && comboBoxActor.Text != "")
+            if (Regex.IsMatch(textBoxMovieRoleName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxMovieRoleDescription.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxMovie.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxActor.Text, @"[a-zA-Z]"))
             {
                 MovieRole mr = new MovieRole();
 
@@ -265,7 +267,7 @@ namespace VideoClubAviato
             }
             else
             {
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
             }
         }
 
@@ -306,7 +308,7 @@ namespace VideoClubAviato
             List<MovieRole_Actor_Movie> lista = businessMovieRole.SearchMovieRole(pom1);
             foreach (MovieRole_Actor_Movie pom in lista)
             {
-                listBoxMovieRoles.Items.Add(pom.GetSetId_Role1 + ". " + pom.GetSetRole_Name1 + " -- " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + " -- " + pom.GetSetMovie_Name1 + " -- " + " -- " + pom.GetSetRole_Description1);
+                listBoxMovieRoles.Items.Add("Uloga: " + pom.GetSetRole_Name1 + "  -- Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Film: " + pom.GetSetMovie_Name1 + "  -- Opis Uloge: " + pom.GetSetRole_Description1);
             }
             
         }
@@ -320,7 +322,7 @@ namespace VideoClubAviato
                 string pom;
                 pom = listBoxMovieRoles.Text;
 
-                List<MovieRole_Actor_Movie> lista = businessMovieRole.SelectAllMovieRoles().Where(mr => mr.GetSetId_Role1 + ". " + mr.GetSetRole_Name1 + " -- " + mr.GetSetActor_Name1 + " " + mr.GetSetActor_Surname1 + " -- " + mr.GetSetMovie_Name1 + " -- " + " -- " + mr.GetSetRole_Description1 == pom).ToList();
+                List<MovieRole_Actor_Movie> lista = businessMovieRole.SelectAllMovieRoles().Where(mr => "Uloga: " + mr.GetSetRole_Name1 + "  -- Glumac: " + mr.GetSetActor_Name1 + " " + mr.GetSetActor_Surname1 + "  -- Film: " + mr.GetSetMovie_Name1 + "  -- Opis Uloge: " + mr.GetSetRole_Description1 == pom).ToList();
 
                 MovieRole_Actor_Movie movieRole = lista.First();
 
@@ -366,8 +368,19 @@ namespace VideoClubAviato
             TextBoxHiddenIDActor.Text = Convert.ToString(ac.GetSetId_Actor1);
         }
 
+        private void pictureBoxHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\MovieRole.html"));
 
+        }
 
+        private void pictureBoxHelp_MouseHover(object sender, EventArgs e)
+        {
+            pictureBoxHelp.Cursor = Cursors.Hand;
 
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(pictureBoxHelp, "Prikaz pomocne dokumentacije.");
+
+        }
     }
 }

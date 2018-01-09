@@ -78,7 +78,7 @@ namespace DataLayer
 
             SqlCommand command = new SqlCommand(); // kreiranje komande
             command.Connection = dataConnection; //setovanje konekcije komande
-            command.CommandText = "SELECT Movies.Id_Movie, Movies.Movie_Name, Movies.Movie_Year, Movies.Movie_Duration, Movies.Movie_Status, Movies.Movie_Amount, Movies.Movie_Rental_Price, Movies.Movie_IMDB_Rating, Movies.Movie_Oskar, Movies.Id_Director_Directors, Movies.Id_Genre_Genres, Genres.Genre_Name, Directors.Director_Name, Directors.Director_Surname, MovieRoles.Role_Name, Actors.Actor_Name, Actors.Actor_Surname FROM Movies JOIN Genres ON Movies.Id_Genre_Genres = Genres.Id_Genre JOIN Directors ON Movies.Id_Director_Directors = Directors.Id_Director  JOIN MovieRoles ON Movies.Id_Movie = MovieRoles.Id_Movie_Movies JOIN Actors ON Actors.Id_Actor = MovieRoles.Id_Actor_Actors";
+            command.CommandText = "SELECT COUNT(MovieRoles.Id_Role), Movies.Movie_Name, Movies.Movie_Year, Movies.Movie_Duration, Movies.Movie_Status, Movies.Movie_Amount, Movies.Movie_Rental_Price, Movies.Movie_IMDB_Rating, Movies.Movie_Oskar, Movies.Id_Director_Directors, Movies.Id_Genre_Genres, Genres.Genre_Name, Directors.Director_Name, Directors.Director_Surname, COUNT(MovieRoles.Role_Name), COUNT(Actors.Actor_Name), COUNT(Actors.Actor_Surname), Movies.Id_Movie FROM Movies JOIN MovieRoles ON MovieRoles.Id_Movie_Movies = Movies.Id_Movie JOIN Genres ON Genres.Id_Genre = Movies.Id_Genre_Genres JOIN Directors ON Directors.Id_Director = Movies.Id_Director_Directors JOIN Actors ON Actors.Id_Actor = MovieRoles.Id_Actor_Actors GROUP BY Movies.Id_Movie ,Movies.Movie_Name, Movies.Movie_Year, Movies.Movie_Duration, Movies.Movie_Status, Movies.Movie_Amount, Movies.Movie_Rental_Price, Movies.Movie_IMDB_Rating, Movies.Movie_Oskar, Movies.Id_Director_Directors, Movies.Id_Genre_Genres, Genres.Genre_Name, Directors.Director_Name, Directors.Director_Surname";
             
             SqlDataReader dataReader = command.ExecuteReader();
 
@@ -86,7 +86,7 @@ namespace DataLayer
             {
                 Movie_Genre_Director_MovieRole_Actor m = new Movie_Genre_Director_MovieRole_Actor();
                 // za svaki red se uzima vrednost određene kolone (0 - prva kolona)
-                m.GetSetId_Movie1 = dataReader.GetInt32(0);
+                m.GetSetId_Role1 = dataReader.GetInt32(0);
                 m.GetSetMovie_Name1 = dataReader.GetString(1);
                 m.GetSetMovie_Year1 = dataReader.GetInt32(2);
                 m.GetSetMovie_Duration1 = dataReader.GetDouble(3);
@@ -100,16 +100,19 @@ namespace DataLayer
                 m.GetSetGenre_Name1 = dataReader.GetString(11);
                 m.GetSetDirector_Name1 = dataReader.GetString(12);
                 m.GetSetDirector_Surname1 = dataReader.GetString(13);
-                m.GetSetRole_Name1 = dataReader.GetString(14);
-                m.GetSetActor_Name1 = dataReader.GetString(15);
-                m.GetSetActor_Surname1 = dataReader.GetString(16);
-
+                m.GetSetRole_Name1 = Convert.ToString(dataReader.GetInt32(14));
+                m.GetSetActor_Name1 = Convert.ToString(dataReader.GetInt32(15));
+                m.GetSetActor_Surname1 = Convert.ToString(dataReader.GetInt32(16));
+                m.GetSetId_Movie1 = dataReader.GetInt32(17);
                 lista.Add(m);
             }
 
             dataConnection.Close();
             return lista;
         }
+
+        
+
 
         // KREIRANJE METODE ZA UPDATE FILMA U BAZI
         public int UpdateMovie(Movie m)
@@ -155,7 +158,7 @@ namespace DataLayer
 
             SqlCommand command = new SqlCommand(); // kreiranje komande
             command.Connection = dataConnection; //setovanje konekcije komande
-            command.CommandText = "UPDATE Movies SET Id_Genre_Genres = '" + Convert.ToInt32("1004") + "' WHERE Id_Genre_Genres = '" + m.GetSetId_Genre_Genres1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+            command.CommandText = "UPDATE Movies SET Id_Genre_Genres = '" + Convert.ToInt32("1002") + "' WHERE Id_Genre_Genres = '" + m.GetSetId_Genre_Genres1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
             
             return command.ExecuteNonQuery();
         }
@@ -171,7 +174,7 @@ namespace DataLayer
 
             SqlCommand command = new SqlCommand(); // kreiranje komande
             command.Connection = dataConnection; //setovanje konekcije komande
-            command.CommandText = "UPDATE Movies SET Id_Director_Directors = '" + Convert.ToInt32("1004") + "' WHERE Id_Director_Directors = '" + m.GetSetId_Director_Directors1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+            command.CommandText = "UPDATE Movies SET Id_Director_Directors = '" + Convert.ToInt32("2") + "' WHERE Id_Director_Directors = '" + m.GetSetId_Director_Directors1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
 
 
             return command.ExecuteNonQuery();
@@ -212,5 +215,109 @@ namespace DataLayer
         }
 
 
+        //SELECT SVIH IMENA, ID-a FILMOVA I KOLICINE FILMA ZA POPUNJAVANJE COMBOBOX-a ZA FILMOVE!
+        public List<Movie> SelectAllMoviesIdAndNameAndAmount()
+        {
+            List<Movie> lista = new List<Movie>();
+
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "SELECT Id_Movie, Movie_Name, Movie_Amount FROM Movies";
+
+
+            SqlDataReader dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                Movie m = new Movie();
+                // za svaki red se uzima vrednost određene kolone (0 - prva kolona)
+                m.GetSetId_Movie1 = dataReader.GetInt32(0);
+                m.GetSetMovie_Name1 = dataReader.GetString(1);
+                m.GetSetMovie_Amount1 = dataReader.GetInt32(2);
+
+
+                lista.Add(m);
+            }
+
+            dataConnection.Close();
+            return lista;
+        }
+
+
+
+
+        // KREIRANJE METODE ZA UPDATE FILMA U BAZI (Povecanje Kolicine)
+        public int UpdateMovieAmount(Movie m)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "UPDATE Movies SET Movie_Amount = '"+ m.GetSetMovie_Amount1 +"' WHERE Movie_Name = '"+ m.GetSetMovie_Name1 +"'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+            return command.ExecuteNonQuery();
+
+        }
+        // KREIRANJE METODE ZA UPDATE FILMA U BAZI (Smanjenje Kolicine)
+        public int UpdateMovieAmountMinus(Movie m)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "UPDATE Movies SET Movie_Amount = '" + m.GetSetMovie_Amount1 + "' WHERE Id_Movie = '" + m.GetSetId_Movie1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+            return command.ExecuteNonQuery();
+
+        }
+
+
+
+
+
+        //KREIRANJE METODE ZA PROMENU STANJA NA FILMU KADA KOLICINA BUDE NULA (DA PISE Nije Na Stanju)
+        // KREIRANJE METODE ZA UPDATE FILMA U BAZI (Povecanje Kolicine)
+        public int UpdateMovieStatus(Movie m)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "UPDATE Movies SET Movie_Status = 'Nije Na Stanju' WHERE Id_Movie = '" + m.GetSetId_Movie1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+            return command.ExecuteNonQuery();
+
+        }
+
+        //KREIRANJE METODE ZA PROMENU STANJA NA FILMU KADA KOLICINA BUDE RAZLICITA OD NULE (DA PISE Na Stanju)
+        // KREIRANJE METODE ZA UPDATE FILMA U BAZI (Povecanje Kolicine)
+        public int UpdateMovieStatus2(Movie m)
+        {
+            SqlConnection dataConnection = new SqlConnection();
+
+            dataConnection.ConnectionString = GlobalVariables.connString;
+            dataConnection.Open();
+
+            SqlCommand command = new SqlCommand(); // kreiranje komande
+            command.Connection = dataConnection; //setovanje konekcije komande
+            command.CommandText = "UPDATE Movies SET Movie_Status = 'Na Stanju' WHERE Id_Movie = '" + m.GetSetId_Movie1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+
+            return command.ExecuteNonQuery();
+
+        }
     }
 }

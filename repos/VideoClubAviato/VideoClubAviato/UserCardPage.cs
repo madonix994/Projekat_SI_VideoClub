@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,6 +31,7 @@ namespace VideoClubAviato
             pictureBox6.BackColor = Color.Transparent;
             pictureBox7.BackColor = Color.Transparent;
             pictureBox8.BackColor = Color.Transparent;
+            pictureBoxHelp.BackColor = Color.Transparent;
 
 
         }
@@ -41,7 +43,7 @@ namespace VideoClubAviato
             List<UserCard> listaU = businessUserCard.SelectAllUsers();
             foreach (UserCard pom in listaU)
             {
-                listBoxUserCards.Items.Add(pom.GetSetId_UserCard1 + ". " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  --  " + pom.GetSetUserCard_Address_Of_User1 + "  --  " + pom.GetSetUserCard_PhoneNumber_Of_User1);
+                listBoxUserCards.Items.Add("Korisnik: " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + pom.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + pom.GetSetUserCard_PhoneNumber_Of_User1);
             }
 
         }
@@ -151,11 +153,14 @@ namespace VideoClubAviato
             }
         }
 
+        // (Regex.IsMatch(, @"[a-zA-Z]") && Regex.IsMatch(textBoxMovieRoleDescription.Text, @"[a-zA-Z]") && Regex.IsMatch(, @"[a-zA-Z]") && Regex.IsMatch(comboBoxActor.Text, @"[a-zA-Z]"))
+
 
         //DUGME ZA UNOS KORISNIKA U BAZU!
         private void buttonInsertUserCard_Click(object sender, EventArgs e)
         {
-            if (textBoxUserCardName.Text != "" && textBoxUserCardSurname.Text != "" && textBoxUserCardAddress.Text != "" && textBoxUserCardPhoneNumber.Text != "")
+            int phonenumber;
+            if (Regex.IsMatch(textBoxUserCardName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxUserCardSurname.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxUserCardAddress.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxUserCardPhoneNumber.Text, out phonenumber))
             {
                 List<UserCard> listaU = businessUserCard.SelectAllUsers();
                 foreach (UserCard pom in listaU)
@@ -182,19 +187,21 @@ namespace VideoClubAviato
                 }
                 else
                 {
-                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                    MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
                 }
             }
             else
             {
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
             }
         }
 
         //PRILIKOM KLIKA NA DUGME VRSI SE AZURIRANJE FILMA U BAZI
         private void buttonUpdateUserCard_Click(object sender, EventArgs e)
         {
-            if (textBoxUserCardName.Text != "" && textBoxUserCardSurname.Text != "" && textBoxUserCardAddress.Text != "" && textBoxUserCardPhoneNumber.Text != "")
+            int phonenumber;
+
+            if (Regex.IsMatch(textBoxUserCardName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxUserCardSurname.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxUserCardAddress.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxUserCardPhoneNumber.Text, out phonenumber))
             {
                 UserCard uc = new UserCard();
 
@@ -213,7 +220,7 @@ namespace VideoClubAviato
             }
             else
             {
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
             }
         }
 
@@ -247,7 +254,7 @@ namespace VideoClubAviato
             List<UserCard> lista = businessUserCard.SearchUserCard(pom1);
             foreach (UserCard pom in lista)
             {
-                listBoxUserCards.Items.Add(pom.GetSetId_UserCard1 + ". " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  --  " + pom.GetSetUserCard_Address_Of_User1 + "  --  " + pom.GetSetUserCard_PhoneNumber_Of_User1);
+                listBoxUserCards.Items.Add("Korisnik: " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + pom.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + pom.GetSetUserCard_PhoneNumber_Of_User1);
             }
         }
 
@@ -259,7 +266,7 @@ namespace VideoClubAviato
                 string pom;
                 pom = listBoxUserCards.Text;
 
-                List<UserCard> lista = businessUserCard.SelectAllUsers().Where(u => u.GetSetId_UserCard1 + ". " + u.GetSetUserCard_Name_Of_User1 + " " + u.GetSetUserCard_Surname_Of_User1 + "  --  " + u.GetSetUserCard_Address_Of_User1 + "  --  " + u.GetSetUserCard_PhoneNumber_Of_User1 == pom).ToList();
+                List<UserCard> lista = businessUserCard.SelectAllUsers().Where(u => "Korisnik: " + u.GetSetUserCard_Name_Of_User1 + " " + u.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + u.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + u.GetSetUserCard_PhoneNumber_Of_User1 == pom).ToList();
 
                 UserCard uc = lista.First();
 
@@ -276,6 +283,20 @@ namespace VideoClubAviato
             }
         }
 
+        private void pictureBoxHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\UserCard.html"));
 
+        }
+
+        private void pictureBoxHelp_MouseHover(object sender, EventArgs e)
+        {
+
+            pictureBoxHelp.Cursor = Cursors.Hand;
+
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(pictureBoxHelp, "Prikaz pomocne dokumentacije.");
+
+        }
     }
 }

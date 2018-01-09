@@ -49,6 +49,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.TextBoxHiddenIDActor = new System.Windows.Forms.TextBox();
+            this.pictureBoxHelp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -56,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBoxActorOscar
@@ -267,11 +269,23 @@
             // 
             // TextBoxHiddenIDActor
             // 
-            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(683, 29);
+            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(749, 30);
             this.TextBoxHiddenIDActor.Name = "TextBoxHiddenIDActor";
             this.TextBoxHiddenIDActor.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDActor.TabIndex = 89;
             this.TextBoxHiddenIDActor.Visible = false;
+            // 
+            // pictureBoxHelp
+            // 
+            this.pictureBoxHelp.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHelp.Image")));
+            this.pictureBoxHelp.Location = new System.Drawing.Point(742, 12);
+            this.pictureBoxHelp.Name = "pictureBoxHelp";
+            this.pictureBoxHelp.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHelp.TabIndex = 90;
+            this.pictureBoxHelp.TabStop = false;
+            this.pictureBoxHelp.Click += new System.EventHandler(this.pictureBoxHelp_Click);
+            this.pictureBoxHelp.MouseHover += new System.EventHandler(this.pictureBoxHelp_MouseHover);
             // 
             // ActorPage
             // 
@@ -281,6 +295,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.pictureBoxHelp);
             this.Controls.Add(this.TextBoxHiddenIDActor);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);
@@ -315,6 +330,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,5 +358,6 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.TextBox TextBoxHiddenIDActor;
+        private System.Windows.Forms.PictureBox pictureBoxHelp;
     }
 }

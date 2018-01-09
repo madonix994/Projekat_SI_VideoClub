@@ -57,11 +57,11 @@
     <Compile Include="AviatoFilmClub.Designer.cs">
       <DependentUpon>AviatoFilmClub.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contact.cs">
+    <Compile Include="ContactPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Contact.Designer.cs">
-      <DependentUpon>Contact.cs</DependentUpon>
+    <Compile Include="ContactPage.Designer.cs">
+      <DependentUpon>ContactPage.cs</DependentUpon>
     </Compile>
     <Compile Include="DirectorPage.cs">
       <SubType>Form</SubType>
@@ -95,6 +95,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RentalDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RentalDetails.Designer.cs">
+      <DependentUpon>RentalDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="RentalPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,8 +119,8 @@
     <EmbeddedResource Include="AviatoFilmClub.resx">
       <DependentUpon>AviatoFilmClub.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contact.resx">
-      <DependentUpon>Contact.cs</DependentUpon>
+    <EmbeddedResource Include="ContactPage.resx">
+      <DependentUpon>ContactPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DirectorPage.resx">
       <DependentUpon>DirectorPage.cs</DependentUpon>
@@ -140,12 +146,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RentalDetails.resx">
+      <DependentUpon>RentalDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RentalPage.resx">
       <DependentUpon>RentalPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserCardPage.resx">
       <DependentUpon>UserCardPage.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="HELP HTML\Help.chm" />
+    <None Include="HELP HTML\Help.hhp" />
+    <None Include="HELP HTML\Table of Contents.hhc" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,6 +180,49 @@
       <Project>{7AE5983B-98CC-4053-BE0E-BB12A5566EA8}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HELP HTML\Actor.html" />
+    <Content Include="HELP HTML\Director.html" />
+    <Content Include="HELP HTML\Genre.html" />
+    <Content Include="HELP HTML\Help.htm" />
+    <Content Include="HELP HTML\Help.html" />
+    <Content Include="HELP HTML\IMAGES\Brisanje Filma.jpg" />
+    <Content Include="HELP HTML\IMAGES\Brisanje Glumca.jpg" />
+    <Content Include="HELP HTML\IMAGES\Brisanje Korisnika.jpg" />
+    <Content Include="HELP HTML\IMAGES\Brisanje Rezisera.jpg" />
+    <Content Include="HELP HTML\IMAGES\Brisanje Uloge.jpg" />
+    <Content Include="HELP HTML\IMAGES\Brisanje Zanra.jpg" />
+    <Content Include="HELP HTML\IMAGES\Glavna.jpg" />
+    <Content Include="HELP HTML\IMAGES\Izmena Filma.jpg" />
+    <Content Include="HELP HTML\IMAGES\Izmena Glumca.jpg" />
+    <Content Include="HELP HTML\IMAGES\Izmena Korisnika.jpg" />
+    <Content Include="HELP HTML\IMAGES\Izmena Rezisera.jpg" />
+    <Content Include="HELP HTML\IMAGES\Izmena Uloge.jpg" />
+    <Content Include="HELP HTML\IMAGES\Izmena Zanra.jpg" />
+    <Content Include="HELP HTML\IMAGES\Kreiranje Filma.jpg" />
+    <Content Include="HELP HTML\IMAGES\Kreiranje Glumca.jpg" />
+    <Content Include="HELP HTML\IMAGES\Kreiranje Korisnika.jpg" />
+    <Content Include="HELP HTML\IMAGES\Kreiranje Rezisera.jpg" />
+    <Content Include="HELP HTML\IMAGES\Kreiranje Uloge.jpg" />
+    <Content Include="HELP HTML\IMAGES\Kreiranje Zanra.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pregled Filmova.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pregled Glumaca.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pregled Korisnika.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pregled Rezisera.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pregled Uloga.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pregled Zanrova.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pretraga Filma.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pretraga Glumca.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pretraga Korisnika.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pretraga Rezisera.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pretraga Uloge.jpg" />
+    <Content Include="HELP HTML\IMAGES\Pretraga Zanra.jpg" />
+    <Content Include="HELP HTML\Movie.html" />
+    <Content Include="HELP HTML\MovieRole.html" />
+    <Content Include="HELP HTML\Pomocna dokumentacija.htm" />
+    <Content Include="HELP HTML\Rental.html" />
+    <Content Include="HELP HTML\UserCard.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

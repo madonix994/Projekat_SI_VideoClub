@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace VideoClubAviato
 {
@@ -21,7 +22,9 @@ namespace VideoClubAviato
         public ActorPage()
         {
             InitializeComponent();
+
             FillActors();
+
             pictureBox1.BackColor = Color.Transparent;
             pictureBox3.BackColor = Color.Transparent;
             pictureBox4.BackColor = Color.Transparent;
@@ -29,6 +32,7 @@ namespace VideoClubAviato
             pictureBox6.BackColor = Color.Transparent;
             pictureBox7.BackColor = Color.Transparent;
             checkBoxActorOscar.BackColor = Color.Transparent;
+            pictureBoxHelp.BackColor = Color.Transparent;
             label3.Text = "(Ukoliko je stiklirano, pretraga ce\nprikazati SAMO glumce sa Oskarima)";
             label3.BackColor = Color.Transparent;   
 
@@ -44,7 +48,7 @@ namespace VideoClubAviato
                 if (pom.GetSetActor_Name1 == "Nije" && pom.GetSetActor_Surname1 == "Uneto") { }
                 else
                 {
-                    listBoxActors.Items.Add(pom.GetSetId_Actor1 + ". " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  --  " + pom.GetSetActor_Date_Of_Birth1 + "  --  " + pom.GetSetActor_Oscar1);
+                    listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
                 }
             }
         }
@@ -142,9 +146,11 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE UNOS GLUMCA U BAZU !
         private void buttonInsertActor_Click(object sender, EventArgs e)
         {
+            DateTime dt;
 
-            if (textBoxActorName.Text != "" && textBoxActorSurname.Text != "" && textBoxActorDateOfBirth.Text != "")
+            if (Regex.IsMatch(textBoxActorName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxActorSurname.Text, @"[a-zA-Z]") && DateTime.TryParse(textBoxActorDateOfBirth.Text, out dt))
             {
+
                 /*PRVO PROVERAVA DA LI VEC POSTOJI GLUMAC SA TIM IMENOM, PREZIMENOM i DATUMOM RODJENJA,
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                 DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
@@ -174,14 +180,14 @@ namespace VideoClubAviato
                 else
                 {
 
-                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                    MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
                 }
             }
             else
             {
 
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
             }
 
@@ -190,7 +196,9 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE AZURIRANJE GLUMCA U BAZI
         private void buttonUpdateActor_Click(object sender, EventArgs e)
         {
-            if (textBoxActorName.Text != "" && textBoxActorSurname.Text != "" && textBoxActorDateOfBirth.Text != "")
+            DateTime dt;
+
+            if (Regex.IsMatch(textBoxActorName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxActorSurname.Text, @"[a-zA-Z]") && DateTime.TryParse(textBoxActorDateOfBirth.Text, out dt))
             {
                 Actor a = new Actor();
 
@@ -208,7 +216,7 @@ namespace VideoClubAviato
             else
             {
 
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
             }
            
@@ -254,7 +262,7 @@ namespace VideoClubAviato
                     if (pom.GetSetActor_Name1 == "Nije" && pom.GetSetActor_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxActors.Items.Add(pom.GetSetId_Actor1 + ". " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  --  " + pom.GetSetActor_Date_Of_Birth1 + "  --  " + pom.GetSetActor_Oscar1);
+                        listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
                     }
                 }
                 }
@@ -267,7 +275,7 @@ namespace VideoClubAviato
                     if (pom.GetSetActor_Name1 == "Nije" && pom.GetSetActor_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxActors.Items.Add(pom.GetSetId_Actor1 + ". " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  --  " + pom.GetSetActor_Date_Of_Birth1 + "  --  " + pom.GetSetActor_Oscar1);
+                        listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
                     }
                 }
                 }
@@ -283,7 +291,7 @@ namespace VideoClubAviato
                 string pom;
                 pom = listBoxActors.Text;
 
-                List<Actor> lista = businessActor.SelectAllActors().Where(m => m.GetSetId_Actor1 + ". " + m.GetSetActor_Name1 + " " + m.GetSetActor_Surname1 + "  --  " + m.GetSetActor_Date_Of_Birth1 + "  --  " + m.GetSetActor_Oscar1 == pom).ToList();
+                List<Actor> lista = businessActor.SelectAllActors().Where(a => "Glumac: " + a.GetSetActor_Name1 + " " + a.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + a.GetSetActor_Date_Of_Birth1 == pom).ToList();
                 Actor actor = lista.First();
 
                 TextBoxHiddenIDActor.Text = Convert.ToString(actor.GetSetId_Actor1);
@@ -299,6 +307,24 @@ namespace VideoClubAviato
                 MessageBox.Show("Kliknuli ste na prazno polje u listi, odaberite bilo koji red iz liste!", "Obavestenje");
 
             }
+        }
+
+        private void pictureBoxHelp_Click(object sender, EventArgs e)
+        {
+            
+                System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Actor.html"));
+          
+        }
+
+        private void pictureBoxHelp_MouseHover(object sender, EventArgs e)
+        {
+
+            pictureBoxHelp.Cursor = Cursors.Hand;
+
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(pictureBoxHelp, "Prikaz pomocne dokumentacije.");
+
+
         }
     }
 }

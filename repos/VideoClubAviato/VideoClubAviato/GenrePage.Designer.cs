@@ -43,11 +43,13 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.TextBoxHiddenIDGenre = new System.Windows.Forms.TextBox();
+            this.pictureBoxHelp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -195,11 +197,23 @@
             // 
             // TextBoxHiddenIDGenre
             // 
-            this.TextBoxHiddenIDGenre.Location = new System.Drawing.Point(675, 24);
+            this.TextBoxHiddenIDGenre.Location = new System.Drawing.Point(744, 12);
             this.TextBoxHiddenIDGenre.Name = "TextBoxHiddenIDGenre";
             this.TextBoxHiddenIDGenre.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDGenre.TabIndex = 91;
             this.TextBoxHiddenIDGenre.Visible = false;
+            // 
+            // pictureBoxHelp
+            // 
+            this.pictureBoxHelp.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHelp.Image")));
+            this.pictureBoxHelp.Location = new System.Drawing.Point(744, 12);
+            this.pictureBoxHelp.Name = "pictureBoxHelp";
+            this.pictureBoxHelp.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHelp.TabIndex = 92;
+            this.pictureBoxHelp.TabStop = false;
+            this.pictureBoxHelp.Click += new System.EventHandler(this.pictureBoxHelp_Click);
+            this.pictureBoxHelp.MouseHover += new System.EventHandler(this.pictureBoxHelp_MouseHover);
             // 
             // GenrePage
             // 
@@ -209,6 +223,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.pictureBoxHelp);
             this.Controls.Add(this.TextBoxHiddenIDGenre);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox4);
@@ -236,6 +251,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,5 +272,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox TextBoxHiddenIDGenre;
+        private System.Windows.Forms.PictureBox pictureBoxHelp;
     }
 }

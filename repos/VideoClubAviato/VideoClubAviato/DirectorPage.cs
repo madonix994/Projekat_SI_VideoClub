@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace VideoClubAviato
 {
@@ -24,6 +25,7 @@ namespace VideoClubAviato
             FillDirectors();
 
             checkBoxDirectorOscar.BackColor = Color.Transparent;
+            pictureBoxHelp.BackColor = Color.Transparent;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox7.BackColor = Color.Transparent;
             pictureBox5.BackColor = Color.Transparent;
@@ -49,7 +51,7 @@ namespace VideoClubAviato
 
                 else
                 {
-                    listBoxDirectors.Items.Add(pom.GetSetId_Director1 + ". " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  --  " + pom.GetSetDirector_Date_Of_Birth1 + "  --  " + pom.GetSetDirector_Oscar1);
+                    listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
                 }
 
             }
@@ -166,7 +168,7 @@ namespace VideoClubAviato
                     if (pom.GetSetDirector_Name1 == "Nije" && pom.GetSetDirector_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxDirectors.Items.Add(pom.GetSetId_Director1 + ". " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  --  " + Convert.ToDateTime(pom.GetSetDirector_Date_Of_Birth1) + "  --  " + pom.GetSetDirector_Oscar1);
+                        listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
                     }
                 }
             }
@@ -178,7 +180,7 @@ namespace VideoClubAviato
                     if (pom.GetSetDirector_Name1 == "Nije" && pom.GetSetDirector_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxDirectors.Items.Add(pom.GetSetId_Director1 + ". " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  --  " + Convert.ToDateTime(pom.GetSetDirector_Date_Of_Birth1) + "  --  " + pom.GetSetDirector_Oscar1);
+                        listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
                     }
                 }
             }
@@ -188,7 +190,8 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE UNOS REZISERA U BAZU !
         private void buttonInsertDirector_Click(object sender, EventArgs e)
         {
-            if (textBoxDirectorName.Text != "" && textBoxDirectorSurname.Text != "" && textBoxDirectorDateOfBirth.Text != "")
+            DateTime dt;
+            if (Regex.IsMatch(textBoxDirectorName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxDirectorSurname.Text, @"[a-zA-Z]") && DateTime.TryParse(textBoxDirectorDateOfBirth.Text, out dt))
             {
                 /*PRVO PROVERAVA DA LI VEC POSTOJI REZISER SA TIM IMENOM, PREZIMENOM i DATUMOM RODJENJA,
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
@@ -220,14 +223,14 @@ namespace VideoClubAviato
                 else
                 {
 
-                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                    MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
                 }
             }
             else
             {
 
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
             }
         }
@@ -235,7 +238,8 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE AZURIRANJE FILMA U BAZI
         private void buttonUpdateDirector_Click(object sender, EventArgs e)
         {
-            if (textBoxDirectorName.Text != "" && textBoxDirectorSurname.Text != "" && textBoxDirectorDateOfBirth.Text != "")
+            DateTime dt;
+            if (Regex.IsMatch(textBoxDirectorName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxDirectorSurname.Text, @"[a-zA-Z]") && DateTime.TryParse(textBoxDirectorDateOfBirth.Text, out dt))
             {
                 Director d = new Director();
 
@@ -251,7 +255,7 @@ namespace VideoClubAviato
             }
             else
             {
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
             }
         }
 
@@ -299,7 +303,7 @@ namespace VideoClubAviato
                 string pom;
                 pom = listBoxDirectors.Text;
 
-                List<Director> lista = businessDirector.SelectAllDirectors().Where(d => d.GetSetId_Director1 + ". " + d.GetSetDirector_Name1 + " " + d.GetSetDirector_Surname1 + "  --  " + Convert.ToDateTime(d.GetSetDirector_Date_Of_Birth1) + "  --  " + d.GetSetDirector_Oscar1 == pom).ToList();
+                List<Director> lista = businessDirector.SelectAllDirectors().Where(d => "Reziser: " + d.GetSetDirector_Name1 + " " + d.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + d.GetSetDirector_Date_Of_Birth1 == pom).ToList();
 
                 Director director = lista.First();
 
@@ -314,6 +318,20 @@ namespace VideoClubAviato
             {
                 MessageBox.Show("Kliknuli ste na prazno polje u listi, odaberite bilo koji red iz liste!", "Obavestenje");
             }
+        }
+
+        private void pictureBoxHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Director.html"));
+
+        }
+
+        private void pictureBoxHelp_MouseHover(object sender, EventArgs e)
+        {
+            pictureBoxHelp.Cursor = Cursors.Hand;
+
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(pictureBoxHelp, "Prikaz pomocne dokumentacije.");
         }
     }
 }

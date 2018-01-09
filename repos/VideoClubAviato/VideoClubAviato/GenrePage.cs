@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace VideoClubAviato
 {
@@ -21,9 +22,11 @@ namespace VideoClubAviato
         public GenrePage()
         {
             InitializeComponent();
+
             FillGenres();
 
             pictureBox1.BackColor = Color.Transparent;
+            pictureBoxHelp.BackColor = Color.Transparent;
             pictureBox5.BackColor = Color.Transparent;
             pictureBox3.BackColor = Color.Transparent;
             pictureBox4.BackColor = Color.Transparent;
@@ -40,7 +43,7 @@ namespace VideoClubAviato
                 if (pom.GetSetGenre_Name1 == "Nije Uneto") { }
                 else
                 {
-                    listBoxGenres.Items.Add(pom.GetSetId_Genre1 + ". " + pom.GetSetGenre_Name1);
+                    listBoxGenres.Items.Add("Zanr: " + pom.GetSetGenre_Name1);
                 }
 
             }
@@ -121,38 +124,41 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE UNOS ZANRA U BAZU !
         private void buttonInsertGenre_Click(object sender, EventArgs e)
         {
-            if (textBoxGenreName.Text != "")
+
+            if (Regex.IsMatch(textBoxGenreName.Text, @"[a-zA-Z]"))
             {
                 /*PRVO PROVERAVA DA LI VEC POSTOJI ZANR SA TIM NAZIVOM,
                UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
-
-                if (textBoxGenreName.Text == textBoxGenreName.Text || textBoxGenreName.Text.ToLower() == textBoxGenreName.Text || textBoxGenreName.Text.ToUpper() == textBoxGenreName.Text)
+                List<Genre> listaG = businessGenre.SelectAllGenres();
+                foreach (Genre pom in listaG)
                 {
-                    ClearData();
-                    MessageBox.Show("Uneti zanr vec postoji u bazi!", "Obavestenje");
+                    if (pom.GetSetGenre_Name1 == textBoxGenreName.Text || pom.GetSetGenre_Name1.ToLower() == textBoxGenreName.Text || pom.GetSetGenre_Name1.ToUpper() == textBoxGenreName.Text)
+                    {
+                        ClearData();
+                        MessageBox.Show("Uneti zanr vec postoji u bazi!", "Obavestenje");
+                    }
                 }
                 if (textBoxGenreName.Text != "")
                 {
-                    Genre g = new Genre();
-                    g.GetSetGenre_Name1 = textBoxGenreName.Text;
+                        Genre g = new Genre();
+                        g.GetSetGenre_Name1 = textBoxGenreName.Text;
 
-                    businessGenre.InsertGenre(g);
-                    ClearData();
-                    FillGenres();
+                        businessGenre.InsertGenre(g);
+                        ClearData();
+                        FillGenres();
                 }
                 else
                 {
 
-                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                        MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
-                }
-
+                }               
             }
             else
             {
 
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
             }
 
@@ -161,7 +167,7 @@ namespace VideoClubAviato
         //PRILIKOM KLIKA NA DUGME VRSI SE AZURIRANJE ZANRA U BAZI
         private void buttonUpdateDirector_Click(object sender, EventArgs e)
         {
-            if (textBoxGenreName.Text != "")
+            if (Regex.IsMatch(textBoxGenreName.Text, @"[a-zA-Z]"))
             {
                 Genre g = new Genre();
 
@@ -176,7 +182,7 @@ namespace VideoClubAviato
             else
             {
 
-                MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
+                MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
 
             }
         }
@@ -217,7 +223,7 @@ namespace VideoClubAviato
                 if (pom.GetSetGenre_Name1 == "Nije Uneto") { }
                 else
                 {
-                    listBoxGenres.Items.Add(pom.GetSetId_Genre1 + ". " + pom.GetSetGenre_Name1);
+                    listBoxGenres.Items.Add("Zanr: " + pom.GetSetGenre_Name1);
                 }
 
             }
@@ -232,7 +238,7 @@ namespace VideoClubAviato
                 string pom;
             pom = listBoxGenres.Text;
 
-            List<Genre> lista = businessGenre.SelectAllGenres().Where(g => g.GetSetId_Genre1 + ". " + g.GetSetGenre_Name1 == pom).ToList();
+            List<Genre> lista = businessGenre.SelectAllGenres().Where(g => "Zanr: " + g.GetSetGenre_Name1 == pom).ToList();
             Genre genre = lista.First();
 
             TextBoxHiddenIDGenre.Text = Convert.ToString(genre.GetSetId_Genre1);
@@ -245,6 +251,20 @@ namespace VideoClubAviato
                 MessageBox.Show("Kliknuli ste na prazno polje u listi, odaberite bilo koji red iz liste!", "Obavestenje");
 
             }
+        }
+
+        private void pictureBoxHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Genre.html"));
+
+        }
+
+        private void pictureBoxHelp_MouseHover(object sender, EventArgs e)
+        {
+            pictureBoxHelp.Cursor = Cursors.Hand;
+
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(pictureBoxHelp, "Prikaz pomocne dokumentacije.");
         }
     }
 }

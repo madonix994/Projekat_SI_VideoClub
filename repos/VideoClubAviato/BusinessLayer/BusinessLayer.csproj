@@ -45,8 +45,10 @@
     <Compile Include="BusinessEmployee.cs" />
     <Compile Include="BusinessGenre.cs" />
     <Compile Include="BusinessMovie.cs" />
+    <Compile Include="BusinessMovieRental.cs" />
     <Compile Include="BusinessMovieRole.cs" />
     <Compile Include="BusinessRental.cs" />
+    <Compile Include="BusinessRentalStorage.cs" />
     <Compile Include="BusinessUserCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

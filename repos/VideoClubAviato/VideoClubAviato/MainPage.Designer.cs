@@ -44,6 +44,7 @@
             this.pictureBoxUserCards = new System.Windows.Forms.PictureBox();
             this.pictureBoxHelp = new System.Windows.Forms.PictureBox();
             this.pictureBoxContact = new System.Windows.Forms.PictureBox();
+            this.pictureBoxShowRentals = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDirectors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMovies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxActors)).BeginInit();
@@ -52,13 +53,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserCards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowRentals)).BeginInit();
             this.SuspendLayout();
             // 
             // labelShowMovies
             // 
             this.labelShowMovies.AutoSize = true;
             this.labelShowMovies.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowMovies.Location = new System.Drawing.Point(528, 209);
+            this.labelShowMovies.Location = new System.Drawing.Point(576, 236);
             this.labelShowMovies.Name = "labelShowMovies";
             this.labelShowMovies.Size = new System.Drawing.Size(136, 40);
             this.labelShowMovies.TabIndex = 0;
@@ -72,7 +74,7 @@
             // 
             this.labelShowActors.AutoSize = true;
             this.labelShowActors.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowActors.Location = new System.Drawing.Point(525, 375);
+            this.labelShowActors.Location = new System.Drawing.Point(573, 402);
             this.labelShowActors.Name = "labelShowActors";
             this.labelShowActors.Size = new System.Drawing.Size(131, 40);
             this.labelShowActors.TabIndex = 1;
@@ -85,7 +87,7 @@
             // 
             this.labelShowGenres.AutoSize = true;
             this.labelShowGenres.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowGenres.Location = new System.Drawing.Point(525, 555);
+            this.labelShowGenres.Location = new System.Drawing.Point(573, 582);
             this.labelShowGenres.Name = "labelShowGenres";
             this.labelShowGenres.Size = new System.Drawing.Size(140, 40);
             this.labelShowGenres.TabIndex = 2;
@@ -98,7 +100,7 @@
             // 
             this.labelShowMovieRoles.AutoSize = true;
             this.labelShowMovieRoles.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowMovieRoles.Location = new System.Drawing.Point(771, 375);
+            this.labelShowMovieRoles.Location = new System.Drawing.Point(819, 402);
             this.labelShowMovieRoles.Name = "labelShowMovieRoles";
             this.labelShowMovieRoles.Size = new System.Drawing.Size(112, 40);
             this.labelShowMovieRoles.TabIndex = 3;
@@ -111,7 +113,7 @@
             // 
             this.labelShowUserCards.AutoSize = true;
             this.labelShowUserCards.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowUserCards.Location = new System.Drawing.Point(747, 555);
+            this.labelShowUserCards.Location = new System.Drawing.Point(795, 582);
             this.labelShowUserCards.Name = "labelShowUserCards";
             this.labelShowUserCards.Size = new System.Drawing.Size(162, 40);
             this.labelShowUserCards.TabIndex = 4;
@@ -124,7 +126,7 @@
             // 
             this.labelShowRentals.AutoSize = true;
             this.labelShowRentals.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowRentals.Location = new System.Drawing.Point(605, 612);
+            this.labelShowRentals.Location = new System.Drawing.Point(371, 99);
             this.labelShowRentals.Name = "labelShowRentals";
             this.labelShowRentals.Size = new System.Drawing.Size(206, 40);
             this.labelShowRentals.TabIndex = 5;
@@ -137,7 +139,7 @@
             // 
             this.labelShowDirectors.AutoSize = true;
             this.labelShowDirectors.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelShowDirectors.Location = new System.Drawing.Point(757, 209);
+            this.labelShowDirectors.Location = new System.Drawing.Point(805, 236);
             this.labelShowDirectors.Name = "labelShowDirectors";
             this.labelShowDirectors.Size = new System.Drawing.Size(148, 40);
             this.labelShowDirectors.TabIndex = 6;
@@ -149,7 +151,7 @@
             // pictureBoxDirectors
             // 
             this.pictureBoxDirectors.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxDirectors.Image")));
-            this.pictureBoxDirectors.Location = new System.Drawing.Point(771, 92);
+            this.pictureBoxDirectors.Location = new System.Drawing.Point(819, 119);
             this.pictureBoxDirectors.Name = "pictureBoxDirectors";
             this.pictureBoxDirectors.Size = new System.Drawing.Size(120, 110);
             this.pictureBoxDirectors.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -161,7 +163,7 @@
             // pictureBoxMovies
             // 
             this.pictureBoxMovies.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMovies.Image")));
-            this.pictureBoxMovies.Location = new System.Drawing.Point(518, 106);
+            this.pictureBoxMovies.Location = new System.Drawing.Point(566, 133);
             this.pictureBoxMovies.Name = "pictureBoxMovies";
             this.pictureBoxMovies.Size = new System.Drawing.Size(160, 111);
             this.pictureBoxMovies.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -173,7 +175,7 @@
             // pictureBoxActors
             // 
             this.pictureBoxActors.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxActors.Image")));
-            this.pictureBoxActors.Location = new System.Drawing.Point(518, 262);
+            this.pictureBoxActors.Location = new System.Drawing.Point(566, 289);
             this.pictureBoxActors.Name = "pictureBoxActors";
             this.pictureBoxActors.Size = new System.Drawing.Size(147, 110);
             this.pictureBoxActors.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -185,7 +187,7 @@
             // pictureBoxMovieRoles
             // 
             this.pictureBoxMovieRoles.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMovieRoles.Image")));
-            this.pictureBoxMovieRoles.Location = new System.Drawing.Point(767, 278);
+            this.pictureBoxMovieRoles.Location = new System.Drawing.Point(815, 305);
             this.pictureBoxMovieRoles.Name = "pictureBoxMovieRoles";
             this.pictureBoxMovieRoles.Size = new System.Drawing.Size(120, 94);
             this.pictureBoxMovieRoles.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,7 +199,7 @@
             // pictureBoxGenres
             // 
             this.pictureBoxGenres.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGenres.Image")));
-            this.pictureBoxGenres.Location = new System.Drawing.Point(534, 432);
+            this.pictureBoxGenres.Location = new System.Drawing.Point(582, 459);
             this.pictureBoxGenres.Name = "pictureBoxGenres";
             this.pictureBoxGenres.Size = new System.Drawing.Size(120, 110);
             this.pictureBoxGenres.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -209,7 +211,7 @@
             // pictureBoxUserCards
             // 
             this.pictureBoxUserCards.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxUserCards.Image")));
-            this.pictureBoxUserCards.Location = new System.Drawing.Point(750, 432);
+            this.pictureBoxUserCards.Location = new System.Drawing.Point(798, 459);
             this.pictureBoxUserCards.Name = "pictureBoxUserCards";
             this.pictureBoxUserCards.Size = new System.Drawing.Size(152, 120);
             this.pictureBoxUserCards.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -233,7 +235,7 @@
             // pictureBoxContact
             // 
             this.pictureBoxContact.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxContact.Image")));
-            this.pictureBoxContact.Location = new System.Drawing.Point(786, 5);
+            this.pictureBoxContact.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxContact.Name = "pictureBoxContact";
             this.pictureBoxContact.Size = new System.Drawing.Size(80, 70);
             this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -242,6 +244,18 @@
             this.pictureBoxContact.Click += new System.EventHandler(this.pictureBoxContact_Click);
             this.pictureBoxContact.MouseHover += new System.EventHandler(this.pictureBoxContact_MouseHover);
             // 
+            // pictureBoxShowRentals
+            // 
+            this.pictureBoxShowRentals.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxShowRentals.Image")));
+            this.pictureBoxShowRentals.Location = new System.Drawing.Point(378, 18);
+            this.pictureBoxShowRentals.Name = "pictureBoxShowRentals";
+            this.pictureBoxShowRentals.Size = new System.Drawing.Size(187, 78);
+            this.pictureBoxShowRentals.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxShowRentals.TabIndex = 17;
+            this.pictureBoxShowRentals.TabStop = false;
+            this.pictureBoxShowRentals.Click += new System.EventHandler(this.pictureBoxShowRentals_Click);
+            this.pictureBoxShowRentals.MouseHover += new System.EventHandler(this.pictureBoxShowRentals_MouseHover);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +263,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.pictureBoxShowRentals);
             this.Controls.Add(this.pictureBoxContact);
             this.Controls.Add(this.pictureBoxHelp);
             this.Controls.Add(this.pictureBoxUserCards);
@@ -279,6 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserCards)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowRentals)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +317,6 @@
         private System.Windows.Forms.PictureBox pictureBoxUserCards;
         private System.Windows.Forms.PictureBox pictureBoxHelp;
         private System.Windows.Forms.PictureBox pictureBoxContact;
+        private System.Windows.Forms.PictureBox pictureBoxShowRentals;
     }
 }

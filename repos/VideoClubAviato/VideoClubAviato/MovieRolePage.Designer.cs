@@ -51,6 +51,7 @@
             this.TextBoxHiddenIDMovieRole = new System.Windows.Forms.TextBox();
             this.TextBoxHiddenIDMovie = new System.Windows.Forms.TextBox();
             this.TextBoxHiddenIDActor = new System.Windows.Forms.TextBox();
+            this.pictureBoxHelp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -59,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -208,7 +210,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(296, 12);
+            this.pictureBox5.Location = new System.Drawing.Point(272, 12);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(320, 66);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -267,7 +269,7 @@
             // 
             // TextBoxHiddenIDMovieRole
             // 
-            this.TextBoxHiddenIDMovieRole.Location = new System.Drawing.Point(709, 33);
+            this.TextBoxHiddenIDMovieRole.Location = new System.Drawing.Point(742, 42);
             this.TextBoxHiddenIDMovieRole.Name = "TextBoxHiddenIDMovieRole";
             this.TextBoxHiddenIDMovieRole.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDMovieRole.TabIndex = 95;
@@ -275,7 +277,7 @@
             // 
             // TextBoxHiddenIDMovie
             // 
-            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(709, 58);
+            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(742, 67);
             this.TextBoxHiddenIDMovie.Name = "TextBoxHiddenIDMovie";
             this.TextBoxHiddenIDMovie.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDMovie.TabIndex = 96;
@@ -283,11 +285,23 @@
             // 
             // TextBoxHiddenIDActor
             // 
-            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(709, 7);
+            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(742, 16);
             this.TextBoxHiddenIDActor.Name = "TextBoxHiddenIDActor";
             this.TextBoxHiddenIDActor.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDActor.TabIndex = 97;
             this.TextBoxHiddenIDActor.Visible = false;
+            // 
+            // pictureBoxHelp
+            // 
+            this.pictureBoxHelp.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHelp.Image")));
+            this.pictureBoxHelp.Location = new System.Drawing.Point(742, 12);
+            this.pictureBoxHelp.Name = "pictureBoxHelp";
+            this.pictureBoxHelp.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHelp.TabIndex = 98;
+            this.pictureBoxHelp.TabStop = false;
+            this.pictureBoxHelp.Click += new System.EventHandler(this.pictureBoxHelp_Click);
+            this.pictureBoxHelp.MouseHover += new System.EventHandler(this.pictureBoxHelp_MouseHover);
             // 
             // MovieRolePage
             // 
@@ -297,6 +311,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(854, 661);
+            this.Controls.Add(this.pictureBoxHelp);
             this.Controls.Add(this.TextBoxHiddenIDActor);
             this.Controls.Add(this.TextBoxHiddenIDMovie);
             this.Controls.Add(this.TextBoxHiddenIDMovieRole);
@@ -334,6 +349,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,5 +378,6 @@
         private System.Windows.Forms.TextBox TextBoxHiddenIDMovieRole;
         private System.Windows.Forms.TextBox TextBoxHiddenIDMovie;
         private System.Windows.Forms.TextBox TextBoxHiddenIDActor;
+        private System.Windows.Forms.PictureBox pictureBoxHelp;
     }
 }

@@ -39,6 +39,15 @@ namespace BusinessLayer
             return movieRepository.SelectAllMovies();
         }
 
+        //LOGICKA PROVERA ZA ISPIS FILMA POTREBNA PRI UNOSU!!!
+        public List<Movie> SelectAllMoviesIdAndNameAndAmount()
+        {
+            return movieRepository.SelectAllMoviesIdAndNameAndAmount();
+        }
+
+
+        
+
         //LOGICKA PROVERA ZA ISPIS FILMA
         public List<Movie_Genre_Director_MovieRole_Actor> SelectAllMoviesAllClasses()
         {
@@ -142,6 +151,60 @@ namespace BusinessLayer
         public bool UpdateDirectorOnMovie(Movie m)
         {
             if (movieRepository.UpdateDirectorOnMovie(m) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //LOGICKA PROVERA ZA AZURIRANJE FILMA (Povecanje Kolicine)
+        public bool UpdateMovieAmount(Movie m)
+        {
+            if (movieRepository.UpdateMovieAmount(m) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        //LOGICKA PROVERA ZA AZURIRANJE FILMA (Smanjenje Kolicine)
+        public bool UpdateMovieAmountMinus(Movie m)
+        {
+            if (movieRepository.UpdateMovieAmountMinus(m) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //LOGICKA PROVERA ZA AZURIRANJE STATUSA NA FILMU (KADA KOLICINA PADNE ISPOD NULE, OVA METODA MENJA STATUS FILMA NA Nema Na Stanju)
+        public bool UpdateMovieStatus(Movie m)
+        {
+            if (movieRepository.UpdateMovieStatus(m) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        //LOGICKA PROVERA ZA AZURIRANJE STATUSA NA FILMU (KADA KOLICINA JE VECA OD NULE, OVA METODA MENJA STATUS FILMA NA 'Na Stanju')
+        public bool UpdateMovieStatus2(Movie m)
+        {
+            if (movieRepository.UpdateMovieStatus2(m) > 0)
             {
                 return true;
             }

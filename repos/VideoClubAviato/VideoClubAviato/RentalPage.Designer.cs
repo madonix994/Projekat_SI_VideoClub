@@ -32,12 +32,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxDateOfRental = new System.Windows.Forms.TextBox();
             this.listBoxRentals = new System.Windows.Forms.ListBox();
-            this.buttonUpdateRental = new System.Windows.Forms.Button();
             this.buttonInsertRental = new System.Windows.Forms.Button();
             this.Printer = new System.Windows.Forms.PictureBox();
             this.Document = new System.Drawing.Printing.PrintDocument();
             this.Preview = new System.Windows.Forms.PrintPreviewDialog();
-            this.textBoxDateOfReturn = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBoxRentalSearch = new System.Windows.Forms.TextBox();
@@ -49,7 +47,15 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.TextBoxHiddenIDUserCard = new System.Windows.Forms.TextBox();
+            this.TextBoxHiddenIDMovie = new System.Windows.Forms.TextBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.comboBoxMovieName2 = new System.Windows.Forms.ComboBox();
+            this.TextBoxHiddenIDMovie2 = new System.Windows.Forms.TextBox();
+            this.buttonDetails = new System.Windows.Forms.Button();
+            this.pictureBoxHelp = new System.Windows.Forms.PictureBox();
+            this.pictureBoxRemoveMovie2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxAddMovie2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Printer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -59,6 +65,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoveMovie2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAddMovie2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -76,7 +85,7 @@
             // 
             this.textBoxDateOfRental.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxDateOfRental.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDateOfRental.Location = new System.Drawing.Point(665, 289);
+            this.textBoxDateOfRental.Location = new System.Drawing.Point(1050, 230);
             this.textBoxDateOfRental.Name = "textBoxDateOfRental";
             this.textBoxDateOfRental.Size = new System.Drawing.Size(175, 32);
             this.textBoxDateOfRental.TabIndex = 89;
@@ -87,28 +96,15 @@
             this.listBoxRentals.FormattingEnabled = true;
             this.listBoxRentals.Location = new System.Drawing.Point(10, 163);
             this.listBoxRentals.Name = "listBoxRentals";
-            this.listBoxRentals.Size = new System.Drawing.Size(460, 485);
+            this.listBoxRentals.Size = new System.Drawing.Size(849, 485);
             this.listBoxRentals.TabIndex = 83;
-            // 
-            // buttonUpdateRental
-            // 
-            this.buttonUpdateRental.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.buttonUpdateRental.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpdateRental.Location = new System.Drawing.Point(243, 84);
-            this.buttonUpdateRental.Name = "buttonUpdateRental";
-            this.buttonUpdateRental.Size = new System.Drawing.Size(137, 56);
-            this.buttonUpdateRental.TabIndex = 81;
-            this.buttonUpdateRental.Text = "Izmeni Rezervaciju";
-            this.buttonUpdateRental.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonUpdateRental.UseVisualStyleBackColor = false;
-            this.buttonUpdateRental.Click += new System.EventHandler(this.buttonUpdateRental_Click);
-            this.buttonUpdateRental.MouseHover += new System.EventHandler(this.buttonUpdateRental_MouseHover);
+            this.listBoxRentals.SelectedIndexChanged += new System.EventHandler(this.listBoxRentals_SelectedIndexChanged);
             // 
             // buttonInsertRental
             // 
             this.buttonInsertRental.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonInsertRental.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonInsertRental.Location = new System.Drawing.Point(69, 84);
+            this.buttonInsertRental.Location = new System.Drawing.Point(233, 86);
             this.buttonInsertRental.Name = "buttonInsertRental";
             this.buttonInsertRental.Size = new System.Drawing.Size(137, 56);
             this.buttonInsertRental.TabIndex = 80;
@@ -120,13 +116,14 @@
             // Printer
             // 
             this.Printer.Image = ((System.Drawing.Image)(resources.GetObject("Printer.Image")));
-            this.Printer.Location = new System.Drawing.Point(800, 12);
+            this.Printer.Location = new System.Drawing.Point(1090, 12);
             this.Printer.Name = "Printer";
             this.Printer.Size = new System.Drawing.Size(40, 40);
             this.Printer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Printer.TabIndex = 95;
             this.Printer.TabStop = false;
             this.Printer.Click += new System.EventHandler(this.Printer_Click);
+            this.Printer.MouseHover += new System.EventHandler(this.Printer_MouseHover);
             // 
             // Document
             // 
@@ -143,21 +140,12 @@
             this.Preview.Name = "Preview";
             this.Preview.Visible = false;
             // 
-            // textBoxDateOfReturn
-            // 
-            this.textBoxDateOfReturn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxDateOfReturn.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDateOfReturn.Location = new System.Drawing.Point(665, 341);
-            this.textBoxDateOfReturn.Name = "textBoxDateOfReturn";
-            this.textBoxDateOfReturn.Size = new System.Drawing.Size(175, 32);
-            this.textBoxDateOfReturn.TabIndex = 96;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(488, 510);
+            this.pictureBox2.Location = new System.Drawing.Point(873, 506);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(35, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -166,7 +154,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(490, 626);
+            this.progressBar1.Location = new System.Drawing.Point(875, 622);
             this.progressBar1.MarqueeAnimationSpeed = 99;
             this.progressBar1.Maximum = 99;
             this.progressBar1.Name = "progressBar1";
@@ -177,9 +165,9 @@
             // textBoxRentalSearch
             // 
             this.textBoxRentalSearch.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRentalSearch.Location = new System.Drawing.Point(522, 510);
+            this.textBoxRentalSearch.Location = new System.Drawing.Point(907, 506);
             this.textBoxRentalSearch.Name = "textBoxRentalSearch";
-            this.textBoxRentalSearch.Size = new System.Drawing.Size(311, 32);
+            this.textBoxRentalSearch.Size = new System.Drawing.Size(318, 32);
             this.textBoxRentalSearch.TabIndex = 99;
             this.textBoxRentalSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -187,7 +175,7 @@
             // 
             this.buttonRentalSearch.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonRentalSearch.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRentalSearch.Location = new System.Drawing.Point(486, 549);
+            this.buttonRentalSearch.Location = new System.Drawing.Point(871, 545);
             this.buttonRentalSearch.Name = "buttonRentalSearch";
             this.buttonRentalSearch.Size = new System.Drawing.Size(356, 56);
             this.buttonRentalSearch.TabIndex = 98;
@@ -200,26 +188,28 @@
             // 
             this.comboBoxUserCardName.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxUserCardName.FormattingEnabled = true;
-            this.comboBoxUserCardName.Location = new System.Drawing.Point(665, 184);
+            this.comboBoxUserCardName.Location = new System.Drawing.Point(1050, 180);
             this.comboBoxUserCardName.Name = "comboBoxUserCardName";
             this.comboBoxUserCardName.Size = new System.Drawing.Size(175, 32);
             this.comboBoxUserCardName.TabIndex = 102;
+            this.comboBoxUserCardName.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserCardName_SelectedIndexChanged);
             this.comboBoxUserCardName.Leave += new System.EventHandler(this.comboBoxUserCardName_Leave);
             // 
             // comboBoxMovieName
             // 
             this.comboBoxMovieName.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMovieName.FormattingEnabled = true;
-            this.comboBoxMovieName.Location = new System.Drawing.Point(665, 239);
+            this.comboBoxMovieName.Location = new System.Drawing.Point(1050, 278);
             this.comboBoxMovieName.Name = "comboBoxMovieName";
             this.comboBoxMovieName.Size = new System.Drawing.Size(175, 32);
             this.comboBoxMovieName.TabIndex = 103;
+            this.comboBoxMovieName.SelectedIndexChanged += new System.EventHandler(this.comboBoxMovieName_SelectedIndexChanged);
             this.comboBoxMovieName.Leave += new System.EventHandler(this.comboBoxMovieName_Leave);
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(202, 12);
+            this.pictureBox5.Location = new System.Drawing.Point(373, 12);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(501, 66);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -229,7 +219,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(481, 102);
+            this.pictureBox3.Location = new System.Drawing.Point(866, 98);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(359, 56);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -239,7 +229,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(495, 238);
+            this.pictureBox4.Location = new System.Drawing.Point(880, 277);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(168, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -249,7 +239,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(495, 183);
+            this.pictureBox6.Location = new System.Drawing.Point(880, 179);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(168, 32);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -259,22 +249,107 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(495, 288);
+            this.pictureBox7.Location = new System.Drawing.Point(880, 229);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(168, 32);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 108;
             this.pictureBox7.TabStop = false;
             // 
+            // TextBoxHiddenIDUserCard
+            // 
+            this.TextBoxHiddenIDUserCard.Location = new System.Drawing.Point(1136, 455);
+            this.TextBoxHiddenIDUserCard.Name = "TextBoxHiddenIDUserCard";
+            this.TextBoxHiddenIDUserCard.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDUserCard.TabIndex = 110;
+            this.TextBoxHiddenIDUserCard.Visible = false;
+            // 
+            // TextBoxHiddenIDMovie
+            // 
+            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(1136, 482);
+            this.TextBoxHiddenIDMovie.Name = "TextBoxHiddenIDMovie";
+            this.TextBoxHiddenIDMovie.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDMovie.TabIndex = 111;
+            this.TextBoxHiddenIDMovie.Visible = false;
+            // 
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(495, 340);
+            this.pictureBox8.Location = new System.Drawing.Point(880, 341);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(168, 32);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 109;
+            this.pictureBox8.TabIndex = 116;
             this.pictureBox8.TabStop = false;
+            this.pictureBox8.Visible = false;
+            // 
+            // comboBoxMovieName2
+            // 
+            this.comboBoxMovieName2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxMovieName2.FormattingEnabled = true;
+            this.comboBoxMovieName2.Location = new System.Drawing.Point(1050, 342);
+            this.comboBoxMovieName2.Name = "comboBoxMovieName2";
+            this.comboBoxMovieName2.Size = new System.Drawing.Size(175, 32);
+            this.comboBoxMovieName2.TabIndex = 115;
+            this.comboBoxMovieName2.Visible = false;
+            this.comboBoxMovieName2.SelectedIndexChanged += new System.EventHandler(this.comboBoxMovieName2_SelectedIndexChanged);
+            this.comboBoxMovieName2.Leave += new System.EventHandler(this.comboBoxMovieName2_Leave);
+            // 
+            // TextBoxHiddenIDMovie2
+            // 
+            this.TextBoxHiddenIDMovie2.Location = new System.Drawing.Point(1136, 429);
+            this.TextBoxHiddenIDMovie2.Name = "TextBoxHiddenIDMovie2";
+            this.TextBoxHiddenIDMovie2.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxHiddenIDMovie2.TabIndex = 117;
+            this.TextBoxHiddenIDMovie2.Visible = false;
+            // 
+            // buttonDetails
+            // 
+            this.buttonDetails.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.buttonDetails.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDetails.Location = new System.Drawing.Point(465, 86);
+            this.buttonDetails.Name = "buttonDetails";
+            this.buttonDetails.Size = new System.Drawing.Size(137, 56);
+            this.buttonDetails.TabIndex = 119;
+            this.buttonDetails.Text = "Detalji";
+            this.buttonDetails.UseVisualStyleBackColor = false;
+            this.buttonDetails.Click += new System.EventHandler(this.buttonDetails_Click);
+            this.buttonDetails.MouseHover += new System.EventHandler(this.buttonDetails_MouseHover);
+            // 
+            // pictureBoxHelp
+            // 
+            this.pictureBoxHelp.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHelp.Image")));
+            this.pictureBoxHelp.Location = new System.Drawing.Point(1136, 12);
+            this.pictureBoxHelp.Name = "pictureBoxHelp";
+            this.pictureBoxHelp.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHelp.TabIndex = 120;
+            this.pictureBoxHelp.TabStop = false;
+            this.pictureBoxHelp.Click += new System.EventHandler(this.pictureBoxHelp_Click);
+            this.pictureBoxHelp.MouseHover += new System.EventHandler(this.pictureBoxHelp_MouseHover);
+            // 
+            // pictureBoxRemoveMovie2
+            // 
+            this.pictureBoxRemoveMovie2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxRemoveMovie2.Image")));
+            this.pictureBoxRemoveMovie2.Location = new System.Drawing.Point(1195, 380);
+            this.pictureBoxRemoveMovie2.Name = "pictureBoxRemoveMovie2";
+            this.pictureBoxRemoveMovie2.Size = new System.Drawing.Size(30, 20);
+            this.pictureBoxRemoveMovie2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxRemoveMovie2.TabIndex = 123;
+            this.pictureBoxRemoveMovie2.TabStop = false;
+            this.pictureBoxRemoveMovie2.Visible = false;
+            this.pictureBoxRemoveMovie2.Click += new System.EventHandler(this.pictureBoxRemoveMovie2_Click);
+            // 
+            // pictureBoxAddMovie2
+            // 
+            this.pictureBoxAddMovie2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxAddMovie2.Image")));
+            this.pictureBoxAddMovie2.Location = new System.Drawing.Point(1195, 316);
+            this.pictureBoxAddMovie2.Name = "pictureBoxAddMovie2";
+            this.pictureBoxAddMovie2.Size = new System.Drawing.Size(30, 20);
+            this.pictureBoxAddMovie2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAddMovie2.TabIndex = 121;
+            this.pictureBoxAddMovie2.TabStop = false;
+            this.pictureBoxAddMovie2.Click += new System.EventHandler(this.pictureBoxAddMovie2_Click);
             // 
             // RentalPage
             // 
@@ -283,8 +358,16 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(854, 661);
+            this.ClientSize = new System.Drawing.Size(1244, 661);
+            this.Controls.Add(this.pictureBoxRemoveMovie2);
+            this.Controls.Add(this.pictureBoxAddMovie2);
+            this.Controls.Add(this.pictureBoxHelp);
+            this.Controls.Add(this.buttonDetails);
+            this.Controls.Add(this.TextBoxHiddenIDMovie2);
             this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.comboBoxMovieName2);
+            this.Controls.Add(this.TextBoxHiddenIDMovie);
+            this.Controls.Add(this.TextBoxHiddenIDUserCard);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox4);
@@ -296,17 +379,15 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.textBoxRentalSearch);
             this.Controls.Add(this.buttonRentalSearch);
-            this.Controls.Add(this.textBoxDateOfReturn);
             this.Controls.Add(this.Printer);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBoxDateOfRental);
             this.Controls.Add(this.listBoxRentals);
-            this.Controls.Add(this.buttonUpdateRental);
             this.Controls.Add(this.buttonInsertRental);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(870, 700);
-            this.MinimumSize = new System.Drawing.Size(870, 700);
+            this.MaximumSize = new System.Drawing.Size(1260, 700);
+            this.MinimumSize = new System.Drawing.Size(1260, 700);
             this.Name = "RentalPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rental";
@@ -319,6 +400,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHelp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoveMovie2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAddMovie2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,12 +412,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBoxDateOfRental;
         private System.Windows.Forms.ListBox listBoxRentals;
-        private System.Windows.Forms.Button buttonUpdateRental;
         private System.Windows.Forms.Button buttonInsertRental;
         private System.Windows.Forms.PictureBox Printer;
         private System.Drawing.Printing.PrintDocument Document;
         private System.Windows.Forms.PrintPreviewDialog Preview;
-        private System.Windows.Forms.TextBox textBoxDateOfReturn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox textBoxRentalSearch;
@@ -345,6 +427,14 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDUserCard;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDMovie;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.ComboBox comboBoxMovieName2;
+        private System.Windows.Forms.TextBox TextBoxHiddenIDMovie2;
+        private System.Windows.Forms.Button buttonDetails;
+        private System.Windows.Forms.PictureBox pictureBoxHelp;
+        private System.Windows.Forms.PictureBox pictureBoxRemoveMovie2;
+        private System.Windows.Forms.PictureBox pictureBoxAddMovie2;
     }
 }

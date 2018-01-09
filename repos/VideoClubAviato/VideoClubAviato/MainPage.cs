@@ -30,6 +30,7 @@ namespace VideoClubAviato
             pictureBoxMovieRoles.BackColor = Color.Transparent;
             pictureBoxUserCards.BackColor = Color.Transparent;
             pictureBoxHelp.BackColor = Color.Transparent;
+            pictureBoxShowRentals.BackColor = Color.Transparent;
             pictureBoxContact.BackColor = Color.Transparent;
         }
 
@@ -331,9 +332,9 @@ namespace VideoClubAviato
         {
             this.Hide();
 
-            Contact contact = new Contact();
+            ContactPage contactPage = new ContactPage();
 
-            contact.ShowDialog();
+            contactPage.ShowDialog();
 
         }
 
@@ -347,7 +348,24 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            // OVDE CE DA IDE KOD ZA HELP!!!
+            Help.ShowHelp(this, "file://C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno - PEJA\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Help.chm");
+        }
+
+        private void pictureBoxShowRentals_MouseHover(object sender, EventArgs e)
+        {
+            pictureBoxShowRentals.Cursor = Cursors.Hand;
+
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(pictureBoxShowRentals, "Prikaz svih informacija o Rezervacijama.");
+        }
+
+        private void pictureBoxShowRentals_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            RentalPage rentalPage= new RentalPage();
+
+            rentalPage.ShowDialog();
         }
     }
 }
