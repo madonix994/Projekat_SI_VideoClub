@@ -78,7 +78,7 @@
             // 
             this.textBoxMovieRoleDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieRoleDescription.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieRoleDescription.Location = new System.Drawing.Point(651, 241);
+            this.textBoxMovieRoleDescription.Location = new System.Drawing.Point(885, 234);
             this.textBoxMovieRoleDescription.Name = "textBoxMovieRoleDescription";
             this.textBoxMovieRoleDescription.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieRoleDescription.TabIndex = 73;
@@ -88,7 +88,7 @@
             // 
             this.textBoxMovieRoleName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxMovieRoleName.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieRoleName.Location = new System.Drawing.Point(651, 190);
+            this.textBoxMovieRoleName.Location = new System.Drawing.Point(885, 183);
             this.textBoxMovieRoleName.Name = "textBoxMovieRoleName";
             this.textBoxMovieRoleName.Size = new System.Drawing.Size(175, 32);
             this.textBoxMovieRoleName.TabIndex = 72;
@@ -99,7 +99,7 @@
             this.listBoxMovieRoles.FormattingEnabled = true;
             this.listBoxMovieRoles.Location = new System.Drawing.Point(10, 163);
             this.listBoxMovieRoles.Name = "listBoxMovieRoles";
-            this.listBoxMovieRoles.Size = new System.Drawing.Size(460, 485);
+            this.listBoxMovieRoles.Size = new System.Drawing.Size(696, 485);
             this.listBoxMovieRoles.TabIndex = 68;
             this.listBoxMovieRoles.SelectedIndexChanged += new System.EventHandler(this.listBoxMovieRoles_SelectedIndexChanged);
             // 
@@ -107,7 +107,7 @@
             // 
             this.buttonDeleteMovieRole.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonDeleteMovieRole.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
-            this.buttonDeleteMovieRole.Location = new System.Drawing.Point(296, 84);
+            this.buttonDeleteMovieRole.Location = new System.Drawing.Point(427, 84);
             this.buttonDeleteMovieRole.Name = "buttonDeleteMovieRole";
             this.buttonDeleteMovieRole.Size = new System.Drawing.Size(137, 56);
             this.buttonDeleteMovieRole.TabIndex = 67;
@@ -121,7 +121,7 @@
             // 
             this.buttonUpdateMovieRole.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonUpdateMovieRole.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
-            this.buttonUpdateMovieRole.Location = new System.Drawing.Point(153, 84);
+            this.buttonUpdateMovieRole.Location = new System.Drawing.Point(234, 84);
             this.buttonUpdateMovieRole.Name = "buttonUpdateMovieRole";
             this.buttonUpdateMovieRole.Size = new System.Drawing.Size(137, 56);
             this.buttonUpdateMovieRole.TabIndex = 66;
@@ -135,7 +135,7 @@
             // 
             this.buttonInsertMovieRole.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonInsertMovieRole.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
-            this.buttonInsertMovieRole.Location = new System.Drawing.Point(10, 84);
+            this.buttonInsertMovieRole.Location = new System.Drawing.Point(45, 84);
             this.buttonInsertMovieRole.Name = "buttonInsertMovieRole";
             this.buttonInsertMovieRole.Size = new System.Drawing.Size(137, 56);
             this.buttonInsertMovieRole.TabIndex = 65;
@@ -148,7 +148,7 @@
             // 
             this.comboBoxActor.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxActor.FormattingEnabled = true;
-            this.comboBoxActor.Location = new System.Drawing.Point(651, 345);
+            this.comboBoxActor.Location = new System.Drawing.Point(885, 338);
             this.comboBoxActor.Name = "comboBoxActor";
             this.comboBoxActor.Size = new System.Drawing.Size(175, 33);
             this.comboBoxActor.TabIndex = 82;
@@ -159,7 +159,7 @@
             // 
             this.comboBoxMovie.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMovie.FormattingEnabled = true;
-            this.comboBoxMovie.Location = new System.Drawing.Point(651, 291);
+            this.comboBoxMovie.Location = new System.Drawing.Point(885, 284);
             this.comboBoxMovie.Name = "comboBoxMovie";
             this.comboBoxMovie.Size = new System.Drawing.Size(175, 33);
             this.comboBoxMovie.TabIndex = 80;
@@ -168,7 +168,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(486, 632);
+            this.progressBar1.Location = new System.Drawing.Point(720, 625);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(352, 23);
             this.progressBar1.Step = 25;
@@ -177,7 +177,7 @@
             // textBoxMovieRoleSearch
             // 
             this.textBoxMovieRoleSearch.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMovieRoleSearch.Location = new System.Drawing.Point(528, 486);
+            this.textBoxMovieRoleSearch.Location = new System.Drawing.Point(762, 479);
             this.textBoxMovieRoleSearch.Name = "textBoxMovieRoleSearch";
             this.textBoxMovieRoleSearch.Size = new System.Drawing.Size(305, 32);
             this.textBoxMovieRoleSearch.TabIndex = 85;
@@ -186,7 +186,7 @@
             // 
             this.buttonMovieRoleSearch.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.buttonMovieRoleSearch.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMovieRoleSearch.Location = new System.Drawing.Point(486, 525);
+            this.buttonMovieRoleSearch.Location = new System.Drawing.Point(720, 518);
             this.buttonMovieRoleSearch.Name = "buttonMovieRoleSearch";
             this.buttonMovieRoleSearch.Size = new System.Drawing.Size(356, 56);
             this.buttonMovieRoleSearch.TabIndex = 84;
@@ -200,7 +200,7 @@
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(495, 486);
+            this.pictureBox2.Location = new System.Drawing.Point(729, 479);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(35, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -220,7 +220,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(495, 96);
+            this.pictureBox3.Location = new System.Drawing.Point(729, 89);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(329, 56);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,7 +230,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(478, 344);
+            this.pictureBox4.Location = new System.Drawing.Point(712, 337);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(168, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -240,7 +240,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(478, 290);
+            this.pictureBox6.Location = new System.Drawing.Point(712, 283);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(168, 32);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -250,7 +250,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(478, 240);
+            this.pictureBox7.Location = new System.Drawing.Point(712, 233);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(168, 32);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -260,7 +260,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(478, 189);
+            this.pictureBox8.Location = new System.Drawing.Point(712, 182);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(168, 32);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -269,7 +269,7 @@
             // 
             // TextBoxHiddenIDMovieRole
             // 
-            this.TextBoxHiddenIDMovieRole.Location = new System.Drawing.Point(742, 42);
+            this.TextBoxHiddenIDMovieRole.Location = new System.Drawing.Point(976, 38);
             this.TextBoxHiddenIDMovieRole.Name = "TextBoxHiddenIDMovieRole";
             this.TextBoxHiddenIDMovieRole.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDMovieRole.TabIndex = 95;
@@ -277,7 +277,7 @@
             // 
             // TextBoxHiddenIDMovie
             // 
-            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(742, 67);
+            this.TextBoxHiddenIDMovie.Location = new System.Drawing.Point(976, 60);
             this.TextBoxHiddenIDMovie.Name = "TextBoxHiddenIDMovie";
             this.TextBoxHiddenIDMovie.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDMovie.TabIndex = 96;
@@ -285,7 +285,7 @@
             // 
             // TextBoxHiddenIDActor
             // 
-            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(742, 16);
+            this.TextBoxHiddenIDActor.Location = new System.Drawing.Point(976, 12);
             this.TextBoxHiddenIDActor.Name = "TextBoxHiddenIDActor";
             this.TextBoxHiddenIDActor.Size = new System.Drawing.Size(100, 20);
             this.TextBoxHiddenIDActor.TabIndex = 97;
@@ -294,7 +294,7 @@
             // pictureBoxHelp
             // 
             this.pictureBoxHelp.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHelp.Image")));
-            this.pictureBoxHelp.Location = new System.Drawing.Point(742, 12);
+            this.pictureBoxHelp.Location = new System.Drawing.Point(976, 12);
             this.pictureBoxHelp.Name = "pictureBoxHelp";
             this.pictureBoxHelp.Size = new System.Drawing.Size(100, 50);
             this.pictureBoxHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -310,7 +310,7 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(854, 661);
+            this.ClientSize = new System.Drawing.Size(1084, 661);
             this.Controls.Add(this.pictureBoxHelp);
             this.Controls.Add(this.TextBoxHiddenIDActor);
             this.Controls.Add(this.TextBoxHiddenIDMovie);
@@ -336,8 +336,8 @@
             this.Controls.Add(this.buttonInsertMovieRole);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(870, 700);
-            this.MinimumSize = new System.Drawing.Size(870, 700);
+            this.MaximumSize = new System.Drawing.Size(1100, 700);
+            this.MinimumSize = new System.Drawing.Size(1100, 700);
             this.Name = "MovieRolePage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MovieRole";

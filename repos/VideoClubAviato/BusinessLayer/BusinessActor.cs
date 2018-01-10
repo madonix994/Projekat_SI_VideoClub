@@ -11,7 +11,13 @@ namespace BusinessLayer
     public class BusinessActor
     {
         // POVEZIVANJE SA DATA LAYER-OM
-        public ActorRepository actorRepository = new ActorRepository();
+        private IActorRepository actorRepository;
+
+
+        public BusinessActor(IActorRepository actorRepository)
+        {
+            this.actorRepository = actorRepository;
+        }
 
         //LOGICKA PROVERA ZA UNOS GLUMCA
         public bool InsertActor(Actor a)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class DirectorRepository
+    public class DirectorRepository : IDirectorRepository
     {
 
         //KREIRANJE UPITA ZA UNOS REZISERA U BAZU!

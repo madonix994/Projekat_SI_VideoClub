@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class UserCardRepository
+    public class UserCardRepository : IUserCardRepository
     {
 
         //KREIRANJE UPITA ZA UNOS KORISNIKA U BAZU!

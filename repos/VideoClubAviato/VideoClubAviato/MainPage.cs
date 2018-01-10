@@ -348,7 +348,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            Help.ShowHelp(this, "file://C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno - PEJA\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Help.chm");
+            Help.ShowHelp(this, "file://C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Help.chm");
         }
 
         private void pictureBoxShowRentals_MouseHover(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataLayer;
 using DataLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,16 @@ namespace VideoClubAviato
 {
     public partial class AviatoFilmClub : Form
     {
+        private BusinessEmployee businessEmployee;
+
         public AviatoFilmClub()
         {
             InitializeComponent();
+
+            IEmployeeRepository employeeRepository = new EmployeeRepository();
+            this.businessEmployee = new BusinessEmployee(employeeRepository);
+
+          
 
             pictureBox3.BackColor = Color.Transparent;
             
@@ -26,7 +34,7 @@ namespace VideoClubAviato
 
         }
 
-        private BusinessEmployee businessEmployee = new BusinessEmployee();
+      
 
         public int brojpokusaja = 1;
 

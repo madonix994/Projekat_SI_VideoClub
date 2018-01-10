@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class EmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
+
+
 
         public List<Employee> GetAllEmployees()
         {

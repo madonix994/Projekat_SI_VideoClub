@@ -10,18 +10,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DataLayer;
 
 namespace VideoClubAviato
 {
     public partial class ActorPage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-OM ACTOR I MOVIE ROLE
-        public BusinessActor businessActor = new BusinessActor();
-        public BusinessMovieRole businessMovieRole = new BusinessMovieRole();
+        
+
+        private BusinessActor businessActor;
+
+        private BusinessMovieRole businessMovieRole;
 
         public ActorPage()
         {
             InitializeComponent();
+
+            IActorRepository actorRepository = new ActorRepository();
+            this.businessActor = new BusinessActor(actorRepository);
+
+            IMovieRoleRepository movieRoleRepository = new MovieRoleRepository();
+            this.businessMovieRole = new BusinessMovieRole(movieRoleRepository);
+
+
 
             FillActors();
 
@@ -150,6 +162,7 @@ namespace VideoClubAviato
 
             if (Regex.IsMatch(textBoxActorName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxActorSurname.Text, @"[a-zA-Z]") && DateTime.TryParse(textBoxActorDateOfBirth.Text, out dt))
             {
+                
 
                 /*PRVO PROVERAVA DA LI VEC POSTOJI GLUMAC SA TIM IMENOM, PREZIMENOM i DATUMOM RODJENJA,
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
@@ -157,9 +170,9 @@ namespace VideoClubAviato
                 List<Actor> lista = businessActor.SelectAllActors();
                 foreach (Actor pom in lista)
                 {
-                    if ((pom.GetSetActor_Name1 == textBoxActorName.Text || pom.GetSetActor_Name1.ToLower() == textBoxActorName.Text || pom.GetSetActor_Name1.ToUpper() == textBoxActorName.Text)
-                        && (pom.GetSetActor_Surname1 == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToLower() == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToUpper() == textBoxActorSurname.Text)
-                        && pom.GetSetActor_Date_Of_Birth1 == Convert.ToDateTime(textBoxActorDateOfBirth.Text))
+                    if ((pom.GetSetActor_Name1 == textBoxActorName.Text || pom.GetSetActor_Name1.ToLower() == textBoxActorName.Text || pom.GetSetActor_Name1.ToUpper() == textBoxActorName.Text) 
+                        && (pom.GetSetActor_Surname1 == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToLower() == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToUpper() == textBoxActorSurname.Text) 
+                        && Convert.ToString(pom.GetSetActor_Date_Of_Birth1) == textBoxActorDateOfBirth.Text)
                     {
                         ClearData();
                         MessageBox.Show("Uneti glumac vec postoji u bazi!", "Obavestenje");
@@ -176,11 +189,13 @@ namespace VideoClubAviato
                     businessActor.InsertActor(a);
 
                     FillActors();
+                    ClearData();
+
                 }
                 else
                 {
 
-                    MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
+                    MessageBox.Show("Morate popuniti sva polja!", "Obavestenje");
 
                 }
             }
@@ -264,6 +279,7 @@ namespace VideoClubAviato
                     {
                         listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
                     }
+                    ClearData();
                 }
                 }
                 else
@@ -277,6 +293,7 @@ namespace VideoClubAviato
                     {
                         listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
                     }
+                    ClearData();
                 }
                 }
           
@@ -312,7 +329,7 @@ namespace VideoClubAviato
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
             
-                System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Actor.html"));
+                System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Actor.html"));
           
         }
 

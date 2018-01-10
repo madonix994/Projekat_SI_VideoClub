@@ -10,20 +10,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DataLayer;
 
 namespace VideoClubAviato
 {
     public partial class MovieRolePage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-OM MOVIE I ACTOR
-        public BusinessMovieRole businessMovieRole = new BusinessMovieRole();
-        public BusinessMovie businessMovie = new BusinessMovie();
-        public BusinessActor businessActor = new BusinessActor();
+        private BusinessMovieRole businessMovieRole;
 
+
+        private BusinessMovie businessMovie;
+        private BusinessActor businessActor;
+
+        
 
         public MovieRolePage()
         {
             InitializeComponent();
+
+            IMovieRoleRepository movieRoleRepository = new MovieRoleRepository();
+            this.businessMovieRole = new BusinessMovieRole(movieRoleRepository);
+
+
+            IMovieRepository movieRepository = new MovieRepository();
+            this.businessMovie = new BusinessMovie(movieRepository);
+
+            IActorRepository actorRepository = new ActorRepository();
+            this.businessActor = new BusinessActor(actorRepository);
 
             FillComboBoxMovies();
             FillComboBoxActors();
@@ -284,7 +298,7 @@ namespace VideoClubAviato
 
                 mr.GetSetRole_Name1 = "Nije Uneto";
                 mr.GetSetRole_Description1 = "Nije Uneto";
-                mr.GetSetId_Actor_Actors1 = Convert.ToInt32("1002");
+                mr.GetSetId_Actor_Actors1 = Convert.ToInt32("2");
                 mr.GetSetId_Movie_Movies1 = Convert.ToInt32(TextBoxHiddenIDMovie.Text);
                 businessMovieRole.InsertMovieRole(mr);
 
@@ -310,7 +324,11 @@ namespace VideoClubAviato
             {
                 listBoxMovieRoles.Items.Add("Uloga: " + pom.GetSetRole_Name1 + "  -- Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Film: " + pom.GetSetMovie_Name1 + "  -- Opis Uloge: " + pom.GetSetRole_Description1);
             }
-            
+            ClearData();
+            comboBoxActor.Items.Clear();
+            FillComboBoxActors();
+            comboBoxMovie.Items.Clear();
+            FillComboBoxMovies();
         }
 
 
@@ -370,7 +388,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\MovieRole.html"));
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\MovieRole.html"));
 
         }
 

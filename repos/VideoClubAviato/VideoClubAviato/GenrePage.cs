@@ -10,18 +10,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DataLayer;
 
 namespace VideoClubAviato
 {
     public partial class GenrePage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-OM GENRE I MOVIE TABELE
-        public BusinessGenre businessGenre = new BusinessGenre();
-        public BusinessMovie businessMovie = new BusinessMovie();
+
+        private BusinessGenre businessGenre;
+
+
+
+        private BusinessMovie businessMovie;
 
         public GenrePage()
         {
             InitializeComponent();
+
+            IMovieRepository movieRepository = new MovieRepository();
+            this.businessMovie = new BusinessMovie(movieRepository);
+
+            IGenreRepository genreRepository = new GenreRepository();
+            this.businessGenre = new BusinessGenre(genreRepository);
+
 
             FillGenres();
 
@@ -225,7 +237,7 @@ namespace VideoClubAviato
                 {
                     listBoxGenres.Items.Add("Zanr: " + pom.GetSetGenre_Name1);
                 }
-
+                ClearData();
             }
 
         }
@@ -255,7 +267,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Genre.html"));
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Genre.html"));
 
         }
 

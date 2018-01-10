@@ -12,7 +12,14 @@ namespace BusinessLayer
     {
 
         // POVEZIVANJE SA DATA LAYER-OM
-        public DirectorRepository directorRepository = new DirectorRepository();
+        
+        private IDirectorRepository directorRepository;
+
+        public BusinessDirector(IDirectorRepository directorRepository)
+        {
+            this.directorRepository = directorRepository;
+        }
+
 
 
         //LOGICKA PROVERA ZA UNOS GLUMCA

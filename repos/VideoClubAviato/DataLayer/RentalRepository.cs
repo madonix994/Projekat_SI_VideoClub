@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class RentalRepository
+    public class RentalRepository : IRentalRepository
     {
 
         //KREIRANJE UPITA ZA UNOS REZERVACIJE U BAZU!

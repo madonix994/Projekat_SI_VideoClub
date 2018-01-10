@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class GenreRepository
+    public class GenreRepository : IGenreRepository
     {
         //KREIRANJE UPITA ZA UNOS ZANRA U BAZU!
 

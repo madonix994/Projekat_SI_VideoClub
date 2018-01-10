@@ -11,7 +11,13 @@ namespace BusinessLayer
     public class BusinessUserCard
     {
         // POVEZIVANJE SA DATA LAYER-OM
-        public UserCardRepository userCardRepository = new UserCardRepository();
+        private IUserCardRepository userCardRepository;
+
+        public BusinessUserCard(IUserCardRepository userCardRepository)
+        {
+            this.userCardRepository = userCardRepository;
+        }
+
 
         //LOGICKA PROVERA ZA UNOS GLUMCA
         public bool InsertUser(UserCard u)

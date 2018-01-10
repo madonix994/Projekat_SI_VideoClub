@@ -11,7 +11,12 @@ namespace BusinessLayer
     public class BusinessMovieRental
     {
         //POVEZIVANJE SA DATA LAYER-OM
-        public MovieRentalRepository movieRentalRepository = new MovieRentalRepository();
+        private IMovieRentalRepository movieRentalRepository;
+
+        public BusinessMovieRental(IMovieRentalRepository movieRentalRepository)
+        {
+            this.movieRentalRepository = movieRentalRepository;
+        }
 
         //LOGICKA PROVERA UNOSA U BAZU
         public bool InsertMovieRental(MovieRental movieRental)

@@ -11,7 +11,15 @@ namespace BusinessLayer
     public class BusinessMovie
     {
         //POVEZIVANJE SA DATA LAYER-OM
-        public MovieRepository movieRepository = new MovieRepository();
+        private IMovieRepository movieRepository;
+
+
+        public BusinessMovie(IMovieRepository movieRepository)
+        {
+            this.movieRepository = movieRepository;
+        }
+
+
 
         //LOGICKA PROVERA ZA UNOS FILMA
         public bool InsertMovie(Movie m)
@@ -54,17 +62,13 @@ namespace BusinessLayer
             return movieRepository.SearchByAll();
         }
 
-        //LOGICKA PROVERA ZA PRETRAGU FILMA Po NAZIVU FILMA,GODINI IZDANJA FILMA, GLUMCU, REZISERU
+        //LOGICKA PROVERA ZA PRETRAGU FILMA Po NAZIVU FILMA,GODINI IZDANJA FILMA, REZISERU
         public List<Movie_Genre_Director_MovieRole_Actor> SearchMovie(string MoviePom)
         {
             return movieRepository.SearchByAll().Where(
             m => m.GetSetMovie_Name1.Contains(MoviePom) || m.GetSetMovie_Name1.ToLower().Contains(MoviePom) ||
             m.GetSetMovie_Name1.ToUpper().Contains(MoviePom) || m.GetSetMovie_Name1.StartsWith(MoviePom) ||
-            Convert.ToString(m.GetSetMovie_Year1).Contains(MoviePom) || Convert.ToString(m.GetSetMovie_Year1).StartsWith(MoviePom) ||
-            m.GetSetActor_Name1.Contains(MoviePom) || m.GetSetActor_Name1.ToLower().Contains(MoviePom) ||
-            m.GetSetActor_Name1.ToUpper().Contains(MoviePom) || m.GetSetActor_Name1.StartsWith(MoviePom) ||
-            m.GetSetActor_Surname1.Contains(MoviePom) || m.GetSetActor_Surname1.ToLower().Contains(MoviePom) ||
-            m.GetSetActor_Surname1.ToUpper().Contains(MoviePom) || m.GetSetActor_Surname1.StartsWith(MoviePom) ||
+            Convert.ToString(m.GetSetMovie_Year1).Contains(MoviePom) || Convert.ToString(m.GetSetMovie_Year1).StartsWith(MoviePom) ||        
             m.GetSetDirector_Name1.Contains(MoviePom) || m.GetSetDirector_Name1.ToLower().Contains(MoviePom) ||
             m.GetSetDirector_Name1.ToUpper().Contains(MoviePom) || m.GetSetDirector_Name1.StartsWith(MoviePom) ||
             m.GetSetDirector_Surname1.Contains(MoviePom) || m.GetSetDirector_Surname1.ToLower().Contains(MoviePom) ||
@@ -79,17 +83,13 @@ namespace BusinessLayer
 
         }
 
-        //LOGICKA PROVERA ZA PRETRAGU FILMA Po NAZIVU FILMA,GODINI IZDANJA FILMA, GLUMCU, REZISERU UKOLIKO FILM IMA OSKARA
+        //LOGICKA PROVERA ZA PRETRAGU FILMA Po NAZIVU FILMA,GODINI IZDANJA FILMA, REZISERU UKOLIKO FILM IMA OSKARA
         public List<Movie_Genre_Director_MovieRole_Actor> SearchMovieOscar(string MoviePom)
         {
             return movieRepository.SearchByAll().Where(
             m => (m.GetSetMovie_Name1.Contains(MoviePom) || m.GetSetMovie_Name1.ToLower().Contains(MoviePom) ||
             m.GetSetMovie_Name1.ToUpper().Contains(MoviePom) || m.GetSetMovie_Name1.StartsWith(MoviePom) ||
             Convert.ToString(m.GetSetMovie_Year1).Contains(MoviePom) || Convert.ToString(m.GetSetMovie_Year1).StartsWith(MoviePom) ||
-            m.GetSetActor_Name1.Contains(MoviePom) || m.GetSetActor_Name1.ToLower().Contains(MoviePom) ||
-            m.GetSetActor_Name1.ToUpper().Contains(MoviePom) || m.GetSetActor_Name1.StartsWith(MoviePom) ||
-            m.GetSetActor_Surname1.Contains(MoviePom) || m.GetSetActor_Surname1.ToLower().Contains(MoviePom) ||
-            m.GetSetActor_Surname1.ToUpper().Contains(MoviePom) || m.GetSetActor_Surname1.StartsWith(MoviePom) ||
             m.GetSetDirector_Name1.Contains(MoviePom) || m.GetSetDirector_Name1.ToLower().Contains(MoviePom) ||
             m.GetSetDirector_Name1.ToUpper().Contains(MoviePom) || m.GetSetDirector_Name1.StartsWith(MoviePom) ||
             m.GetSetDirector_Surname1.Contains(MoviePom) || m.GetSetDirector_Surname1.ToLower().Contains(MoviePom) ||

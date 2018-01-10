@@ -10,20 +10,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DataLayer;
 
 namespace VideoClubAviato
 {
     public partial class MoviePage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-OM MOVIE I MOVIE ROLE
-        public BusinessMovie businessMovie = new BusinessMovie();
-        private BusinessMovieRole businessMovieRole = new BusinessMovieRole();
-        public BusinessGenre businessGenre = new BusinessGenre();
-        public BusinessDirector businessDirector = new BusinessDirector();
+        private BusinessMovie businessMovie;
+        
+
+
+        private BusinessMovieRole businessMovieRole;
+        
+        private BusinessGenre businessGenre;
+
+
+        private BusinessDirector businessDirector;
+
 
         public MoviePage()
         {
             InitializeComponent();
+
+            IMovieRoleRepository movieRoleRepository = new MovieRoleRepository();
+            this.businessMovieRole = new BusinessMovieRole(movieRoleRepository);
+
+
+            IMovieRepository movieRepository = new MovieRepository();
+            this.businessMovie = new BusinessMovie(movieRepository);
+
+
+            IDirectorRepository directorRepository = new DirectorRepository();
+            this.businessDirector = new BusinessDirector(directorRepository);
+
+            IGenreRepository genreRepository = new GenreRepository();
+            this.businessGenre = new BusinessGenre(genreRepository);
 
             this.comboBoxGenre.DropDownStyle = ComboBoxStyle.DropDownList;
             this.comboBoxDirectors.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -114,7 +136,7 @@ namespace VideoClubAviato
             
             foreach (Movie_Genre_Director_MovieRole_Actor pom in lista1)
             {
-                listBoxMovies.Items.Add("Film: " +pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Broj Uloga: " + pom.GetSetId_Role1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1 + " -- Oskar: " + pom.GetSetMovie_Oskar1 + " -- ID Zanra: " + pom.GetSetId_Genre_Genres1 + " -- ID Rezisera: " + pom.GetSetId_Director_Directors1);
+                listBoxMovies.Items.Add("Film: " +pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1);
             }
         }
 
@@ -382,6 +404,7 @@ namespace VideoClubAviato
             }
             else
             {
+                ClearData();
                 MessageBox.Show("Morate odabrati FILM za brisanje!", "Obavestenje");
             }
 
@@ -401,8 +424,14 @@ namespace VideoClubAviato
 
                     foreach (Movie_Genre_Director_MovieRole_Actor pom in lista)
                     {
-                        listBoxMovies.Items.Add("Film: " + pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Broj Uloga: " + pom.GetSetId_Role1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1 + " -- Oskar: " + pom.GetSetMovie_Oskar1 + " -- ID Zanra: " + pom.GetSetId_Genre_Genres1 + " -- ID Rezisera: " + pom.GetSetId_Director_Directors1);
+                        listBoxMovies.Items.Add("Film: " + pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1);
                     }
+                ClearData();
+                comboBoxDirectors.Items.Clear();
+                FillComboBoxDirectors();
+                comboBoxGenre.Items.Clear();
+                FillComboBoxGenres();
+                checkBoxMovieOscar.Checked = true;
             }
             else
             {                    // PRETRAGA FILMOVA U BAZI BEZ FILTRIRANJA OSKARA
@@ -410,8 +439,13 @@ namespace VideoClubAviato
                 List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SearchMovie(pom1);
                 foreach (Movie_Genre_Director_MovieRole_Actor pom in lista)
                 {
-                    listBoxMovies.Items.Add("Film: " + pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Broj Uloga: " + pom.GetSetId_Role1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1 + " -- Oskar: " + pom.GetSetMovie_Oskar1 + " -- ID Zanra: " + pom.GetSetId_Genre_Genres1 + " -- ID Rezisera: " + pom.GetSetId_Director_Directors1);
+                    listBoxMovies.Items.Add("Film: " + pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1);
                 }
+                ClearData();
+                comboBoxDirectors.Items.Clear();
+                FillComboBoxDirectors();
+                comboBoxGenre.Items.Clear();
+                FillComboBoxGenres();
             }
         }
 
@@ -441,7 +475,18 @@ namespace VideoClubAviato
                      && pom.GetSetId_Director1 == Convert.ToInt32(TextBoxHiddenIDDirector.Text) && pom.GetSetMovie_Year1 == Convert.ToInt32(textBoxMovieYear.Text))
                     {
                         ClearData();
+
+                        comboBoxDirectors.Items.Clear();
+
+                        FillComboBoxDirectors();
+
+                        comboBoxGenre.Items.Clear();
+
+                        FillComboBoxGenres();
+
                         MessageBox.Show("Uneti film vec postoji u bazi!", "Obavestenje");
+
+                        
                     }
                 }
 
@@ -475,6 +520,10 @@ namespace VideoClubAviato
                     ClearData();
 
                     FillMovies();
+                    comboBoxDirectors.Items.Clear();
+                    FillComboBoxDirectors();
+                    comboBoxGenre.Items.Clear();
+                    FillComboBoxGenres();
                 }
                 else
                 {
@@ -483,6 +532,8 @@ namespace VideoClubAviato
             }
             else
             {
+                textBoxMovieStatus.Text = "Na Stanju";
+
                 MessageBox.Show("Morate popuniti sva polja na pravi nacin!", "Obavestenje");
             }
 
@@ -496,7 +547,7 @@ namespace VideoClubAviato
                 string pom;
                 pom = listBoxMovies.Text;
 
-                List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SelectAllMoviesAllClasses().Where(m => "Film: " + m.GetSetMovie_Name1 + " -- Godina: " + m.GetSetMovie_Year1 + " -- Broj Uloga: " + m.GetSetId_Role1 + " -- Status: " + m.GetSetMovie_Status1 + " -- Kolicina:  " + m.GetSetMovie_Amount1 + " -- Cena: " + m.GetSetMovie_Rental_Price1 + " -- Zanr: " + m.GetSetGenre_Name1 + " -- Reziser: " + m.GetSetDirector_Name1 + " " + m.GetSetDirector_Surname1 + " -- Glumci: " + m.GetSetActor_Surname1 + " -- Trajanje: " + m.GetSetMovie_Duration1 + " -- Ocena: " + m.GetSetMovie_IMDB_Rating1 + " -- Oskar: " + m.GetSetMovie_Oskar1 + " -- ID Zanra: " + m.GetSetId_Genre_Genres1 + " -- ID Rezisera: " + m.GetSetId_Director_Directors1 == pom).ToList();
+                List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SelectAllMoviesAllClasses().Where(m => "Film: " + m.GetSetMovie_Name1 + " -- Godina: " + m.GetSetMovie_Year1 + " -- Status: " + m.GetSetMovie_Status1 + " -- Kolicina:  " + m.GetSetMovie_Amount1 + " -- Cena: " + m.GetSetMovie_Rental_Price1 + " -- Zanr: " + m.GetSetGenre_Name1 + " -- Reziser: " + m.GetSetDirector_Name1 + " " + m.GetSetDirector_Surname1 + " -- Glumci: " + m.GetSetActor_Surname1 + " -- Trajanje: " + m.GetSetMovie_Duration1 + " -- Ocena: " + m.GetSetMovie_IMDB_Rating1 == pom).ToList();
 
                 Movie_Genre_Director_MovieRole_Actor movie = lista.First();
 
@@ -548,7 +599,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Movie.html"));
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Movie.html"));
 
         }
 

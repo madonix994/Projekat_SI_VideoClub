@@ -13,7 +13,13 @@ namespace BusinessLayer
     public class BusinessRentalStorage
     {
         //POVEZIVANJE SA DATA LAYER-OM
-        public RentalStorageRepository rentalStorageRepository = new RentalStorageRepository();
+        private IRentalStorageRepository rentalStorageRepository;
+
+        public BusinessRentalStorage(IRentalStorageRepository rentalStorageRepository)
+        {
+            this.rentalStorageRepository = rentalStorageRepository;
+        }
+
 
         //LOGICKA PROVERA ZA UNOS PODATAKA O REZERVACIJI
         public bool InsertRentalStorage(RentalStorage rs)

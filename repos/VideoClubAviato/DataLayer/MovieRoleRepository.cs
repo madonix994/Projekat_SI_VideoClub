@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class MovieRoleRepository
+    public class MovieRoleRepository : IMovieRoleRepository
     {
 
         /* POMOCNA METODA ZA TABELU FILMOVI --> KREIRANJE METODE ZA UNOS NOVE ULOGE SA NAZIVOM "Nije Uneto"  
@@ -116,7 +116,7 @@ namespace DataLayer
 
             SqlCommand command = new SqlCommand(); // kreiranje komande
             command.Connection = dataConnection; //setovanje konekcije komande
-            command.CommandText = "UPDATE MovieRoles SET Role_Name = 'Nije Uneto', Role_Description = 'Nije Uneto', Id_Actor_Actors = '" + Convert.ToInt32("2003") + "' WHERE Id_Actor_Actors = '" + mr.GetSetId_Actor_Actors1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+            command.CommandText = "UPDATE MovieRoles SET Role_Name = 'Nije Uneto', Role_Description = 'Nije Uneto', Id_Actor_Actors = '" + Convert.ToInt32("2") + "' WHERE Id_Actor_Actors = '" + mr.GetSetId_Actor_Actors1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
             
             return command.ExecuteNonQuery();
 

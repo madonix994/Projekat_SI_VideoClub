@@ -11,8 +11,14 @@ namespace BusinessLayer
     public class BusinessMovieRole
     {
         //POVEZIVANJE SA DATA LAYER-OM
-        public MovieRoleRepository movieRoleRepository = new MovieRoleRepository();
-        public MovieRepository movieRepository = new MovieRepository();
+        private IMovieRoleRepository movieRoleRepository;
+
+        public BusinessMovieRole(IMovieRoleRepository movieRoleRepository)
+        {
+
+            this.movieRoleRepository = movieRoleRepository;
+
+        }
 
 
 

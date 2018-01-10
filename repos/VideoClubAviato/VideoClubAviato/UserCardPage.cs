@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataLayer;
 using DataLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,15 @@ namespace VideoClubAviato
     public partial class UserCardPage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-om
-        public BusinessUserCard businessUserCard = new BusinessUserCard();
+        private BusinessUserCard businessUserCard;
 
         public UserCardPage()
         {
             InitializeComponent();
 
+            IUserCardRepository userCardRepository = new UserCardRepository();
+            this.businessUserCard = new BusinessUserCard(userCardRepository);
+            
             FillUsers();
 
             pictureBox1.BackColor = Color.Transparent;
@@ -256,6 +260,7 @@ namespace VideoClubAviato
             {
                 listBoxUserCards.Items.Add("Korisnik: " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + pom.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + pom.GetSetUserCard_PhoneNumber_Of_User1);
             }
+            ClearData();
         }
 
         //PRILIKOM ODABIRA JEDNOG REDA U LISTI SVI PODACI SE POKAZUJU U TextBox POLJA ZA EVENTUALNO DALJE AZURIRANJE
@@ -285,7 +290,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\UserCard.html"));
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\UserCard.html"));
 
         }
 

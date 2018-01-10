@@ -12,8 +12,14 @@ namespace BusinessLayer
     {
 
         //POVEZIVANJE SA DATA LAYER-OM
-        public GenreRepository genreRepository = new GenreRepository();
-    
+       
+        private IGenreRepository genreRepository;
+
+        public BusinessGenre(IGenreRepository genreRepository)
+        {
+            this.genreRepository = genreRepository;
+        }
+
 
         public bool InsertGenre(Genre g)
         {

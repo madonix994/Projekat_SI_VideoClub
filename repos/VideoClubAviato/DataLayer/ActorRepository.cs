@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class ActorRepository
+    public class ActorRepository : IActorRepository
     {
 
         //KREIRANJE UPITA ZA UNOS GLUMCA U BAZU!

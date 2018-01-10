@@ -45,6 +45,16 @@
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="GenreRepository.cs" />
     <Compile Include="GlobalVariables.cs" />
+    <Compile Include="IActorRepository.cs" />
+    <Compile Include="IDirectorRepository.cs" />
+    <Compile Include="IEmployeeRepository.cs" />
+    <Compile Include="IGenreRepository.cs" />
+    <Compile Include="IMovieRentalRepository.cs" />
+    <Compile Include="IMovieRepository.cs" />
+    <Compile Include="IMovieRoleRepository.cs" />
+    <Compile Include="IRentalRepository.cs" />
+    <Compile Include="IRentalStorageRepository.cs" />
+    <Compile Include="IUserCardRepository.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Director.cs" />
     <Compile Include="Models\Employee.cs" />

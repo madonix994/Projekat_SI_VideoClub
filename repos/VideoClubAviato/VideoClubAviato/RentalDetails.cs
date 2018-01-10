@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataLayer;
 using DataLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,22 @@ namespace VideoClubAviato
 {
     public partial class RentalDetails : Form
     {
-        private BusinessRentalStorage businessRentalStorage = new BusinessRentalStorage();
-        private BusinessMovie businessMovie = new BusinessMovie();
+        private BusinessRentalStorage businessRentalStorage;
+        private BusinessMovie businessMovie;
 
 
         public RentalDetails()
         {
             InitializeComponent();
+
+            IRentalStorageRepository rentalStorageRepository = new RentalStorageRepository();
+            this.businessRentalStorage = new BusinessRentalStorage(rentalStorageRepository);
+
+
+            IMovieRepository movieRepository = new MovieRepository();
+            this.businessMovie = new BusinessMovie(movieRepository);
+
+
             this.Width = 600;
             this.Height = 120;
 
@@ -66,11 +76,18 @@ namespace VideoClubAviato
                         TextBoxHiddenMovieName.Text = pom.GetSetMovie_Name1;
                         HiddenMovieName = TextBoxHiddenMovieName.Text;
                         List<Movie_Genre_Director> listaFilmova = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1.Contains(HiddenMovieName)).ToList();
-                        Movie_Genre_Director pom2 = listaFilmova.First();
-
-                        TextBoxHiddenMovieAmount.Text = Convert.ToString(pom2.GetSetMovie_Amount1);
-                        TextBoxHiddenMovieID.Text = Convert.ToString(pom2.GetSetId_Movie1);
-                        TextBoxHiddenDateOfReturn.Text = pomobjekat.GetSetRental_Date_Of_Return1;
+                        if(listaFilmova.Count() != 0)
+                        {
+                            Movie_Genre_Director pom2 = listaFilmova.First();
+                            TextBoxHiddenMovieAmount.Text = Convert.ToString(pom2.GetSetMovie_Amount1);
+                            TextBoxHiddenMovieID.Text = Convert.ToString(pom2.GetSetId_Movie1);
+                            TextBoxHiddenDateOfReturn.Text = pomobjekat.GetSetRental_Date_Of_Return1;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Film je obrisan u medjuvremenu!", "Obavestenje");
+                        }
+                       
                     }
                 }
             }
@@ -86,7 +103,10 @@ namespace VideoClubAviato
         {
             if (TextBoxHiddenMovieName.Text != "")
             {
-                int kolicina = Convert.ToInt32(TextBoxHiddenMovieAmount.Text);
+                if(TextBoxHiddenMovieAmount.Text != "")
+                {
+                    int kolicina = Convert.ToInt32(TextBoxHiddenMovieAmount.Text);
+                
                 string imefilma = TextBoxHiddenMovieName.Text;
                 int IDFilma = Convert.ToInt32(TextBoxHiddenMovieID.Text);
 
@@ -104,7 +124,7 @@ namespace VideoClubAviato
                 mov.GetSetId_Movie1 = IDFilma;
 
 
-
+                
 
                 businessMovie.UpdateMovieAmount(mov);
                 businessMovie.UpdateMovieStatus2(mov);
@@ -119,6 +139,12 @@ namespace VideoClubAviato
 
                 ClearData();
                 FillListBoxRentalStorage();
+                }
+                else
+                {
+                    MessageBox.Show("Film je obrisan u medjuvremenu!", "Obavestenje");
+
+                }
             }
             else
             {

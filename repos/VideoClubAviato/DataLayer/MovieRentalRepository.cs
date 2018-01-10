@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class MovieRentalRepository
+    public class MovieRentalRepository : IMovieRentalRepository
     {
 
         //KREIRANJE UPITA ZA UNOS U TABELU KOJA NAM OMOGUCAVA VISE FILMOVA NA JEDNOM RACUNU U BAZU!

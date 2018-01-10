@@ -12,7 +12,13 @@ namespace BusinessLayer
 
     public class BusinessEmployee
     {
-        private EmployeeRepository employeeRepository = new EmployeeRepository();
+        private IEmployeeRepository employeeRepository;
+
+        public BusinessEmployee(IEmployeeRepository employeeRepository)
+        {
+            this.employeeRepository = employeeRepository;
+
+        }
 
         public Employee Login()
         {

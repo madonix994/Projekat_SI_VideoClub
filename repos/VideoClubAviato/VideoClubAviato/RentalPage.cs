@@ -10,21 +10,45 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DataLayer;
 
 namespace VideoClubAviato
 {
     public partial class RentalPage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-OM MOVIE I MOVIE ROLE
-        private BusinessUserCard businessUserCard = new BusinessUserCard();
-        public BusinessMovieRental businessMovieRental = new BusinessMovieRental();
-        public BusinessRental businessRental = new BusinessRental();
-        public BusinessMovie businessMovie = new BusinessMovie();
-        public BusinessRentalStorage businessRentalStorage = new BusinessRentalStorage();
+        private BusinessUserCard businessUserCard;
+        
+        private BusinessRental businessRental;
+
+        private BusinessMovie businessMovie;
+
+        private BusinessRentalStorage businessRentalStorage;
+
+
+
+        private BusinessMovieRental businessMovieRental;
+
 
         public RentalPage()
         {
             InitializeComponent();
+
+            IMovieRentalRepository movieRentalRepository = new MovieRentalRepository();
+            this.businessMovieRental = new BusinessMovieRental(movieRentalRepository);
+
+            IRentalStorageRepository rentalStorageRepository = new RentalStorageRepository();
+            this.businessRentalStorage = new BusinessRentalStorage(rentalStorageRepository);
+
+            IUserCardRepository userCardRepository = new UserCardRepository();
+            this.businessUserCard = new BusinessUserCard(userCardRepository);
+
+            IRentalRepository rentalRepository = new RentalRepository();
+            this.businessRental = new BusinessRental(rentalRepository);
+
+            IMovieRepository movieRepository = new MovieRepository();
+            this.businessMovie = new BusinessMovie(movieRepository);
+
 
             FillComboBoxUserCards();
 
@@ -385,7 +409,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno - PEJA\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Rental.html"));
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Rental.html"));
 
         }
 

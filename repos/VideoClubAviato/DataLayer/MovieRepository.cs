@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class MovieRepository
+    public class MovieRepository : IMovieRepository
     {
         //KREIRANJE UPITA ZA UNOS FILMA U BAZU!
 
@@ -158,7 +158,7 @@ namespace DataLayer
 
             SqlCommand command = new SqlCommand(); // kreiranje komande
             command.Connection = dataConnection; //setovanje konekcije komande
-            command.CommandText = "UPDATE Movies SET Id_Genre_Genres = '" + Convert.ToInt32("1002") + "' WHERE Id_Genre_Genres = '" + m.GetSetId_Genre_Genres1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
+            command.CommandText = "UPDATE Movies SET Id_Genre_Genres = '" + Convert.ToInt32("2") + "' WHERE Id_Genre_Genres = '" + m.GetSetId_Genre_Genres1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
             
             return command.ExecuteNonQuery();
         }

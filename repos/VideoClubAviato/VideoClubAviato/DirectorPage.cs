@@ -10,18 +10,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using DataLayer;
 
 namespace VideoClubAviato
 {
     public partial class DirectorPage : Form
     {
         //POVEZIVANJE SA BUSINESS LAYER-OM ACTOR I MOVIE ROLE
-        public BusinessDirector businessDirector = new BusinessDirector();
-        public BusinessMovie businessMovie = new BusinessMovie();
+        private BusinessDirector businessDirector;
+
+        private BusinessMovie businessMovie;
+
+
 
         public DirectorPage()
         {
             InitializeComponent();
+
+            IMovieRepository movieRepository = new MovieRepository();
+            this.businessMovie = new BusinessMovie(movieRepository);
+
+            IDirectorRepository directorRepository = new DirectorRepository();
+            this.businessDirector = new BusinessDirector(directorRepository);
+
             FillDirectors();
 
             checkBoxDirectorOscar.BackColor = Color.Transparent;
@@ -170,6 +181,8 @@ namespace VideoClubAviato
                     {
                         listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
                     }
+                    ClearData();
+                    checkBoxDirectorOscar.Checked = true;
                 }
             }
             else
@@ -182,6 +195,8 @@ namespace VideoClubAviato
                     {
                         listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
                     }
+                    ClearData();
+                  
                 }
             }
 
@@ -322,7 +337,7 @@ namespace VideoClubAviato
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Desktop\\Projekat_SI_VideoClub - Sve Spojeno\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Director.html"));
+            System.Diagnostics.Process.Start("Chrome", Uri.EscapeDataString("C:\\Users\\madon\\Documents\\Projekat_SI_VideoClub\\repos\\VideoClubAviato\\VideoClubAviato\\HELP HTML\\Director.html"));
 
         }
 

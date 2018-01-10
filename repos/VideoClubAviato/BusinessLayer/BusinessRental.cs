@@ -12,7 +12,13 @@ namespace BusinessLayer
     {
 
         //POVEZIVANJE SA DATA LAYER-OM
-        public RentalRepository rentalRepository = new RentalRepository();
+        private IRentalRepository rentalRepository;
+
+        public BusinessRental(IRentalRepository rentalRepository)
+        {
+            this.rentalRepository = rentalRepository;
+        }
+
 
         //LOGICKA PROVERA UNOSA U BAZU
         public bool InsertRental(Rental r)

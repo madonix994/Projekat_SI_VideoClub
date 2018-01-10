@@ -196,6 +196,8 @@ namespace VideoClubAviato
 
         private void ContactPage_FormClosed_1(object sender, FormClosedEventArgs e)
         {
+            this.Close();
+
             MainPage mainPage = new MainPage();
 
             mainPage.ShowDialog();
