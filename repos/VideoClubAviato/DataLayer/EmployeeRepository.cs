@@ -15,7 +15,7 @@ namespace DataLayer
 
         public List<Employee> GetAllEmployees()
         {
-            List<Employee> lista = new List<Employee>();
+            List<Employee> listEmployees = new List<Employee>();
 
             SqlConnection dataConnection = new SqlConnection(); // inicijalizacija konekcije ka bazi podataka
 
@@ -38,12 +38,12 @@ namespace DataLayer
                 e.GetSetEmployee_Username1 = dataReader.GetString(3);
                 e.GetSetEmployee_Password1 = dataReader.GetString(4);
 
-                lista.Add(e); // svaki student se na kraju može ubaciti u neku listu
+                listEmployees.Add(e); // svaki student se na kraju može ubaciti u neku listu
             }
 
             dataConnection.Close(); 
 
-            return lista;
+            return listEmployees;
         }
 
 

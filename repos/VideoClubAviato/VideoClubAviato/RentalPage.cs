@@ -83,10 +83,10 @@ namespace VideoClubAviato
         // ISPIS SVIH PODATAKA REZERVACIJI U LISTU!!!
         public void FillRentals() {
             listBoxRentals.Items.Clear();
-            List<RentalStorage> listaRS = businessRentalStorage.SelectAllRentalStorages();
-            foreach (RentalStorage pom in listaRS)
+            List<RentalStorage> listRentalStorages = businessRentalStorage.SelectAllRentalStorages();
+            foreach (RentalStorage variable in listRentalStorages)
             {
-                listBoxRentals.Items.Add("Korisnik: " + pom.GetSetUserCard_Name1 + " " + pom.GetSetUserCard_Surname1 + "  -- Adresa: " + pom.GetSetUserCard_Address1 + "  -- Telefon: " + pom.GetSetUserCard_Phone_Number1 + "  -- Iznajmljeni Filmovi: " + pom.GetSetMovie_Name1 + "  -- Ukupna Cena: " + pom.GetSetTotal_Price1 + "  -- Datum Uzimanja: " + pom.GetSetRental_Date_Of_Take1);
+                listBoxRentals.Items.Add("Korisnik: " + variable.GetSetUserCard_Name1 + " " + variable.GetSetUserCard_Surname1 + "  -- Adresa: " + variable.GetSetUserCard_Address1 + "  -- Telefon: " + variable.GetSetUserCard_Phone_Number1 + "  -- Iznajmljeni Filmovi: " + variable.GetSetMovie_Name1 + "  -- Ukupna Cena: " + variable.GetSetTotal_Price1 + "  -- Datum Uzimanja: " + variable.GetSetRental_Date_Of_Take1);
             }
         }
 
@@ -94,11 +94,11 @@ namespace VideoClubAviato
         public void FillComboBoxUserCards()
         {
             comboBoxUserCardName.Items.Clear();
-            List<UserCard> listapom = businessUserCard.SelectAllUsers();
+            List<UserCard> listUserCards = businessUserCard.SelectAllUsers();
 
-            foreach (UserCard pom in listapom)
+            foreach (UserCard variable in listUserCards)
             {
-                comboBoxUserCardName.Items.Add(pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1);
+                comboBoxUserCardName.Items.Add(variable.GetSetUserCard_Name_Of_User1 + " " + variable.GetSetUserCard_Surname_Of_User1);
 
             }
         }
@@ -107,14 +107,14 @@ namespace VideoClubAviato
         public void FillComboBoxMovies()
         {
             comboBoxMovieName.Items.Clear();
-            List<Movie> listapom = businessMovie.SelectAllMoviesIdAndNameAndAmount();
+            List<Movie> listMovies = businessMovie.SelectAllMoviesIdAndNameAndAmount();
 
-            foreach (Movie pom in listapom)
+            foreach (Movie variable in listMovies)
             {
-                if(pom.GetSetMovie_Amount1 > 0)
+                if(variable.GetSetMovie_Amount1 > 0)
                 {
-                    comboBoxMovieName.Items.Add(pom.GetSetMovie_Name1);
-                    comboBoxMovieName2.Items.Add(pom.GetSetMovie_Name1);
+                    comboBoxMovieName.Items.Add(variable.GetSetMovie_Name1);
+                    comboBoxMovieName2.Items.Add(variable.GetSetMovie_Name1);
 
                 }
 
@@ -131,7 +131,6 @@ namespace VideoClubAviato
             ToolTip1.SetToolTip(buttonInsertRental, "Unesite novu Rezervaciju.");
         }
 
-       //
 
         private void buttonRentalSearch_MouseHover(object sender, EventArgs e)
         {
@@ -213,7 +212,7 @@ namespace VideoClubAviato
             }
         }
 
-        public List<string> listastring = new List<string>();
+        public List<string> listVariable = new List<string>();
 
         
 
@@ -234,50 +233,50 @@ namespace VideoClubAviato
 
                 businessRental.InsertRental(r);
 
-                List<Rental> lista = businessRental.SelectAllRentals();
+                List<Rental> listRentals = businessRental.SelectAllRentals();
                 
-                r2 = lista.Last();
+                r2 = listRentals.Last();
                 
-                listastring.Add(Convert.ToString(TextBoxHiddenIDMovie.Text));
+                listVariable.Add(Convert.ToString(TextBoxHiddenIDMovie.Text));
                 if (comboBoxMovieName2.Visible == true)
                 {
-                    listastring.Add(Convert.ToString(TextBoxHiddenIDMovie2.Text));
+                    listVariable.Add(Convert.ToString(TextBoxHiddenIDMovie2.Text));
                 }
 
 
                 int Id_Rental = r2.GetSetId_Rental1;
                 
-                foreach (string pom in listastring) {
+                foreach (string variable in listVariable) {
                     mRental.Id_Rental_Rentals1 = Id_Rental;
-                    mRental.Id_Movie_Movies1 = Convert.ToInt32(pom);
+                    mRental.Id_Movie_Movies1 = Convert.ToInt32(variable);
 
-                    List<Movie_Genre_Director> listaFilmova = businessMovie.SelectAllMovies().Where(m => m.GetSetId_Movie1 == mRental.Id_Movie_Movies1).ToList();
-                    Movie_Genre_Director pom2 = listaFilmova.First();
+                    List<Movie_Genre_Director> listMovies = businessMovie.SelectAllMovies().Where(m => m.GetSetId_Movie1 == mRental.Id_Movie_Movies1).ToList();
+                    Movie_Genre_Director variable2 = listMovies.First();
 
-                    int kolicina = pom2.GetSetMovie_Amount1;
+                    int movieAmount = variable2.GetSetMovie_Amount1;
 
-                    kolicina--;
+                    movieAmount--;
 
-                    Movie pomocniObjekat = new Movie();
-                    pomocniObjekat.GetSetId_Movie1 = mRental.Id_Movie_Movies1;
-                    pomocniObjekat.GetSetMovie_Amount1 = kolicina;
+                    Movie movie = new Movie();
+                    movie.GetSetId_Movie1 = mRental.Id_Movie_Movies1;
+                    movie.GetSetMovie_Amount1 = movieAmount;
 
                     businessMovieRental.InsertMovieRental(mRental);
-                    businessMovie.UpdateMovieAmountMinus(pomocniObjekat);
+                    businessMovie.UpdateMovieAmountMinus(movie);
 
 
 
-                    List<UserCard> pomUserList = businessUserCard.SelectAllUsers().Where(u => u.GetSetId_UserCard1 == Convert.ToInt32(TextBoxHiddenIDUserCard.Text)).ToList();
-                    UserCard pomUser = pomUserList.First();
+                    List<UserCard> listUserCards = businessUserCard.SelectAllUsers().Where(u => u.GetSetId_UserCard1 == Convert.ToInt32(TextBoxHiddenIDUserCard.Text)).ToList();
+                    UserCard user = listUserCards.First();
 
-                    rStorage.GetSetMovie_Name1 = pom2.GetSetMovie_Name1;
-                    rStorage.GetSetUserCard_Name1 = pomUser.GetSetUserCard_Name_Of_User1;
-                    rStorage.GetSetUserCard_Surname1 = pomUser.GetSetUserCard_Surname_Of_User1;
-                    rStorage.GetSetUserCard_Address1 = pomUser.GetSetUserCard_Address_Of_User1;
-                    rStorage.GetSetUserCard_Phone_Number1 = pomUser.GetSetUserCard_PhoneNumber_Of_User1;
+                    rStorage.GetSetMovie_Name1 = variable2.GetSetMovie_Name1;
+                    rStorage.GetSetUserCard_Name1 = user.GetSetUserCard_Name_Of_User1;
+                    rStorage.GetSetUserCard_Surname1 = user.GetSetUserCard_Surname_Of_User1;
+                    rStorage.GetSetUserCard_Address1 = user.GetSetUserCard_Address_Of_User1;
+                    rStorage.GetSetUserCard_Phone_Number1 = user.GetSetUserCard_PhoneNumber_Of_User1;
                     rStorage.GetSetRental_Date_Of_Take1 = Convert.ToDateTime(textBoxDateOfRental.Text);
                     rStorage.GetSetRental_Date_Of_Return1 = "Nije Vraceno";
-                    rStorage.GetSetTotal_Price1 = pom2.GetSetMovie_Rental_Price1;
+                    rStorage.GetSetTotal_Price1 = variable2.GetSetMovie_Rental_Price1;
 
                     businessRentalStorage.InsertRentalStorage(rStorage);
 
@@ -300,10 +299,10 @@ namespace VideoClubAviato
             RentalStorage rst = new RentalStorage();
             string RentalSearch = textBoxRentalSearch.Text;
 
-            List<RentalStorage> lista = businessRentalStorage.SearchRentalStorage(RentalSearch);
-            foreach (RentalStorage pom in lista)
+            List<RentalStorage> listRentalStorages = businessRentalStorage.SearchRentalStorage(RentalSearch);
+            foreach (RentalStorage variable in listRentalStorages)
             {
-                listBoxRentals.Items.Add("Korisnik: " + pom.GetSetUserCard_Name1 + " " + pom.GetSetUserCard_Surname1 + "  -- Adresa: " + pom.GetSetUserCard_Address1 + "  -- Telefon: " + pom.GetSetUserCard_Phone_Number1 + "  -- Iznajmljeni Filmovi: " + pom.GetSetMovie_Name1 + "  -- Ukupna Cena: " + pom.GetSetTotal_Price1 + "  -- Datum Uzimanja: " + pom.GetSetRental_Date_Of_Take1);
+                listBoxRentals.Items.Add("Korisnik: " + variable.GetSetUserCard_Name1 + " " + variable.GetSetUserCard_Surname1 + "  -- Adresa: " + variable.GetSetUserCard_Address1 + "  -- Telefon: " + variable.GetSetUserCard_Phone_Number1 + "  -- Iznajmljeni Filmovi: " + variable.GetSetMovie_Name1 + "  -- Ukupna Cena: " + variable.GetSetTotal_Price1 + "  -- Datum Uzimanja: " + variable.GetSetRental_Date_Of_Take1);
             }
 
         }
@@ -314,12 +313,12 @@ namespace VideoClubAviato
             UserCardName = comboBoxUserCardName.Text;
 
             
-            List<UserCard> listapom = businessUserCard.SelectAllUsers().Where(m => m.GetSetUserCard_Name_Of_User1 + " " +m.GetSetUserCard_Surname_Of_User1 == UserCardName).ToList();
+            List<UserCard> listuserCards = businessUserCard.SelectAllUsers().Where(m => m.GetSetUserCard_Name_Of_User1 + " " +m.GetSetUserCard_Surname_Of_User1 == UserCardName).ToList();
 
-            UserCard usc = listapom.First();
+            UserCard usc = listuserCards.First();
             TextBoxHiddenIDUserCard.Text = Convert.ToString(usc.GetSetId_UserCard1);
         }
-        public List<Movie> listapom = new List<Movie>();
+        public List<Movie> listMovies = new List<Movie>();
         public Movie mov = new Movie();
         public Movie mov2 = new Movie();
         private void comboBoxMovieName_SelectedIndexChanged(object sender, EventArgs e)
@@ -327,8 +326,8 @@ namespace VideoClubAviato
             string MovieName;
             MovieName = comboBoxMovieName.Text;
 
-            listapom = businessMovie.SelectAllMoviesIdAndName().Where(m => m.GetSetMovie_Name1 == MovieName).ToList();
-            mov = listapom.First();
+            listMovies = businessMovie.SelectAllMoviesIdAndName().Where(m => m.GetSetMovie_Name1 == MovieName).ToList();
+            mov = listMovies.First();
 
             TextBoxHiddenIDMovie.Text = Convert.ToString(mov.GetSetId_Movie1);
 
@@ -339,8 +338,8 @@ namespace VideoClubAviato
             string MovieName2;
             MovieName2 = comboBoxMovieName2.Text;
 
-            listapom = businessMovie.SelectAllMoviesIdAndName().Where(m => m.GetSetMovie_Name1 == MovieName2).ToList();
-            mov2 = listapom.First();
+            listMovies = businessMovie.SelectAllMoviesIdAndName().Where(m => m.GetSetMovie_Name1 == MovieName2).ToList();
+            mov2 = listMovies.First();
 
             TextBoxHiddenIDMovie2.Text = Convert.ToString(mov2.GetSetId_Movie1);
 
@@ -363,10 +362,10 @@ namespace VideoClubAviato
         {
             if (listBoxRentals.Text != "")
             {
-                string pomocna = listBoxRentals.Text;
+                string variable = listBoxRentals.Text;
 
-                List<RentalStorage> listaRS = businessRentalStorage.SelectAllRentalStorages().Where(rs => "Korisnik: " + rs.GetSetUserCard_Name1 + " " + rs.GetSetUserCard_Surname1 + "  -- Adresa: " + rs.GetSetUserCard_Address1 + "  -- Telefon: " + rs.GetSetUserCard_Phone_Number1 + "  -- Iznajmljeni Filmovi: " + rs.GetSetMovie_Name1 + "  -- Ukupna Cena: " + rs.GetSetTotal_Price1 + "  -- Datum Uzimanja: " + rs.GetSetRental_Date_Of_Take1 == pomocna).ToList();
-                RentalStorage rentalStorage = listaRS.First();
+                List<RentalStorage> listRentalStorages = businessRentalStorage.SelectAllRentalStorages().Where(rs => "Korisnik: " + rs.GetSetUserCard_Name1 + " " + rs.GetSetUserCard_Surname1 + "  -- Adresa: " + rs.GetSetUserCard_Address1 + "  -- Telefon: " + rs.GetSetUserCard_Phone_Number1 + "  -- Iznajmljeni Filmovi: " + rs.GetSetMovie_Name1 + "  -- Ukupna Cena: " + rs.GetSetTotal_Price1 + "  -- Datum Uzimanja: " + rs.GetSetRental_Date_Of_Take1 == variable).ToList();
+                RentalStorage rentalStorage = listRentalStorages.First();
 
 
 

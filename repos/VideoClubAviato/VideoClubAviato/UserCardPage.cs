@@ -44,10 +44,10 @@ namespace VideoClubAviato
         public void FillUsers()
         {
             listBoxUserCards.Items.Clear();
-            List<UserCard> listaU = businessUserCard.SelectAllUsers();
-            foreach (UserCard pom in listaU)
+            List<UserCard> listUserCards = businessUserCard.SelectAllUsers();
+            foreach (UserCard variable in listUserCards)
             {
-                listBoxUserCards.Items.Add("Korisnik: " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + pom.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + pom.GetSetUserCard_PhoneNumber_Of_User1);
+                listBoxUserCards.Items.Add("Korisnik: " + variable.GetSetUserCard_Name_Of_User1 + " " + variable.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + variable.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + variable.GetSetUserCard_PhoneNumber_Of_User1);
             }
 
         }
@@ -166,12 +166,12 @@ namespace VideoClubAviato
             int phonenumber;
             if (Regex.IsMatch(textBoxUserCardName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxUserCardSurname.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxUserCardAddress.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxUserCardPhoneNumber.Text, out phonenumber))
             {
-                List<UserCard> listaU = businessUserCard.SelectAllUsers();
-                foreach (UserCard pom in listaU)
+                List<UserCard> listUserCards = businessUserCard.SelectAllUsers();
+                foreach (UserCard variable in listUserCards)
                 {
-                    if ((pom.GetSetUserCard_Name_Of_User1 == textBoxUserCardName.Text || pom.GetSetUserCard_Name_Of_User1.ToLower() == textBoxUserCardName.Text || pom.GetSetUserCard_Name_Of_User1.ToUpper() == textBoxUserCardName.Text)
-                       && (pom.GetSetUserCard_Surname_Of_User1 == textBoxUserCardSurname.Text || pom.GetSetUserCard_Surname_Of_User1.ToLower() == textBoxUserCardSurname.Text || pom.GetSetUserCard_Surname_Of_User1.ToUpper() == textBoxUserCardSurname.Text)
-                       && pom.GetSetUserCard_Address_Of_User1 == textBoxUserCardAddress.Text)
+                    if ((variable.GetSetUserCard_Name_Of_User1 == textBoxUserCardName.Text || variable.GetSetUserCard_Name_Of_User1.ToLower() == textBoxUserCardName.Text || variable.GetSetUserCard_Name_Of_User1.ToUpper() == textBoxUserCardName.Text)
+                       && (variable.GetSetUserCard_Surname_Of_User1 == textBoxUserCardSurname.Text || variable.GetSetUserCard_Surname_Of_User1.ToLower() == textBoxUserCardSurname.Text || variable.GetSetUserCard_Surname_Of_User1.ToUpper() == textBoxUserCardSurname.Text)
+                       && variable.GetSetUserCard_Address_Of_User1 == textBoxUserCardAddress.Text)
                     {
                         ClearData();
                         MessageBox.Show("Uneti korisnik vec postoji u bazi!", "Obavestenje");
@@ -253,12 +253,12 @@ namespace VideoClubAviato
         {
             listBoxUserCards.Items.Clear();
             UserCard uc = new UserCard();
-            string pom1 = textBoxUserCardSearch.Text;
+            string variable1 = textBoxUserCardSearch.Text;
 
-            List<UserCard> lista = businessUserCard.SearchUserCard(pom1);
-            foreach (UserCard pom in lista)
+            List<UserCard> listUserCards = businessUserCard.SearchUserCard(variable1);
+            foreach (UserCard variable in listUserCards)
             {
-                listBoxUserCards.Items.Add("Korisnik: " + pom.GetSetUserCard_Name_Of_User1 + " " + pom.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + pom.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + pom.GetSetUserCard_PhoneNumber_Of_User1);
+                listBoxUserCards.Items.Add("Korisnik: " + variable.GetSetUserCard_Name_Of_User1 + " " + variable.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + variable.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + variable.GetSetUserCard_PhoneNumber_Of_User1);
             }
             ClearData();
         }
@@ -268,12 +268,12 @@ namespace VideoClubAviato
         {
             if (listBoxUserCards.Text != "")
             {
-                string pom;
-                pom = listBoxUserCards.Text;
+                string variable;
+                variable = listBoxUserCards.Text;
 
-                List<UserCard> lista = businessUserCard.SelectAllUsers().Where(u => "Korisnik: " + u.GetSetUserCard_Name_Of_User1 + " " + u.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + u.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + u.GetSetUserCard_PhoneNumber_Of_User1 == pom).ToList();
+                List<UserCard> listUserCards = businessUserCard.SelectAllUsers().Where(u => "Korisnik: " + u.GetSetUserCard_Name_Of_User1 + " " + u.GetSetUserCard_Surname_Of_User1 + "  -- Adresa: " + u.GetSetUserCard_Address_Of_User1 + "  -- Telefon: " + u.GetSetUserCard_PhoneNumber_Of_User1 == variable).ToList();
 
-                UserCard uc = lista.First();
+                UserCard uc = listUserCards.First();
 
                 TextBoxHiddenIDUserCard.Text = Convert.ToString(uc.GetSetId_UserCard1);
 

@@ -55,26 +55,27 @@ namespace VideoClubAviato
             FillComboBoxDirectors();
 
             listBoxMovies.Items.Clear();
-            List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SelectAllMoviesAllClasses();
+
+            List<Movie_Genre_Director_MovieRole_Actor> listMovies = businessMovie.SelectAllMoviesAllClasses();
 
 
-            foreach (Movie_Genre_Director_MovieRole_Actor pom in lista)
+            foreach (Movie_Genre_Director_MovieRole_Actor variable in listMovies)
             {
-                if (pom.GetSetMovie_Amount1 == 0)
+                if (variable.GetSetMovie_Amount1 == 0)
                 {
-                    Movie moviepom = new Movie();
-                    moviepom.GetSetId_Movie1 = pom.GetSetId_Movie1;
+                    Movie movieM = new Movie();
+                    movieM.GetSetId_Movie1 = variable.GetSetId_Movie1;
 
-                    businessMovie.UpdateMovieStatus(moviepom);
+                    businessMovie.UpdateMovieStatus(movieM);
 
                     FillMovies();
 
                 }
                 else
                 {
-                    Movie moviepom = new Movie();
-                    moviepom.GetSetId_Movie1 = pom.GetSetId_Movie1;
-                    businessMovie.UpdateMovieStatus2(moviepom);
+                    Movie movieM1 = new Movie();
+                    movieM1.GetSetId_Movie1 = variable.GetSetId_Movie1;
+                    businessMovie.UpdateMovieStatus2(movieM1);
 
                     FillMovies();
 
@@ -105,11 +106,11 @@ namespace VideoClubAviato
         public void FillComboBoxGenres()
         {
             comboBoxGenre.Items.Clear();
-            List<Genre> listapom = businessGenre.SelectAllGenres();
+            List<Genre> listGenres = businessGenre.SelectAllGenres();
 
-            foreach (Genre pom in listapom)
+            foreach (Genre variable in listGenres)
             {            
-                    comboBoxGenre.Items.Add(pom.GetSetGenre_Name1);
+                    comboBoxGenre.Items.Add(variable.GetSetGenre_Name1);
                         
             }
         }
@@ -118,11 +119,11 @@ namespace VideoClubAviato
         public void FillComboBoxDirectors()
         {
             comboBoxDirectors.Items.Clear();
-            List<Director> listapom = businessDirector.SelectAllDirectors();
+            List<Director> listDirectors = businessDirector.SelectAllDirectors();
 
-            foreach (Director pom in listapom)
+            foreach (Director variable in listDirectors)
             {              
-                    comboBoxDirectors.Items.Add(pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1);
+                    comboBoxDirectors.Items.Add(variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1);
 
             }
         }
@@ -131,12 +132,12 @@ namespace VideoClubAviato
         public void FillMovies()
         {
             listBoxMovies.Items.Clear();
-            List<Movie_Genre_Director_MovieRole_Actor> lista1 = businessMovie.SelectAllMoviesAllClasses();
+            List<Movie_Genre_Director_MovieRole_Actor> listMovies = businessMovie.SelectAllMoviesAllClasses();
 
             
-            foreach (Movie_Genre_Director_MovieRole_Actor pom in lista1)
+            foreach (Movie_Genre_Director_MovieRole_Actor variable in listMovies)
             {
-                listBoxMovies.Items.Add("Film: " +pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1);
+                listBoxMovies.Items.Add("Film: " +variable.GetSetMovie_Name1 + " -- Godina: " + variable.GetSetMovie_Year1 + " -- Status: " + variable.GetSetMovie_Status1 + " -- Kolicina:  " + variable.GetSetMovie_Amount1 + " -- Cena: " + variable.GetSetMovie_Rental_Price1 + " -- Zanr: " + variable.GetSetGenre_Name1 + " -- Reziser: " + variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1 + " -- Glumci: " + variable.GetSetActor_Surname1 + " -- Trajanje: " + variable.GetSetMovie_Duration1 + " -- Ocena: " + variable.GetSetMovie_IMDB_Rating1);
             }
         }
 
@@ -344,9 +345,9 @@ namespace VideoClubAviato
             double movieRating;
             int movieAmount;
             double moviePrice;
-            string pomocnistring = "Na Stanju";
+            string movieStatus = "Na Stanju";
 
-            if (Regex.IsMatch(textBoxMovieName.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxGenre.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxDirectors.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxMovieYear.Text, out movieYear) && Double.TryParse(textBoxMovieDuration.Text, out movieDuration) && Double.TryParse(textBoxMovieIMDBRating.Text, out movieRating) && textBoxMovieStatus.Text.Equals(pomocnistring) && Int32.TryParse(textBoxMovieAmount.Text, out movieAmount) && Double.TryParse(textBoxMovieRentalPrice.Text, out moviePrice))
+            if (Regex.IsMatch(textBoxMovieName.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxGenre.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxDirectors.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxMovieYear.Text, out movieYear) && Double.TryParse(textBoxMovieDuration.Text, out movieDuration) && Double.TryParse(textBoxMovieIMDBRating.Text, out movieRating) && textBoxMovieStatus.Text.Equals(movieStatus) && Int32.TryParse(textBoxMovieAmount.Text, out movieAmount) && Double.TryParse(textBoxMovieRentalPrice.Text, out moviePrice))
             {
 
 
@@ -415,16 +416,16 @@ namespace VideoClubAviato
         {
             listBoxMovies.Items.Clear();
             Movie m = new Movie();
-            string pom1 = textBoxMovieSearch.Text;
+            string variable1 = textBoxMovieSearch.Text;
 
             // PRETRAGA FILMOVA U BAZI  AKO FILM IMA OSKARA
             if (checkBoxMovieOscar.Checked == true)
             {
-                List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SearchMovieOscar(pom1);
+                List<Movie_Genre_Director_MovieRole_Actor> listMovies = businessMovie.SearchMovieOscar(variable1);
 
-                    foreach (Movie_Genre_Director_MovieRole_Actor pom in lista)
+                    foreach (Movie_Genre_Director_MovieRole_Actor variable in listMovies)
                     {
-                        listBoxMovies.Items.Add("Film: " + pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1);
+                        listBoxMovies.Items.Add("Film: " + variable.GetSetMovie_Name1 + " -- Godina: " + variable.GetSetMovie_Year1 + " -- Status: " + variable.GetSetMovie_Status1 + " -- Kolicina:  " + variable.GetSetMovie_Amount1 + " -- Cena: " + variable.GetSetMovie_Rental_Price1 + " -- Zanr: " + variable.GetSetGenre_Name1 + " -- Reziser: " + variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1 + " -- Glumci: " + variable.GetSetActor_Surname1 + " -- Trajanje: " + variable.GetSetMovie_Duration1 + " -- Ocena: " + variable.GetSetMovie_IMDB_Rating1);
                     }
                 ClearData();
                 comboBoxDirectors.Items.Clear();
@@ -436,10 +437,10 @@ namespace VideoClubAviato
             else
             {                    // PRETRAGA FILMOVA U BAZI BEZ FILTRIRANJA OSKARA
 
-                List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SearchMovie(pom1);
-                foreach (Movie_Genre_Director_MovieRole_Actor pom in lista)
+                List<Movie_Genre_Director_MovieRole_Actor> listMovies = businessMovie.SearchMovie(variable1);
+                foreach (Movie_Genre_Director_MovieRole_Actor variable in listMovies)
                 {
-                    listBoxMovies.Items.Add("Film: " + pom.GetSetMovie_Name1 + " -- Godina: " + pom.GetSetMovie_Year1 + " -- Status: " + pom.GetSetMovie_Status1 + " -- Kolicina:  " + pom.GetSetMovie_Amount1 + " -- Cena: " + pom.GetSetMovie_Rental_Price1 + " -- Zanr: " + pom.GetSetGenre_Name1 + " -- Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + " -- Glumci: " + pom.GetSetActor_Surname1 + " -- Trajanje: " + pom.GetSetMovie_Duration1 + " -- Ocena: " + pom.GetSetMovie_IMDB_Rating1);
+                    listBoxMovies.Items.Add("Film: " + variable.GetSetMovie_Name1 + " -- Godina: " + variable.GetSetMovie_Year1 + " -- Status: " + variable.GetSetMovie_Status1 + " -- Kolicina:  " + variable.GetSetMovie_Amount1 + " -- Cena: " + variable.GetSetMovie_Rental_Price1 + " -- Zanr: " + variable.GetSetGenre_Name1 + " -- Reziser: " + variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1 + " -- Glumci: " + variable.GetSetActor_Surname1 + " -- Trajanje: " + variable.GetSetMovie_Duration1 + " -- Ocena: " + variable.GetSetMovie_IMDB_Rating1);
                 }
                 ClearData();
                 comboBoxDirectors.Items.Clear();
@@ -459,20 +460,20 @@ namespace VideoClubAviato
             double movieRating;
             int movieAmount;
             double moviePrice;
-            string pomocnistring = "Na Stanju";
+            string movieStatus = "Na Stanju";
 
-            if (Regex.IsMatch(textBoxMovieName.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxGenre.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxDirectors.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxMovieYear.Text, out movieYear) && Double.TryParse(textBoxMovieDuration.Text, out movieDuration) && Double.TryParse(textBoxMovieIMDBRating.Text, out movieRating) && textBoxMovieStatus.Text.Equals(pomocnistring) && Int32.TryParse(textBoxMovieAmount.Text, out movieAmount) && Double.TryParse(textBoxMovieRentalPrice.Text, out moviePrice))
+            if (Regex.IsMatch(textBoxMovieName.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxGenre.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxDirectors.Text, @"[a-zA-Z]") && Int32.TryParse(textBoxMovieYear.Text, out movieYear) && Double.TryParse(textBoxMovieDuration.Text, out movieDuration) && Double.TryParse(textBoxMovieIMDBRating.Text, out movieRating) && textBoxMovieStatus.Text.Equals(movieStatus) && Int32.TryParse(textBoxMovieAmount.Text, out movieAmount) && Double.TryParse(textBoxMovieRentalPrice.Text, out moviePrice))
             {
-                List<Movie_Genre_Director> lista = businessMovie.SelectAllMovies();
+                List<Movie_Genre_Director> listMovies = businessMovie.SelectAllMovies();
 
                 /*PRVO PROVERAVA DA LI VEC POSTOJI FILM SA TIM NAZIVOM OD TOG REZISERA IZ TE GODINE,
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                 DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
 
-                foreach (Movie_Genre_Director pom in lista)
+                foreach (Movie_Genre_Director variable in listMovies)
                 {
-                    if ((pom.GetSetMovie_Name1 == textBoxMovieName.Text || pom.GetSetMovie_Name1.ToLower() == textBoxMovieName.Text || pom.GetSetMovie_Name1.ToUpper() == textBoxMovieName.Text)
-                     && pom.GetSetId_Director1 == Convert.ToInt32(TextBoxHiddenIDDirector.Text) && pom.GetSetMovie_Year1 == Convert.ToInt32(textBoxMovieYear.Text))
+                    if ((variable.GetSetMovie_Name1 == textBoxMovieName.Text || variable.GetSetMovie_Name1.ToLower() == textBoxMovieName.Text || variable.GetSetMovie_Name1.ToUpper() == textBoxMovieName.Text)
+                     && variable.GetSetId_Director1 == Convert.ToInt32(TextBoxHiddenIDDirector.Text) && variable.GetSetMovie_Year1 == Convert.ToInt32(textBoxMovieYear.Text))
                     {
                         ClearData();
 
@@ -508,8 +509,8 @@ namespace VideoClubAviato
 
                     businessMovie.InsertMovie(m);
 
-                    List<Movie_Genre_Director> lista1 = businessMovie.SelectAllMovies();
-                    Movie_Genre_Director movie = lista1.Last();
+                    List<Movie_Genre_Director> listMovies1 = businessMovie.SelectAllMovies();
+                    Movie_Genre_Director movie = listMovies1.Last();
 
                     MovieRole mr = new MovieRole();
                     mr.GetSetRole_Name1 = "Nije Uneto";
@@ -544,12 +545,12 @@ namespace VideoClubAviato
         {
             if (listBoxMovies.Text != "")
             {
-                string pom;
-                pom = listBoxMovies.Text;
+                string variable;
+                variable = listBoxMovies.Text;
 
-                List<Movie_Genre_Director_MovieRole_Actor> lista = businessMovie.SelectAllMoviesAllClasses().Where(m => "Film: " + m.GetSetMovie_Name1 + " -- Godina: " + m.GetSetMovie_Year1 + " -- Status: " + m.GetSetMovie_Status1 + " -- Kolicina:  " + m.GetSetMovie_Amount1 + " -- Cena: " + m.GetSetMovie_Rental_Price1 + " -- Zanr: " + m.GetSetGenre_Name1 + " -- Reziser: " + m.GetSetDirector_Name1 + " " + m.GetSetDirector_Surname1 + " -- Glumci: " + m.GetSetActor_Surname1 + " -- Trajanje: " + m.GetSetMovie_Duration1 + " -- Ocena: " + m.GetSetMovie_IMDB_Rating1 == pom).ToList();
+                List<Movie_Genre_Director_MovieRole_Actor> listMovies = businessMovie.SelectAllMoviesAllClasses().Where(m => "Film: " + m.GetSetMovie_Name1 + " -- Godina: " + m.GetSetMovie_Year1 + " -- Status: " + m.GetSetMovie_Status1 + " -- Kolicina:  " + m.GetSetMovie_Amount1 + " -- Cena: " + m.GetSetMovie_Rental_Price1 + " -- Zanr: " + m.GetSetGenre_Name1 + " -- Reziser: " + m.GetSetDirector_Name1 + " " + m.GetSetDirector_Surname1 + " -- Glumci: " + m.GetSetActor_Surname1 + " -- Trajanje: " + m.GetSetMovie_Duration1 + " -- Ocena: " + m.GetSetMovie_IMDB_Rating1 == variable).ToList();
 
-                Movie_Genre_Director_MovieRole_Actor movie = lista.First();
+                Movie_Genre_Director_MovieRole_Actor movie = listMovies.First();
 
                 TextBoxHiddenIDMovie.Text = Convert.ToString(movie.GetSetId_Movie1);
 
@@ -579,10 +580,10 @@ namespace VideoClubAviato
             string GenreName;
             GenreName = comboBoxGenre.Text;
 
-            List<Genre> lista = businessGenre.SelectAllGenres().Where(m => m.GetSetGenre_Name1 == GenreName).ToList();
+            List<Genre> listGenres = businessGenre.SelectAllGenres().Where(m => m.GetSetGenre_Name1 == GenreName).ToList();
 
-            Genre mgd = lista.First();
-            TextBoxHiddenIDGenre.Text = Convert.ToString(mgd.GetSetId_Genre1);
+            Genre g = listGenres.First();
+            TextBoxHiddenIDGenre.Text = Convert.ToString(g.GetSetId_Genre1);
         }
 
         //PRILIKOM KLIKA NA IME REZISERA U Combo Box Director NJEGOV ID SE SALJE U SKRIVENO POLJE 
@@ -591,10 +592,10 @@ namespace VideoClubAviato
             string DirectorNameAndSurname;
             DirectorNameAndSurname = comboBoxDirectors.Text;
 
-            List<Director> lista = businessDirector.SelectAllDirectors().Where(m => m.GetSetDirector_Name1 + " " + m.GetSetDirector_Surname1 == DirectorNameAndSurname).ToList();
+            List<Director> listDirectors = businessDirector.SelectAllDirectors().Where(m => m.GetSetDirector_Name1 + " " + m.GetSetDirector_Surname1 == DirectorNameAndSurname).ToList();
 
-            Director mgd = lista.First();
-            TextBoxHiddenIDDirector.Text = Convert.ToString(mgd.GetSetId_Director1);
+            Director d = listDirectors.First();
+            TextBoxHiddenIDDirector.Text = Convert.ToString(d.GetSetId_Director1);
         }
 
         private void pictureBoxHelp_Click(object sender, EventArgs e)

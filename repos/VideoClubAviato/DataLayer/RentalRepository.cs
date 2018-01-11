@@ -30,7 +30,7 @@ namespace DataLayer
         //KREIRANJE UPITA ZA ISPIS SVIH KORISNIKA!!!
         public List<Rental> SelectAllRentals()
         {
-            List<Rental> lista = new List<Rental>();
+            List<Rental> listRentals = new List<Rental>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -50,11 +50,11 @@ namespace DataLayer
                 rental.GetSetId_Rental1 = dataReader.GetInt32(0);
                 rental.GetSetId_UserCard_UserCards1 = dataReader.GetInt32(1);
 
-                lista.Add(rental); // svaki student se na kraju može ubaciti u neku listu
+                listRentals.Add(rental); // svaki student se na kraju može ubaciti u neku listu
             }
 
             dataConnection.Close();
-            return lista;
+            return listRentals;
         }
     }
 }

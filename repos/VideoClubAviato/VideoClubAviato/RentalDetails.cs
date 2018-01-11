@@ -43,12 +43,12 @@ namespace VideoClubAviato
             string UserCardName = TextBoxHiddenUserCardName1.Text;
             string UserCardSurname = TextBoxHiddenUserCardSurname1.Text;
 
-            List<RentalStorage> lista2 = businessRentalStorage.SelectAllRentalDetailsByNameAndSurname().Where(rs => rs.GetSetUserCard_Name1.Contains(UserCardName) && rs.GetSetUserCard_Surname1.Contains(UserCardSurname)).ToList();
+            List<RentalStorage> listRentalStorages = businessRentalStorage.SelectAllRentalDetailsByNameAndSurname().Where(rs => rs.GetSetUserCard_Name1.Contains(UserCardName) && rs.GetSetUserCard_Surname1.Contains(UserCardSurname)).ToList();
 
 
-            foreach (RentalStorage pom in lista2)
+            foreach (RentalStorage variable in listRentalStorages)
             {
-                listBoxRentalDetails.Items.Add("Film: " +pom.GetSetMovie_Name1 + "  -- Datum Uzimanja: " + pom.GetSetRental_Date_Of_Take1 + "  -- Datum Vracanja: " + pom.GetSetRental_Date_Of_Return1);
+                listBoxRentalDetails.Items.Add("Film: " +variable.GetSetMovie_Name1 + "  -- Datum Uzimanja: " + variable.GetSetRental_Date_Of_Take1 + "  -- Datum Vracanja: " + variable.GetSetRental_Date_Of_Return1);
             }
         }
 
@@ -62,26 +62,26 @@ namespace VideoClubAviato
         {
             if (listBoxRentalDetails.Text != "")
             {
-                string pomocna = listBoxRentalDetails.Text;
+                string variable1 = listBoxRentalDetails.Text;
                 string HiddenMovieName;
 
 
-                List<RentalStorage> lista = businessRentalStorage.SelectAllRentalDetailsByNameAndSurname().ToList();
-                RentalStorage pomobjekat = lista.First();
+                List<RentalStorage> listRentalStorages = businessRentalStorage.SelectAllRentalDetailsByNameAndSurname().ToList();
+                RentalStorage rentalStorage = listRentalStorages.First();
 
-                foreach (RentalStorage pom in lista)
+                foreach (RentalStorage variable in listRentalStorages)
                 {
-                    if ("Film: " + pom.GetSetMovie_Name1 + "  -- Datum Uzimanja: " + pom.GetSetRental_Date_Of_Take1 + "  -- Datum Vracanja: " + pom.GetSetRental_Date_Of_Return1 == pomocna)
+                    if ("Film: " + variable.GetSetMovie_Name1 + "  -- Datum Uzimanja: " + variable.GetSetRental_Date_Of_Take1 + "  -- Datum Vracanja: " + variable.GetSetRental_Date_Of_Return1 == variable1)
                     {
-                        TextBoxHiddenMovieName.Text = pom.GetSetMovie_Name1;
+                        TextBoxHiddenMovieName.Text = variable.GetSetMovie_Name1;
                         HiddenMovieName = TextBoxHiddenMovieName.Text;
-                        List<Movie_Genre_Director> listaFilmova = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1.Contains(HiddenMovieName)).ToList();
-                        if(listaFilmova.Count() != 0)
+                        List<Movie_Genre_Director> listMovies = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1.Contains(HiddenMovieName)).ToList();
+                        if(listMovies.Count() != 0)
                         {
-                            Movie_Genre_Director pom2 = listaFilmova.First();
-                            TextBoxHiddenMovieAmount.Text = Convert.ToString(pom2.GetSetMovie_Amount1);
-                            TextBoxHiddenMovieID.Text = Convert.ToString(pom2.GetSetId_Movie1);
-                            TextBoxHiddenDateOfReturn.Text = pomobjekat.GetSetRental_Date_Of_Return1;
+                            Movie_Genre_Director variable2 = listMovies.First();
+                            TextBoxHiddenMovieAmount.Text = Convert.ToString(variable2.GetSetMovie_Amount1);
+                            TextBoxHiddenMovieID.Text = Convert.ToString(variable2.GetSetId_Movie1);
+                            TextBoxHiddenDateOfReturn.Text = rentalStorage.GetSetRental_Date_Of_Return1;
                         }
                         else
                         {
@@ -105,23 +105,23 @@ namespace VideoClubAviato
             {
                 if(TextBoxHiddenMovieAmount.Text != "")
                 {
-                    int kolicina = Convert.ToInt32(TextBoxHiddenMovieAmount.Text);
+                    int movieAmount = Convert.ToInt32(TextBoxHiddenMovieAmount.Text);
                 
-                string imefilma = TextBoxHiddenMovieName.Text;
-                int IDFilma = Convert.ToInt32(TextBoxHiddenMovieID.Text);
+                string movieName = TextBoxHiddenMovieName.Text;
+                int idMovie = Convert.ToInt32(TextBoxHiddenMovieID.Text);
 
-                kolicina++;
+                movieAmount++;
 
-                List<Movie_Genre_Director> listaFilmova = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1.Contains(imefilma)).ToList();
-                Movie_Genre_Director pom2 = listaFilmova.First();
+                List<Movie_Genre_Director> listMovies = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1.Contains(movieName)).ToList();
+                Movie_Genre_Director mgd = listMovies.First();
 
-                pom2.GetSetMovie_Amount1 = kolicina;
+                mgd.GetSetMovie_Amount1 = movieAmount;
 
                 Movie mov = new Movie();
 
-                mov.GetSetMovie_Amount1 = kolicina;
-                mov.GetSetMovie_Name1 = imefilma;
-                mov.GetSetId_Movie1 = IDFilma;
+                mov.GetSetMovie_Amount1 = movieAmount;
+                mov.GetSetMovie_Name1 = movieName;
+                mov.GetSetId_Movie1 = idMovie;
 
 
                 
@@ -131,11 +131,11 @@ namespace VideoClubAviato
 
                 DateTime dateTime = DateTime.Now;
 
-                RentalStorage pomocniobjekat = new RentalStorage();
-                pomocniobjekat.GetSetRental_Date_Of_Return1 = Convert.ToString(dateTime);
-                pomocniobjekat.GetSetMovie_Name1 = imefilma;
+                RentalStorage rentalStorage = new RentalStorage();
+                rentalStorage.GetSetRental_Date_Of_Return1 = Convert.ToString(dateTime);
+                rentalStorage.GetSetMovie_Name1 = movieName;
 
-                businessRentalStorage.UpdateRentalStorageDateOfReturn(pomocniobjekat);
+                businessRentalStorage.UpdateRentalStorageDateOfReturn(rentalStorage);
 
                 ClearData();
                 FillListBoxRentalStorage();

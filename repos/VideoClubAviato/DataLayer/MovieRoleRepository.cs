@@ -35,7 +35,7 @@ namespace DataLayer
         //KREIRANJE UPITA ZA ISPIS ULOGA!!!
         public List<MovieRole_Actor_Movie> SelectAllMovieRoles()
         {
-            List<MovieRole_Actor_Movie> lista = new List<MovieRole_Actor_Movie>();
+            List<MovieRole_Actor_Movie> listMovieRoles = new List<MovieRole_Actor_Movie>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -64,11 +64,11 @@ namespace DataLayer
                 mr.GetSetId_Movie_Movies1 = dataReader.GetInt32(9);
                 mr.GetSetId_Actor_Actors1 = dataReader.GetInt32(10);
 
-                lista.Add(mr);
+                listMovieRoles.Add(mr);
             }
 
             dataConnection.Close();
-            return lista;
+            return listMovieRoles;
         }
 
         // KREIRANJE METODE ZA UPDATE ULOGE

@@ -43,11 +43,11 @@ namespace VideoClubAviato
         {
             
 
-           Employee pom = this.businessEmployee.Login();
+           Employee emp = this.businessEmployee.Login();
 
             if (brojpokusaja <= 5)
             {
-                if (pom.GetSetEmployee_Username1 == textBoxUsername.Text && pom.GetSetEmployee_Password1 == textBoxPassword.Text)
+                if (emp.GetSetEmployee_Username1 == textBoxUsername.Text && emp.GetSetEmployee_Password1 == textBoxPassword.Text)
                 {
 
                     this.Hide();

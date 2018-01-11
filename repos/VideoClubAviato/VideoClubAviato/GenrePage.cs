@@ -49,13 +49,13 @@ namespace VideoClubAviato
         public void FillGenres()
         {
             listBoxGenres.Items.Clear();
-            List<Genre> listaG = businessGenre.SelectAllGenres();
-            foreach (Genre pom in listaG)
+            List<Genre> listGenres = businessGenre.SelectAllGenres();
+            foreach (Genre variable in listGenres)
             {
-                if (pom.GetSetGenre_Name1 == "Nije Uneto") { }
+                if (variable.GetSetGenre_Name1 == "Nije Uneto") { }
                 else
                 {
-                    listBoxGenres.Items.Add("Zanr: " + pom.GetSetGenre_Name1);
+                    listBoxGenres.Items.Add("Zanr: " + variable.GetSetGenre_Name1);
                 }
 
             }
@@ -142,10 +142,10 @@ namespace VideoClubAviato
                 /*PRVO PROVERAVA DA LI VEC POSTOJI ZANR SA TIM NAZIVOM,
                UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
-                List<Genre> listaG = businessGenre.SelectAllGenres();
-                foreach (Genre pom in listaG)
+                List<Genre> listGenres = businessGenre.SelectAllGenres();
+                foreach (Genre variable in listGenres)
                 {
-                    if (pom.GetSetGenre_Name1 == textBoxGenreName.Text || pom.GetSetGenre_Name1.ToLower() == textBoxGenreName.Text || pom.GetSetGenre_Name1.ToUpper() == textBoxGenreName.Text)
+                    if (variable.GetSetGenre_Name1 == textBoxGenreName.Text || variable.GetSetGenre_Name1.ToLower() == textBoxGenreName.Text || variable.GetSetGenre_Name1.ToUpper() == textBoxGenreName.Text)
                     {
                         ClearData();
                         MessageBox.Show("Uneti zanr vec postoji u bazi!", "Obavestenje");
@@ -227,15 +227,15 @@ namespace VideoClubAviato
         {
             listBoxGenres.Items.Clear();
 
-            string pom1 = textBoxGenreSearch.Text;
+            string varibale1 = textBoxGenreSearch.Text;
 
-            List<Genre> lista = businessGenre.SearchbyGenre(pom1);
-            foreach (Genre pom in lista)
+            List<Genre> listGenres = businessGenre.SearchbyGenre(varibale1);
+            foreach (Genre variable in listGenres)
             {
-                if (pom.GetSetGenre_Name1 == "Nije Uneto") { }
+                if (variable.GetSetGenre_Name1 == "Nije Uneto") { }
                 else
                 {
-                    listBoxGenres.Items.Add("Zanr: " + pom.GetSetGenre_Name1);
+                    listBoxGenres.Items.Add("Zanr: " + variable.GetSetGenre_Name1);
                 }
                 ClearData();
             }
@@ -247,11 +247,11 @@ namespace VideoClubAviato
         {
             if (listBoxGenres.Text != "")
             {
-                string pom;
-            pom = listBoxGenres.Text;
+                string variable;
+            variable = listBoxGenres.Text;
 
-            List<Genre> lista = businessGenre.SelectAllGenres().Where(g => "Zanr: " + g.GetSetGenre_Name1 == pom).ToList();
-            Genre genre = lista.First();
+            List<Genre> listGenres = businessGenre.SelectAllGenres().Where(g => "Zanr: " + g.GetSetGenre_Name1 == variable).ToList();
+            Genre genre = listGenres.First();
 
             TextBoxHiddenIDGenre.Text = Convert.ToString(genre.GetSetId_Genre1);
 

@@ -30,7 +30,7 @@ namespace DataLayer
 
         public List<Movie_Genre_Director> SelectAllMovies()
         {
-            List<Movie_Genre_Director> lista = new List<Movie_Genre_Director>();
+            List<Movie_Genre_Director> listMovies = new List<Movie_Genre_Director>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -59,17 +59,17 @@ namespace DataLayer
                 m.GetSetDirector_Surname1 = dataReader.GetString(9);
                 m.GetSetId_Director1 = dataReader.GetInt32(10);
 
-                lista.Add(m);
+                listMovies.Add(m);
             }
 
             dataConnection.Close();
-            return lista;
+            return listMovies;
         }
 
         //METODA KOJU KORISTIMO ZA PRETRAGU i ZA ISPIS
         public List<Movie_Genre_Director_MovieRole_Actor> SearchByAll()
         {
-            List<Movie_Genre_Director_MovieRole_Actor> lista = new List<Movie_Genre_Director_MovieRole_Actor>();
+            List<Movie_Genre_Director_MovieRole_Actor> listMovies = new List<Movie_Genre_Director_MovieRole_Actor>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -104,11 +104,11 @@ namespace DataLayer
                 m.GetSetActor_Name1 = Convert.ToString(dataReader.GetInt32(15));
                 m.GetSetActor_Surname1 = Convert.ToString(dataReader.GetInt32(16));
                 m.GetSetId_Movie1 = dataReader.GetInt32(17);
-                lista.Add(m);
+                listMovies.Add(m);
             }
 
             dataConnection.Close();
-            return lista;
+            return listMovies;
         }
 
         
@@ -186,7 +186,7 @@ namespace DataLayer
         //SELECT SVIH IMENA I ID-a FILMOVA ZA POPUNJAVANJE COMBOBOX-a ZA FILMOVE!
         public List<Movie> SelectAllMoviesIdAndName()
         {
-            List<Movie> lista = new List<Movie>();
+            List<Movie> listMovies = new List<Movie>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -207,18 +207,18 @@ namespace DataLayer
                 m.GetSetId_Movie1 = dataReader.GetInt32(0);
                 m.GetSetMovie_Name1 = dataReader.GetString(1);
 
-                lista.Add(m);
+                listMovies.Add(m);
             }
 
             dataConnection.Close();
-            return lista;
+            return listMovies;
         }
 
 
         //SELECT SVIH IMENA, ID-a FILMOVA I KOLICINE FILMA ZA POPUNJAVANJE COMBOBOX-a ZA FILMOVE!
         public List<Movie> SelectAllMoviesIdAndNameAndAmount()
         {
-            List<Movie> lista = new List<Movie>();
+            List<Movie> listMovies = new List<Movie>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -241,11 +241,11 @@ namespace DataLayer
                 m.GetSetMovie_Amount1 = dataReader.GetInt32(2);
 
 
-                lista.Add(m);
+                listMovies.Add(m);
             }
 
             dataConnection.Close();
-            return lista;
+            return listMovies;
         }
 
 

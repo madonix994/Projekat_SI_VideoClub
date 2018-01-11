@@ -30,7 +30,7 @@ namespace DataLayer
         //METODA KOJU KORISTIMO ZA PRETRAGU i ZA ISPIS
         public List<RentalStorage> SelectAllRentalStorages()
         {
-            List<RentalStorage> lista = new List<RentalStorage>();
+            List<RentalStorage> listRentalStorages = new List<RentalStorage>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -56,17 +56,17 @@ namespace DataLayer
                 rs.GetSetUserCard_Address1 = dataReader.GetString(5);
                 rs.GetSetUserCard_Phone_Number1 = dataReader.GetInt32(6);
 
-                lista.Add(rs);
+                listRentalStorages.Add(rs);
             }
 
             dataConnection.Close();
-            return lista;
+            return listRentalStorages;
         }
 
 
         public List<RentalStorage> SelectAllRentalDetails()
         {
-            List<RentalStorage> lista = new List<RentalStorage>();
+            List<RentalStorage> listRentalStorages = new List<RentalStorage>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -94,11 +94,11 @@ namespace DataLayer
                 rs.GetSetUserCard_Address1 = dataReader.GetString(7);
                 rs.GetSetUserCard_Phone_Number1 = dataReader.GetInt32(8);
 
-                lista.Add(rs);
+                listRentalStorages.Add(rs);
             }
 
             dataConnection.Close();
-            return lista;
+            return listRentalStorages;
         }
 
         // KREIRANJE METODE ZA UPDATE DATUMA VRACANJA U BAZI

@@ -49,12 +49,13 @@ namespace VideoClubAviato
         {
             string emailToCheck = textBoxEmailOfSender.Text;
 
+            
             try
             {
                 MailAddress mail = new MailAddress(emailToCheck);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -174,7 +175,7 @@ namespace VideoClubAviato
                 mainPage.ShowDialog();
 
             }
-            catch (Exception s)
+            catch (Exception)
 
             {
                 MessageBox.Show("Doslo je do greske.", "Obavestenje");

@@ -30,7 +30,7 @@ namespace DataLayer
         //KREIRANJE UPITA ZA ISPIS REZISERA!!!
         public List<Director> SelectAllDirectors()
         {
-            List<Director> lista = new List<Director>();
+            List<Director> listDirectors = new List<Director>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -53,11 +53,11 @@ namespace DataLayer
                 d.GetSetDirector_Date_Of_Birth1 = dataReader.GetDateTime(3);
                 d.GetSetDirector_Oscar1 = dataReader.GetBoolean(4);
 
-                lista.Add(d); // svaki student se na kraju može ubaciti u neku listu
+                listDirectors.Add(d); // svaki student se na kraju može ubaciti u neku listu
             }
 
             dataConnection.Close();
-            return lista;
+            return listDirectors;
         }
 
 

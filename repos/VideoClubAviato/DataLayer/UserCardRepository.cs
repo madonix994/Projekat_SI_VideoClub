@@ -30,7 +30,7 @@ namespace DataLayer
         //KREIRANJE UPITA ZA ISPIS SVIH KORISNIKA!!!
         public List<UserCard> SelectAllUsers()
         {
-            List<UserCard> lista = new List<UserCard>();
+            List<UserCard> listUserCards = new List<UserCard>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -53,11 +53,11 @@ namespace DataLayer
                 u.GetSetUserCard_Address_Of_User1 = dataReader.GetString(3);
                 u.GetSetUserCard_PhoneNumber_Of_User1 = dataReader.GetInt32(4);
 
-                lista.Add(u); // svaki student se na kraju može ubaciti u neku listu
+                listUserCards.Add(u); // svaki student se na kraju može ubaciti u neku listu
             }
 
             dataConnection.Close();
-            return lista;
+            return listUserCards;
         }
 
 

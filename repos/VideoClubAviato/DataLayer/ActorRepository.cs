@@ -31,7 +31,7 @@ namespace DataLayer
 
         public List<Actor> SelectAllActors()
         {
-            List<Actor> lista = new List<Actor>();
+            List<Actor> listActors = new List<Actor>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -54,11 +54,11 @@ namespace DataLayer
                 a.GetSetActor_Date_Of_Birth1 = dataReader.GetDateTime(3);
                 a.GetSetActor_Oscar1 = dataReader.GetBoolean(4);
 
-                lista.Add(a); // svaki student se na kraju može ubaciti u neku listu
+                listActors.Add(a); // svaki student se na kraju može ubaciti u neku listu
             }
 
             dataConnection.Close();
-            return lista;
+            return listActors;
         }
 
         //UPDATE METODA ZA AZURIRANJE GLUMCA
@@ -74,7 +74,6 @@ namespace DataLayer
             command.CommandText = "UPDATE Actors SET Actor_Name = '" + a.GetSetActor_Name1 + "', Actor_Surname = '" + a.GetSetActor_Surname1 + "', Actor_Date_Of_Birth = '" + a.GetSetActor_Date_Of_Birth1 + "', Actor_Oscar = '" + a.GetSetActor_Oscar1 + "' WHERE Id_Actor = '" + a.GetSetId_Actor1 + "'"; // setovanje SQL upita koji će se izvršiti nad bazom podataka
 
             return command.ExecuteNonQuery();
-            dataConnection.Close();
         }
 
         //DELETE METODA ZA BRISANJE GLUMCA

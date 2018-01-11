@@ -54,13 +54,13 @@ namespace VideoClubAviato
         public void FillActors()
         {
             listBoxActors.Items.Clear();
-            List<Actor> lista = businessActor.SelectAllActors();
-            foreach (Actor pom in lista)
+            List<Actor> listActors = businessActor.SelectAllActors();
+            foreach (Actor variable in listActors)
             {
-                if (pom.GetSetActor_Name1 == "Nije" && pom.GetSetActor_Surname1 == "Uneto") { }
+                if (variable.GetSetActor_Name1 == "Nije" && variable.GetSetActor_Surname1 == "Uneto") { }
                 else
                 {
-                    listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
+                    listBoxActors.Items.Add("Glumac: " + variable.GetSetActor_Name1 + " " + variable.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + variable.GetSetActor_Date_Of_Birth1);
                 }
             }
         }
@@ -167,12 +167,12 @@ namespace VideoClubAviato
                 /*PRVO PROVERAVA DA LI VEC POSTOJI GLUMAC SA TIM IMENOM, PREZIMENOM i DATUMOM RODJENJA,
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                 DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
-                List<Actor> lista = businessActor.SelectAllActors();
-                foreach (Actor pom in lista)
+                List<Actor> listActors = businessActor.SelectAllActors();
+                foreach (Actor variable in listActors)
                 {
-                    if ((pom.GetSetActor_Name1 == textBoxActorName.Text || pom.GetSetActor_Name1.ToLower() == textBoxActorName.Text || pom.GetSetActor_Name1.ToUpper() == textBoxActorName.Text) 
-                        && (pom.GetSetActor_Surname1 == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToLower() == textBoxActorSurname.Text || pom.GetSetActor_Surname1.ToUpper() == textBoxActorSurname.Text) 
-                        && Convert.ToString(pom.GetSetActor_Date_Of_Birth1) == textBoxActorDateOfBirth.Text)
+                    if ((variable.GetSetActor_Name1 == textBoxActorName.Text || variable.GetSetActor_Name1.ToLower() == textBoxActorName.Text || variable.GetSetActor_Name1.ToUpper() == textBoxActorName.Text) 
+                        && (variable.GetSetActor_Surname1 == textBoxActorSurname.Text || variable.GetSetActor_Surname1.ToLower() == textBoxActorSurname.Text || variable.GetSetActor_Surname1.ToUpper() == textBoxActorSurname.Text) 
+                        && Convert.ToString(variable.GetSetActor_Date_Of_Birth1) == textBoxActorDateOfBirth.Text)
                     {
                         ClearData();
                         MessageBox.Show("Uneti glumac vec postoji u bazi!", "Obavestenje");
@@ -271,13 +271,13 @@ namespace VideoClubAviato
                 // PRETRAGA GLUMACA U BAZI  AKO IMA OSKARA
                 if (checkBoxActorOscar.Checked)
                 {
-                    List<Actor> lista = businessActor.SearchActorsbyOscar(pom1);
-                    foreach (Actor pom in lista)
+                    List<Actor> listActors = businessActor.SearchActorsbyOscar(pom1);
+                    foreach (Actor variable in listActors)
                     {
-                    if (pom.GetSetActor_Name1 == "Nije" && pom.GetSetActor_Surname1 == "Uneto") { }
+                    if (variable.GetSetActor_Name1 == "Nije" && variable.GetSetActor_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
+                        listBoxActors.Items.Add("Glumac: " + variable.GetSetActor_Name1 + " " + variable.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + variable.GetSetActor_Date_Of_Birth1);
                     }
                     ClearData();
                 }
@@ -285,13 +285,13 @@ namespace VideoClubAviato
                 else
                 {
                     // PRETRAGA GLUMACA U BAZI BEZ FILTRIRANJA OSKARA
-                    List<Actor> lista = businessActor.SearchActors(pom1);
-                    foreach (Actor pom in lista)
+                    List<Actor> listActors = businessActor.SearchActors(pom1);
+                    foreach (Actor variable in listActors)
                     {
-                    if (pom.GetSetActor_Name1 == "Nije" && pom.GetSetActor_Surname1 == "Uneto") { }
+                    if (variable.GetSetActor_Name1 == "Nije" && variable.GetSetActor_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxActors.Items.Add("Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetActor_Date_Of_Birth1);
+                        listBoxActors.Items.Add("Glumac: " + variable.GetSetActor_Name1 + " " + variable.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + variable.GetSetActor_Date_Of_Birth1);
                     }
                     ClearData();
                 }
@@ -305,11 +305,11 @@ namespace VideoClubAviato
 
             if (listBoxActors.Text != "")
             {
-                string pom;
-                pom = listBoxActors.Text;
+                string variable;
+                variable = listBoxActors.Text;
 
-                List<Actor> lista = businessActor.SelectAllActors().Where(a => "Glumac: " + a.GetSetActor_Name1 + " " + a.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + a.GetSetActor_Date_Of_Birth1 == pom).ToList();
-                Actor actor = lista.First();
+                List<Actor> listActors = businessActor.SelectAllActors().Where(a => "Glumac: " + a.GetSetActor_Name1 + " " + a.GetSetActor_Surname1 + "  -- Datum Rodjenja: " + a.GetSetActor_Date_Of_Birth1 == variable).ToList();
+                Actor actor = listActors.First();
 
                 TextBoxHiddenIDActor.Text = Convert.ToString(actor.GetSetId_Actor1);
 

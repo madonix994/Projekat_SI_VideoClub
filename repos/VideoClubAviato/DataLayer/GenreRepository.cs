@@ -30,7 +30,7 @@ namespace DataLayer
 
         public List<Genre> SelectAllGenres()
         {
-            List<Genre> lista = new List<Genre>();
+            List<Genre> listGenres = new List<Genre>();
 
             SqlConnection dataConnection = new SqlConnection();
 
@@ -50,11 +50,11 @@ namespace DataLayer
                 g.GetSetId_Genre1 = dataReader.GetInt32(0);
                 g.GetSetGenre_Name1 = dataReader.GetString(1);
 
-                lista.Add(g); // svaki student se na kraju može ubaciti u neku listu
+                listGenres.Add(g); // svaki student se na kraju može ubaciti u neku listu
             }
 
             dataConnection.Close();
-            return lista;
+            return listGenres;
         }
 
         //METODA ZA AZURIRANJE ZANRA U BAZI

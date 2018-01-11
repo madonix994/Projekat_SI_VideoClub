@@ -62,11 +62,11 @@ namespace VideoClubAviato
         public void FillComboBoxMovies()
         {
             comboBoxMovie.Items.Clear();
-            List<Movie> listapom = businessMovie.SelectAllMoviesIdAndName();
+            List<Movie> listMovies = businessMovie.SelectAllMoviesIdAndName();
 
-            foreach (Movie pom in listapom)
+            foreach (Movie variable in listMovies)
             {
-                comboBoxMovie.Items.Add(pom.GetSetMovie_Name1);
+                comboBoxMovie.Items.Add(variable.GetSetMovie_Name1);
             }
         }
 
@@ -74,11 +74,11 @@ namespace VideoClubAviato
         public void FillComboBoxActors()
         {
             comboBoxActor.Items.Clear();
-            List<Actor> listapom = businessActor.SelectAllActors();
+            List<Actor> listActors = businessActor.SelectAllActors();
 
-            foreach (Actor pom in listapom)
+            foreach (Actor variable in listActors)
             {
-                    comboBoxActor.Items.Add(pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1);
+                    comboBoxActor.Items.Add(variable.GetSetActor_Name1 + " " + variable.GetSetActor_Surname1);
                
             }
         }
@@ -90,11 +90,11 @@ namespace VideoClubAviato
 
             listBoxMovieRoles.Items.Clear();
 
-            List<MovieRole_Actor_Movie> listapom = businessMovieRole.SelectAllMovieRoles();
+            List<MovieRole_Actor_Movie> listMovieRoles = businessMovieRole.SelectAllMovieRoles();
 
-            foreach (MovieRole_Actor_Movie pom in listapom)
+            foreach (MovieRole_Actor_Movie variable in listMovieRoles)
             {
-                listBoxMovieRoles.Items.Add("Uloga: " + pom.GetSetRole_Name1 + "  -- Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Film: " + pom.GetSetMovie_Name1 + "  -- Opis Uloge: " + pom.GetSetRole_Description1);
+                listBoxMovieRoles.Items.Add("Uloga: " + variable.GetSetRole_Name1 + "  -- Glumac: " + variable.GetSetActor_Name1 + " " + variable.GetSetActor_Surname1 + "  -- Film: " + variable.GetSetMovie_Name1 + "  -- Opis Uloge: " + variable.GetSetRole_Description1);
             }
         }
 
@@ -214,17 +214,17 @@ namespace VideoClubAviato
         {
             if (Regex.IsMatch(textBoxMovieRoleName.Text, @"[a-zA-Z]") && Regex.IsMatch(textBoxMovieRoleDescription.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxMovie.Text, @"[a-zA-Z]") && Regex.IsMatch(comboBoxActor.Text, @"[a-zA-Z]"))
             {
-                List<MovieRole_Actor_Movie> listapom = businessMovieRole.SelectAllMovieRoles();
+                List<MovieRole_Actor_Movie> listMovieRoles = businessMovieRole.SelectAllMovieRoles();
 
                 /*PRVO PROVERAVA DA LI VEC POSTOJI ULOGA SA TIM IMENOM i GLUMCEM ZA TAJ ODREDJENI FILM,
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                 DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
 
-                foreach (MovieRole_Actor_Movie pom in listapom)
+                foreach (MovieRole_Actor_Movie variable in listMovieRoles)
                 {
-                    if ((pom.GetSetRole_Name1 == textBoxMovieRoleName.Text || pom.GetSetRole_Name1.ToLower() == textBoxMovieRoleName.Text || pom.GetSetRole_Name1.ToUpper() == textBoxMovieRoleName.Text)
-                        && pom.GetSetId_Actor_Actors1 == Convert.ToInt32(TextBoxHiddenIDActor.Text)
-                        && pom.GetSetId_Movie_Movies1 == Convert.ToInt32(TextBoxHiddenIDMovie.Text))
+                    if ((variable.GetSetRole_Name1 == textBoxMovieRoleName.Text || variable.GetSetRole_Name1.ToLower() == textBoxMovieRoleName.Text || variable.GetSetRole_Name1.ToUpper() == textBoxMovieRoleName.Text)
+                        && variable.GetSetId_Actor_Actors1 == Convert.ToInt32(TextBoxHiddenIDActor.Text)
+                        && variable.GetSetId_Movie_Movies1 == Convert.ToInt32(TextBoxHiddenIDMovie.Text))
                     {
                         ClearData();
                         MessageBox.Show("Uneta uloga vec postoji u bazi!", "Obavestenje");
@@ -317,12 +317,12 @@ namespace VideoClubAviato
             
             listBoxMovieRoles.Items.Clear();
             MovieRole mr = new MovieRole();
-            string pom1 = textBoxMovieRoleSearch.Text;
+            string variable1 = textBoxMovieRoleSearch.Text;
 
-            List<MovieRole_Actor_Movie> lista = businessMovieRole.SearchMovieRole(pom1);
-            foreach (MovieRole_Actor_Movie pom in lista)
+            List<MovieRole_Actor_Movie> listMovieRoles = businessMovieRole.SearchMovieRole(variable1);
+            foreach (MovieRole_Actor_Movie variable in listMovieRoles)
             {
-                listBoxMovieRoles.Items.Add("Uloga: " + pom.GetSetRole_Name1 + "  -- Glumac: " + pom.GetSetActor_Name1 + " " + pom.GetSetActor_Surname1 + "  -- Film: " + pom.GetSetMovie_Name1 + "  -- Opis Uloge: " + pom.GetSetRole_Description1);
+                listBoxMovieRoles.Items.Add("Uloga: " + variable.GetSetRole_Name1 + "  -- Glumac: " + variable.GetSetActor_Name1 + " " + variable.GetSetActor_Surname1 + "  -- Film: " + variable.GetSetMovie_Name1 + "  -- Opis Uloge: " + variable.GetSetRole_Description1);
             }
             ClearData();
             comboBoxActor.Items.Clear();
@@ -337,12 +337,12 @@ namespace VideoClubAviato
         {
             if (listBoxMovieRoles.Text != "")
             {
-                string pom;
-                pom = listBoxMovieRoles.Text;
+                string variable;
+                variable = listBoxMovieRoles.Text;
 
-                List<MovieRole_Actor_Movie> lista = businessMovieRole.SelectAllMovieRoles().Where(mr => "Uloga: " + mr.GetSetRole_Name1 + "  -- Glumac: " + mr.GetSetActor_Name1 + " " + mr.GetSetActor_Surname1 + "  -- Film: " + mr.GetSetMovie_Name1 + "  -- Opis Uloge: " + mr.GetSetRole_Description1 == pom).ToList();
+                List<MovieRole_Actor_Movie> listMovieRoles = businessMovieRole.SelectAllMovieRoles().Where(mr => "Uloga: " + mr.GetSetRole_Name1 + "  -- Glumac: " + mr.GetSetActor_Name1 + " " + mr.GetSetActor_Surname1 + "  -- Film: " + mr.GetSetMovie_Name1 + "  -- Opis Uloge: " + mr.GetSetRole_Description1 == variable).ToList();
 
-                MovieRole_Actor_Movie movieRole = lista.First();
+                MovieRole_Actor_Movie movieRole = listMovieRoles.First();
 
 
                 TextBoxHiddenIDMovieRole.Text = Convert.ToString(movieRole.GetSetId_Role1);
@@ -368,9 +368,9 @@ namespace VideoClubAviato
             string MovieName;
             MovieName = comboBoxMovie.Text;
 
-            List<Movie_Genre_Director> lista = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1 == MovieName).ToList();
+            List<Movie_Genre_Director> listMovies = businessMovie.SelectAllMovies().Where(m => m.GetSetMovie_Name1 == MovieName).ToList();
 
-            Movie_Genre_Director mo = lista.First();
+            Movie_Genre_Director mo = listMovies.First();
             TextBoxHiddenIDMovie.Text = Convert.ToString(mo.GetSetId_Movie1);
         }
 
@@ -380,9 +380,9 @@ namespace VideoClubAviato
             string ActorNameAndSurname;
             ActorNameAndSurname = comboBoxActor.Text;
 
-            List<Actor> lista = businessActor.SelectAllActors().Where(a => a.GetSetActor_Name1 + " " + a.GetSetActor_Surname1 == ActorNameAndSurname).ToList();
+            List<Actor> listActors = businessActor.SelectAllActors().Where(a => a.GetSetActor_Name1 + " " + a.GetSetActor_Surname1 == ActorNameAndSurname).ToList();
 
-            Actor ac = lista.First();
+            Actor ac = listActors.First();
             TextBoxHiddenIDActor.Text = Convert.ToString(ac.GetSetId_Actor1);
         }
 

@@ -52,17 +52,17 @@ namespace VideoClubAviato
         public void FillDirectors()
         {
             listBoxDirectors.Items.Clear();
-            List<Director> lista = businessDirector.SelectAllDirectors();
-            foreach (Director pom in lista)
+            List<Director> listDirectors = businessDirector.SelectAllDirectors();
+            foreach (Director variable in listDirectors)
             {
-                if (pom.GetSetDirector_Name1 == "Nije" && pom.GetSetDirector_Surname1 == "Uneto")
+                if (variable.GetSetDirector_Name1 == "Nije" && variable.GetSetDirector_Surname1 == "Uneto")
                 {
 
                 }
 
                 else
                 {
-                    listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
+                    listBoxDirectors.Items.Add("Reziser: " + variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + variable.GetSetDirector_Date_Of_Birth1);
                 }
 
             }
@@ -168,18 +168,18 @@ namespace VideoClubAviato
         {
             listBoxDirectors.Items.Clear();
             Director d = new Director();
-            string pom1 = textBoxDirectorSearch.Text;
+            string variable1 = textBoxDirectorSearch.Text;
 
             if (checkBoxDirectorOscar.Checked)
             {
-                List<Director> lista = businessDirector.SearchDirectorByOscar(pom1);
-                foreach (Director pom in lista)
+                List<Director> listDirectors = businessDirector.SearchDirectorByOscar(variable1);
+                foreach (Director variable in listDirectors)
                 {
 
-                    if (pom.GetSetDirector_Name1 == "Nije" && pom.GetSetDirector_Surname1 == "Uneto") { }
+                    if (variable.GetSetDirector_Name1 == "Nije" && variable.GetSetDirector_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
+                        listBoxDirectors.Items.Add("Reziser: " + variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + variable.GetSetDirector_Date_Of_Birth1);
                     }
                     ClearData();
                     checkBoxDirectorOscar.Checked = true;
@@ -187,13 +187,13 @@ namespace VideoClubAviato
             }
             else
             {
-                List<Director> lista = businessDirector.SearchDirector(pom1);
-                foreach (Director pom in lista)
+                List<Director> listDirectors = businessDirector.SearchDirector(variable1);
+                foreach (Director variable in listDirectors)
                 {
-                    if (pom.GetSetDirector_Name1 == "Nije" && pom.GetSetDirector_Surname1 == "Uneto") { }
+                    if (variable.GetSetDirector_Name1 == "Nije" && variable.GetSetDirector_Surname1 == "Uneto") { }
                     else
                     {
-                        listBoxDirectors.Items.Add("Reziser: " + pom.GetSetDirector_Name1 + " " + pom.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + pom.GetSetDirector_Date_Of_Birth1);
+                        listBoxDirectors.Items.Add("Reziser: " + variable.GetSetDirector_Name1 + " " + variable.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + variable.GetSetDirector_Date_Of_Birth1);
                     }
                     ClearData();
                   
@@ -212,12 +212,12 @@ namespace VideoClubAviato
                 UKOLIKO POSTOJI ONDA IZBACUJE OBAVESTENJE I PRAZNI Text Box polja, I SAMIM TIM NE MOZE
                 DA SE IZVRSI DALJE KOD, A UKOLIKO NE POSTOJI ONDA IZVRSAVA DALJE KOD*/
 
-                List<Director> lista = businessDirector.SelectAllDirectors();
-                foreach (Director pom in lista)
+                List<Director> listDirectors = businessDirector.SelectAllDirectors();
+                foreach (Director variable in listDirectors)
                 {
-                    if ((pom.GetSetDirector_Name1 == textBoxDirectorName.Text || pom.GetSetDirector_Name1.ToLower() == textBoxDirectorName.Text || pom.GetSetDirector_Name1.ToUpper() == textBoxDirectorName.Text)
-                           && (pom.GetSetDirector_Surname1 == textBoxDirectorSurname.Text || pom.GetSetDirector_Surname1.ToLower() == textBoxDirectorSurname.Text || pom.GetSetDirector_Surname1.ToUpper() == textBoxDirectorSurname.Text)
-                           && pom.GetSetDirector_Date_Of_Birth1 == Convert.ToDateTime(textBoxDirectorDateOfBirth.Text))
+                    if ((variable.GetSetDirector_Name1 == textBoxDirectorName.Text || variable.GetSetDirector_Name1.ToLower() == textBoxDirectorName.Text || variable.GetSetDirector_Name1.ToUpper() == textBoxDirectorName.Text)
+                           && (variable.GetSetDirector_Surname1 == textBoxDirectorSurname.Text || variable.GetSetDirector_Surname1.ToLower() == textBoxDirectorSurname.Text || variable.GetSetDirector_Surname1.ToUpper() == textBoxDirectorSurname.Text)
+                           && variable.GetSetDirector_Date_Of_Birth1 == Convert.ToDateTime(textBoxDirectorDateOfBirth.Text))
                     {
                         ClearData();
                         MessageBox.Show("Uneti reziser vec postoji u bazi!", "Obavestenje");
@@ -315,12 +315,12 @@ namespace VideoClubAviato
         {
             if (listBoxDirectors.Text != "")
             {
-                string pom;
-                pom = listBoxDirectors.Text;
+                string variable;
+                variable = listBoxDirectors.Text;
 
-                List<Director> lista = businessDirector.SelectAllDirectors().Where(d => "Reziser: " + d.GetSetDirector_Name1 + " " + d.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + d.GetSetDirector_Date_Of_Birth1 == pom).ToList();
+                List<Director> listDirectors = businessDirector.SelectAllDirectors().Where(d => "Reziser: " + d.GetSetDirector_Name1 + " " + d.GetSetDirector_Surname1 + "  -- Datum Rodjenja: " + d.GetSetDirector_Date_Of_Birth1 == variable).ToList();
 
-                Director director = lista.First();
+                Director director = listDirectors.First();
 
                 TextBoxHiddenIDDirector.Text = Convert.ToString(director.GetSetId_Director1);
 
